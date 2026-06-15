@@ -1,0 +1,200 @@
+90-Day Python Full Stack + AI Challenge (Zero → Job Ready)
+🧭 Overall Structure
+Days 1–30 → Foundation (Zero → Beginner)
+Days 31–60 → Intermediate (Job Skills)
+Days 61–90 → Advanced (Job Ready + AI + Deployment)
+
+You will build:
+
+3 Major Projects
+10+ Mini Projects
+1 AI Capstone Project
+🟢 DAYS 1–30: FOUNDATION (ZERO → STRONG BASICS)
+🐍 WEEK 1: Python Core (Fundamentals)
+Goals:
+
+Understand programming logic and Python basics
+
+Learn:
+Variables, data types
+if/else conditions
+loops (for, while)
+functions
+input/output
+Tasks:
+Calculator program
+Number guessing game
+Simple login system
+🐍 WEEK 2: Python Core (Intermediate)
+Learn:
+Lists, tuples, sets, dictionaries
+String manipulation
+File handling
+Exception handling (try/except)
+Tasks:
+Student marks system
+Contact book (file-based)
+Expense tracker CLI
+🧠 WEEK 3: OOP + Git Basics
+Learn:
+Classes & objects
+Constructors
+Inheritance
+Polymorphism
+Git + GitHub
+Tasks:
+Bank system (OOP)
+Library system (OOP)
+Upload all projects to GitHub
+🌐 WEEK 4: HTML + CSS + JavaScript
+Learn:
+HTML structure
+CSS (Flexbox, Grid)
+JavaScript basics
+DOM manipulation
+Events
+Tasks:
+Portfolio website
+To-do list (JS)
+Form validation
+🟡 DAYS 31–60: INTERMEDIATE (FULL STACK DEVELOPMENT)
+⚙️ WEEK 5: Flask Basics
+Learn:
+Flask setup
+Routes
+Templates (Jinja2)
+Request/Response cycle
+Tasks:
+Hello Flask app
+Simple blog (static)
+Contact form app
+🔗 WEEK 6: REST APIs + Postman
+Learn:
+REST API concepts
+CRUD operations
+JSON handling
+Postman testing
+Tasks:
+Student API (CRUD)
+Product API
+Test APIs using Postman
+🗄️ WEEK 7: MySQL + SQLAlchemy + WhatsApp API (UPDATED)
+Learn:
+MySQL basics
+Joins, queries
+SQLAlchemy ORM
+Database design
+🧪 Tasks:
+🟢 Task 1: Flask + MySQL Integration
+Setup database
+Create tables using SQLAlchemy
+Perform CRUD operations
+🟢 Task 2: User Registration System
+Add user (name, phone, email)
+Store in MySQL
+Fetch/update/delete users
+📱 TASK 3: WhatsApp API Integration (INDIVIDUAL + GROUP)
+📩 Individual Message:
+Send WhatsApp message to single user
+Trigger after registration or API call
+
+Example:
+
+Hello John 👋
+Your registration is successful 🚀
+
+👥 Group Message System:
+Fetch all users from database
+Send same message to multiple users
+Loop through user list
+
+Example:
+
+Hello Team 👋
+This is a group notification 🚀
+
+Result:
+Individual messaging system
+Bulk/group messaging system
+Real-world notification system
+🌐 WEEK 8: FULL STACK PROJECT 1
+Project:
+
+👉 Task Manager / To-Do App
+
+Features:
+Add tasks
+Update tasks
+Delete tasks
+Store in database
+Frontend + backend integration
+🔵 DAYS 61–90: ADVANCED (JOB READY + AI + DEPLOYMENT)
+🐳 WEEK 9: Docker + Deployment Basics
+Learn:
+Docker basics
+Containers & images
+Flask Docker setup
+Tasks:
+Dockerize Task Manager app
+Run using Docker
+☁️ WEEK 10: AWS BASICS
+Learn:
+EC2 deployment
+S3 storage
+Linux basics
+Tasks:
+Deploy Flask app on EC2
+Upload files to S3
+🤖 WEEK 11: AI API INTEGRATION
+Learn:
+OpenAI / Gemini API
+Prompt engineering
+Flask AI integration
+Tasks:
+AI chatbot
+Resume summarizer
+AI email generator
+🚀 WEEK 12: FINAL CAPSTONE PROJECT
+Project:
+
+👉 AI-Powered Full Stack App
+
+Ideas:
+AI Resume Builder
+AI Task Planner
+AI Study Assistant
+Features:
+Flask backend
+MySQL database
+REST APIs
+AI integration
+Docker deployment
+AWS hosting
+🧠 FINAL SKILL LEVEL AFTER 90 DAYS
+
+You will be able to:
+
+Build full-stack apps
+Create REST APIs
+Work with databases
+Deploy applications
+Use Docker & AWS
+Integrate AI into apps
+Build real-world systems
+🎯 WHAT TO ADD IN RESUME
+
+You will have:
+
+💼 Projects:
+Task Manager App
+CRUD API System
+AI Full Stack App
+📁 Extras:
+GitHub portfolio
+Deployed live project
+WhatsApp notification system
+⚡ SUCCESS RULES
+Code daily (2–4 hrs)
+Push everything to GitHub
+Build projects (don’t just watch videos)
+Revise every week

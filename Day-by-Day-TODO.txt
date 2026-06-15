@@ -1,0 +1,112 @@
+Blog Topics (Day-by-Day Style)
+🟢 Python & Basics (1–15)
+Why I Started Learning Python Full Stack in 2026
+Python vs Java vs JavaScript for Freshers
+My 30-Day Plan to Become a Developer
+Python Basics Every Beginner Must Know
+Why OOP in Python is Important for Jobs
+10 Python Mistakes Every Beginner Makes
+How I Practice Python Daily (Real Routine)
+Functions in Python Explained Simply
+Data Structures You MUST Know in Python
+File Handling in Python Real Use Cases
+Python Projects That Help You Get Job
+Why Python is Still in Demand in 2026
+My First Python Project Journey
+How I Solved 100 Coding Problems
+From Zero to Python Confidence in 10 Days
+🌐 HTML, CSS, JS (16–25)
+Why Every Python Developer Should Learn Frontend
+HTML vs React for Beginners
+CSS Tricks That Make Websites Look Professional
+JavaScript Basics for Backend Developers
+DOM Manipulation Explained Simply
+My First Portfolio Website Experience
+Why Full Stack Developers Are High Demand
+Building UI Without Frameworks
+Responsive Design Explained Simply
+My First Web Page Journey
+⚙️ Flask + Backend (26–40)
+Why I Chose Flask Over Django
+Flask vs Django for Beginners
+How REST APIs Actually Work
+My First API Development Experience
+CRUD Operations Explained Simply
+Building My First Backend System
+What is Request-Response Cycle in Flask
+How Postman Helped Me Learn APIs
+Common API Errors and Fixes
+Building a Student Management API
+Why Backend Skills Are Important in 2026
+How APIs Power Modern Apps
+JSON Explained for Beginners
+My First Flask Project Breakdown
+How I Debug My Backend Code
+🗄️ MySQL + Database (41–50)
+Why Every Developer Must Learn SQL
+MySQL vs MongoDB Explained
+SQL Queries I Learned as Beginner
+Joins in SQL Explained Simply
+Database Design for Beginners
+Why SQLAlchemy is Powerful
+ORM vs Raw SQL Explained
+My First Database Project
+How Data is Stored in Real Apps
+Why Databases Are Heart of Applications
+📱 WhatsApp API + Real World (51–60)
+How WhatsApp API Works in Real Apps
+Sending Messages Using Python API
+Building Notification Systems Like Companies
+Individual vs Group Messaging System Explained
+Why APIs Like Twilio Are Powerful
+Automating Messages Using Python
+Real Use Cases of WhatsApp API
+Building My First Messaging System
+How Companies Send OTPs Using APIs
+API Automation in Real World Systems
+🐳 Docker + AWS (61–70)
+Why Developers Must Learn Docker
+Docker Explained in Simple Words
+My First Docker Deployment Experience
+How Containers Work in Real Life
+Why AWS is Important for Developers
+Deploying Flask App on AWS EC2
+S3 Storage Explained Simply
+Linux Basics for Developers
+Hosting My First Web App
+DevOps Basics for Beginners
+🤖 AI Integration (71–85)
+Why AI is Changing Full Stack Development
+OpenAI API Explained Simply
+Building My First AI Chatbot
+Prompt Engineering Basics
+AI vs Traditional Programming
+How AI Can Be Added to Web Apps
+My First AI Resume Builder
+AI Email Generator Project
+What is RAG (Retrieval Augmented Generation)
+Future of AI + Full Stack Development
+Why Developers Should Learn AI Tools
+Building Smart Applications Using AI APIs
+AI in Real World Software Systems
+My Journey Into AI Integration
+How AI Will Replace Simple Coding Tasks
+🚀 Career + Projects (86–90)
+My 90-Day Full Stack Learning Plan
+Projects I Built to Become Job Ready
+How I Built My GitHub Portfolio
+Mistakes I Made While Learning Full Stack
+My Journey From Beginner to Developer (Roadmap)
+🔥 Bonus Tip (VERY IMPORTANT)
+
+To go viral on LinkedIn:
+
+Post 1 topic per day
+Add:
+Screenshot of code
+Small project demo
+Real struggle/story
+
+Use hashtags:
+
+#python #fullstack #flask #webdevelopment #ai #100DaysOfCode #programming #softwareengineering
