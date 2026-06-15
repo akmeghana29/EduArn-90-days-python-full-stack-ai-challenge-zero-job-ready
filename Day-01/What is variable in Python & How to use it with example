@@ -1,0 +1,362 @@
+# TOPICS REVISED OR LEARNT - DAY 1
+'''
+1. What is a variable and how to create it.
+2. Naming rules
+3. Multiple variable assignment:
+
+a,b,c = 100, 200, 300
+
+a=b=c= 100
+
+4. Variable swapping:
+
+a,b = b,a
+
+5. Dynamic Typing:
+The interpreter automatically assigns the data type to a variable 
+during run time based on the assigned value.
+No need to mention the data type explicitly.
+
+6. Checking variable type:
+'''
+
+x = 10
+print(type(x))
+
+# output: <class 'int'>
+
+'''
+7. Object Identity - every object has a unique memory location
+'''
+print(id(x))
+
+'''
+8. Everything in Python is an object: int object, string object, list object etc.
+
+PYTHON DATA TYPES
+
+Numeric
+Sequence
+Set
+Mapping
+Boolean
+Binary
+None
+
+9. Numeric Data Types:
+
+int (Python integers have practically unlimited size)
+float (Scientific notation: x=5e3 means x=5000.0)
+complex (x = a + bj) - x.real, x.imag
+
+10. Type Conversion 
+
+int() - int(10.5) = 10
+float()
+str() - str(10) = "10"
+bool()
+
+11. Sequence data types: 
+
+str (collection of characters, strings are immutable)
+
+P y t h o n
+-6 -5 -4 -3 -2 -1 (Negative indexing)
+
+String slicing
+string[start:end:step] (start included, stop excluded)
+
+Reverse String - s[::-1] 
+Output: nohtyP
+
+
+list (Ordered, mutable collection, can store different data types)
+nums = [1,2,3,4] (muting)
+nums[0] = 100
+[100,2,3,4]
+
+
+tuple (ordered but immutable) 
+t = (1,2,3)
+
+single element tuple: t = (5) invalid, (5,) valid
+
+ 
+range 
+range(5) = 0 1 2 3
+range(1, 10)
+range(1,10,2)
+
+12. Set (unordered, mutable, no duplicates)
+s = {1,2,3}
+
+Frozen set is immutable
+fs = frozenset([1,2,3])
+
+13. Dictionaries - Key value pairs (Mutable, ordered, unique keys)
+student = {
+    "name":"Kirti",
+    "age":20
+}
+
+student["name"]
+output = Kirti
+
+
+14. Boolean - True, False
+
+example: is_logged_in = True
+
+
+15. Truthy and Falsy values:
+False
+0
+0.0
+''
+[]
+()
+{}
+set()
+None
+
+-- Everything else is truthy
+
+examples: 
+bool("")
+False
+
+bool("Python")
+True
+
+
+BINARY DATA TYPES
+
+16. bytes (immutable binary sequence)
+b = bytes([65,66,67])
+output = b'ABC'
+
+
+17. bytearray (mutable bytes)
+b = bytearray([65,66,67])
+
+18. memoryview - direct memory access, used for performance optimization:
+
+data = bytes([1,2,3])
+mv = memoryview(data)
+
+19. None Type - represents absence of values
+x = None
+ type = NoneType
+ 
+ 20. Input Function:
+ name = input("Enter name:")
+
+
+Input always return string:
+age = input() 
+- Even if user enters 30, it will be a string, we can type cast if needed - age = int(input())
+ 
+ 21. Type Casting: 
+ x = 10
+y = 5.5
+
+z = x + y
+
+z = 15.5 (Python automatically converts - implicit conversion)
+
+(Explicit conversion):
+int()
+float()
+str()
+bool()
+
+22. Mutable
+list
+set
+dict
+bytearray
+
+Immutable:
+int
+float
+bool
+complex
+str
+tuple
+frozenset
+bytes
+
+23. is vs. ==
+
+a = [1,2]
+b = [1,2]
+
+a == b
+
+output= true (== compares values)
+
+a is b 
+
+output = false ('is' compares memory address)
+
+
+24. Data Type Hierarchy:
+
+object
+│
+├── Numeric
+│   ├── int
+│   ├── float
+│   └── complex
+│
+├── Sequence
+│   ├── str
+│   ├── list
+│   ├── tuple
+│   └── range
+│
+├── Set
+│   ├── set
+│   └── frozenset
+│
+├── Mapping
+│   └── dict
+│
+├── Boolean
+│   └── bool
+│
+├── Binary
+│   ├── bytes
+│   ├── bytearray
+│   └── memoryview
+│
+└── NoneType
+
+
+25. Interview Questions and Answers
+
+
+Q1. What is a variable in Python?
+
+A variable is a reference (label) to an object stored in memory.
+
+Q2. Is Python statically typed or dynamically typed?
+
+Python is dynamically typed.
+
+Q3. Difference between mutable and immutable objects?
+
+Mutable objects can be changed after creation.
+
+Example:
+
+list
+dict
+set
+
+Immutable:
+
+int
+float
+str
+tuple
+
+
+Q4. Difference between List and Tuple?
+List	Tuple
+Mutable	Immutable
+[]	()
+Slower	Faster
+More memory	Less memory
+
+
+Q5. Difference between is and == ?
+==
+
+Compares values.
+
+is
+
+Compares object identity (memory reference).
+
+Q6. Why are strings immutable?
+
+To improve security, memory optimization, hashing, and performance.
+
+Q7. What is None?
+
+Represents absence of value or null reference.
+
+x = None
+Q8. What is type casting?
+
+Converting one datatype into another.
+
+int("10")
+float(5)
+str(100)
+Q9. What are Truthy and Falsy values?
+
+Falsy values:
+
+False
+0
+0.0
+''
+[]
+{}
+()
+set()
+None
+
+Everything else is Truthy.
+
+Q10. What is the output?
+a = [1,2]
+b = a
+b.append(3)
+
+print(a)
+
+Output:
+
+[1,2,3]
+
+Because both variables reference the same list object.
+
+Q11. Why is Python called object-oriented?
+
+Because everything in Python is an object, including integers, strings, lists, functions, and classes.
+
+Q12. What is the difference between bytes and bytearray?
+bytes	bytearray
+Immutable	Mutable
+Faster	Editable
+Binary data	Binary data
+Q13. What datatype does input() return?
+
+Always:
+
+str
+Q14. Can dictionary keys be duplicated?
+
+No.
+
+d = {"a":1,"a":2}
+
+Result:
+
+{'a':2}
+
+Latest value overrides previous value.
+
+Q15. Explain Python memory management in one line.
+
+Variables store references to objects, and Python automatically manages memory using reference counting and garbage collection.
+
+These notes cover the complete beginner-to-interview level foundation of Python variables and data types. The next mastery step after this topic is understanding operators, expressions, type conversion edge cases, and Python's memory model (references, shallow copy, deep copy, mutability in depth), which are commonly asked in interviews alongside variables and data types.
+
+
+
+'''
+
