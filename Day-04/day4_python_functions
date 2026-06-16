@@ -1,0 +1,1005 @@
+# PYTHON FUNCTIONS - COMPLETE MASTER NOTES
+
+'''
+1. What is a Function?
+A function is a reusable block of code
+that performs a specific task.
+
+Benefits:
+- Reusability
+- Readability
+- Easy Maintenance
+- Less Code Duplication
+
+'''
+'''
+2. Why Functions?
+
+Without Functions:
+print("Hello")
+print("Hello")
+print("Hello")
+
+With Functions:
+
+'''
+
+def greet():
+    print("Hello")
+
+greet()
+greet()
+greet()
+'''
+3. Function Definition
+
+Creating a function is called defining a function.
+
+Syntax:
+def function_name():
+    code
+'''
+
+def welcome():
+    print("Welcome")
+
+'''
+4. Function Call
+
+A function executes only when called.
+
+'''
+
+welcome()
+
+'''
+5. Function Flow
+Python jumps into the function,
+executes it,
+then returns back.
+
+'''
+
+def demo():
+    print("Inside Function")
+
+
+print("Start")
+demo()
+print("End")
+
+'''
+6. Function Naming Rules
+
+Same as variable naming rules.
+
+Valid:
+
+calculate_sum
+find_max
+get_name
+
+Invalid:
+
+1sum
+my-function
+
+Use snake_case.
+
+'''
+
+'''
+7. Parameters and Arguments
+
+Parameter:
+
+Variable in function definition.
+
+Argument:
+
+Actual value passed during function call.
+
+
+
+
+
+'''
+
+def greet(name):
+    print("Hello", name)
+
+greet("Kirti")
+
+
+
+'''
+8. Multiple Parameters
+
+'''
+
+def add(a, b):
+
+    print(a + b)
+
+
+add(10,20)
+
+
+
+'''
+9. Why Parameters?
+
+Without parameters,
+function can only perform one fixed task.
+
+Parameters make functions reusable.
+
+'''
+
+
+
+'''
+10. Return Statement
+
+Returns value back to caller.
+Most Important Function Topic.
+
+'''
+
+def add(a,b):
+
+    return a+b
+
+
+result=add(10,20)
+
+print(result)
+
+
+
+'''
+11. print() vs return()
+
+print()
+
+→ Displays output
+
+return
+
+→ Sends value back
+
+Interview Favorite
+
+'''
+
+def square(n):
+
+    return n*n
+
+
+x =square(5)
+
+print(x)
+
+
+
+'''
+12. Function Stops at Return
+
+Anything after return
+does not execute.
+
+'''
+
+def demo():
+
+    print("A")
+    return
+    print("B")
+    
+demo()
+
+
+
+'''
+13. Returning Multiple Values
+
+Python packs them into a tuple.
+
+'''
+
+def calculate(a,b):
+    return a+b, a-b
+
+
+result =calculate(10,5)
+
+print(result)
+
+# (15,5)
+
+
+
+'''
+14. Unpacking Returned Values
+
+'''
+
+sum_value, diff_value = calculate(10,5)
+
+print(sum_value)
+
+print(diff_value)
+
+
+
+'''
+15. Local Variables
+
+Created inside function.
+
+Accessible only inside function.
+
+'''
+
+def test():
+
+    x = 100
+
+    print(x)
+
+
+test()
+
+
+
+'''
+16. Global Variables
+
+Created outside function.
+
+Accessible everywhere.
+
+'''
+
+x = 100
+
+def show():
+
+    print(x)
+
+
+show()
+
+
+
+'''
+17. Local vs Global
+
+Local variable gets priority.
+
+'''
+
+x = 100
+
+def demo():
+
+    x = 50
+
+    print(x)
+
+
+demo()
+
+print(x)
+
+
+
+'''
+18. global Keyword
+
+Used to modify global variables.
+
+'''
+
+count = 0
+
+def increment():
+
+    global count
+
+    count += 1
+
+
+increment()
+
+print(count)
+
+
+
+'''
+19. Positional Arguments
+
+Matched according to position.
+
+'''
+
+def student(name, age):
+
+    print(name, age)
+
+
+student("Kirti",20)
+
+
+
+'''
+20. Keyword Arguments
+
+Matched according to names.
+
+Order does not matter.
+
+'''
+
+student(age=20, name="Kirti")
+
+
+
+'''
+21. Default Arguments
+
+Default value used if no argument supplied.
+
+'''
+
+def greet(name="Guest"):
+
+    print("Hello", name)
+
+
+greet()
+
+greet("Kirti")
+
+
+
+'''
+22. Required Arguments
+
+Must be supplied.
+
+'''
+
+def add(a,b):
+
+    return a+b
+
+
+# add(5)
+
+# TypeError
+
+
+
+'''
+23. Arbitrary Positional Arguments
+
+*args
+
+Accepts unlimited positional arguments.
+
+Stored as tuple.
+
+'''
+
+def total(*args):
+
+    print(args)
+
+
+total(1,2,3,4,5)
+
+
+
+'''
+24. Practical Example of *args
+
+'''
+
+def total(*args):
+
+    s = 0
+
+    for num in args:
+
+        s += num
+
+    return s
+
+
+print(total(10,20,30,40))
+
+
+
+'''
+25. Arbitrary Keyword Arguments
+
+**kwargs
+
+Accepts unlimited keyword arguments.
+
+Stored as dictionary.
+
+'''
+
+def student(**kwargs):
+
+    print(kwargs)
+
+
+student(name="Kirti", age=20)
+
+
+
+'''
+26. Practical Example of **kwargs
+
+'''
+
+def student(**kwargs):
+
+    for key,value in kwargs.items():
+
+        print(key, value)
+
+
+student(
+    name="Kirti",
+    age=20,
+    city="Delhi"
+)
+
+
+
+'''
+27. Scope
+
+Scope means where a variable
+can be accessed.
+
+Types:
+
+Local Scope
+Global Scope
+
+'''
+
+
+
+'''
+28. LEGB Rule
+
+Python searches variables in:
+
+L → Local
+
+E → Enclosing
+
+G → Global
+
+B → Built-in
+
+Interview Important
+
+'''
+
+
+
+'''
+29. Enclosing Scope
+
+Function inside another function.
+
+'''
+
+def outer():
+
+    x = 100
+
+    def inner():
+
+        print(x)
+
+    inner()
+
+
+outer()
+
+
+
+'''
+30. nonlocal Keyword
+
+Used to modify enclosing scope variable.
+
+'''
+
+def outer():
+
+    x = 10
+
+    def inner():
+
+        nonlocal x
+
+        x = 20
+
+    inner()
+
+    print(x)
+
+
+outer()
+
+
+
+'''
+31. Functions are Objects
+
+Everything in Python is an object.
+
+Functions can be assigned to variables.
+
+'''
+
+def greet():
+
+    print("Hello")
+
+
+x = greet
+
+x()
+
+
+
+'''
+32. Passing Function as Argument
+
+'''
+
+def greet():
+
+    print("Hello")
+
+
+def execute(func):
+
+    func()
+
+
+execute(greet)
+
+
+
+'''
+33. Function Returning Function
+
+'''
+
+def outer():
+
+    def inner():
+
+        print("Hello")
+
+    return inner
+
+
+x = outer()
+
+x()
+
+
+
+'''
+34. Lambda Function
+
+Anonymous one-line function.
+
+Syntax:
+
+lambda arguments : expression
+
+'''
+
+square = lambda x: x*x
+
+print(square(5))
+
+
+
+'''
+35. Lambda with Multiple Arguments
+
+'''
+
+add = lambda a,b : a+b
+
+print(add(10,20))
+
+
+
+'''
+36. map()
+
+Applies function to every element.
+
+'''
+
+nums = [1,2,3,4]
+
+result = list(map(lambda x:x*2, nums))
+
+print(result)
+
+
+
+'''
+37. filter()
+
+Keeps elements where condition is True.
+
+'''
+
+nums = [1,2,3,4,5,6]
+
+result = list(filter(lambda x:x%2==0, nums))
+
+print(result)
+
+
+
+'''
+38. sorted() with Lambda
+
+Very Common Interview Topic
+
+'''
+
+students = [
+
+    ("A",90),
+
+    ("B",70),
+
+    ("C",80)
+
+]
+
+students.sort(key=lambda x:x[1])
+
+print(students)
+
+
+
+'''
+39. Recursion
+
+Function calling itself.
+
+'''
+
+def countdown(n):
+
+    if n == 0:
+
+        return
+
+    print(n)
+
+    countdown(n-1)
+
+
+countdown(5)
+
+
+
+'''
+40. Base Case
+
+Condition that stops recursion.
+
+Without base case:
+
+Infinite recursion occurs.
+
+'''
+
+# RecursionError
+
+
+
+'''
+41. Factorial Using Recursion
+
+Classic Interview Question
+
+'''
+
+def factorial(n):
+
+    if n == 1:
+
+        return 1
+
+    return n * factorial(n-1)
+
+
+print(factorial(5))
+
+
+
+'''
+42. Docstrings
+
+Used to document functions.
+
+'''
+
+def add(a,b):
+
+    '''
+    Returns sum of two numbers.
+    '''
+
+    return a+b
+
+
+
+'''
+43. Accessing Docstrings
+
+'''
+
+print(add.__doc__)
+
+
+
+'''
+44. Built-in Functions
+
+Provided by Python.
+
+Examples:
+
+print()
+input()
+len()
+sum()
+max()
+min()
+type()
+
+'''
+
+
+
+'''
+45. User Defined Functions
+
+Created by programmer.
+
+'''
+
+def greet():
+
+    print("Hello")
+
+
+
+'''
+46. Recursive vs Iterative
+
+Recursive:
+
+Function calls itself.
+
+Iterative:
+
+Uses loops.
+
+'''
+
+
+
+'''
+47. Memory Flow of Function Calls
+
+Whenever function is called:
+
+1. Stack Frame Created
+
+2. Local Variables Created
+
+3. Function Executes
+
+4. Stack Frame Destroyed
+
+5. Control Returns
+
+Interview Concept
+
+'''
+
+
+
+'''
+48. Common Mistake
+
+Forgetting return.
+
+'''
+
+def add(a,b):
+
+    a+b
+
+
+x = add(10,20)
+
+print(x)
+
+# None
+
+
+
+'''
+49. Common Mistake
+
+Mutable Default Arguments
+
+Avoid:
+
+'''
+
+def bad(nums=[]):
+
+    nums.append(1)
+
+    return nums
+
+
+'''
+Preferred:
+
+'''
+
+def good(nums=None):
+
+    if nums is None:
+
+        nums = []
+
+
+
+'''
+50. Interview Questions
+
+
+Q1. Difference between Parameter and Argument?
+
+Parameter:
+
+Variable in function definition.
+
+Argument:
+
+Actual value passed.
+
+
+Q2. Difference between print() and return()?
+
+print:
+
+Displays output.
+
+return:
+
+Sends value back.
+
+
+Q3. What happens if return is omitted?
+
+Function returns:
+
+None
+
+
+Q4. Difference between Local and Global Variables?
+
+Local:
+
+Inside function.
+
+Global:
+
+Outside function.
+
+
+Q5. What is *args?
+
+Accepts multiple positional arguments.
+
+Stored as tuple.
+
+
+Q6. What is **kwargs?
+
+Accepts multiple keyword arguments.
+
+Stored as dictionary.
+
+
+Q7. What is Recursion?
+
+Function calling itself.
+
+
+Q8. What is Base Case?
+
+Condition that stops recursion.
+
+
+Q9. What is Lambda Function?
+
+Anonymous one-line function.
+
+
+Q10. What is Scope?
+
+Region where variable can be accessed.
+
+
+Q11. What is LEGB Rule?
+
+Local
+Enclosing
+Global
+Built-in
+
+
+Q12. Can a Function Return Multiple Values?
+
+Yes.
+
+Python returns them as a tuple.
+
+
+Q13. Are Functions Objects in Python?
+
+Yes.
+
+They can be:
+
+- Assigned to variables
+- Passed as arguments
+- Returned from functions
+
+
+Q14. Difference Between Recursion and Loop?
+
+Recursion:
+Function calls itself.
+
+Loop:
+Repeats using for/while.
+
+
+Q15. What is a Docstring?
+
+Documentation string
+written inside a function.
+
+'''
