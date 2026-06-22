@@ -1,0 +1,184 @@
+"""
+STRINGS IN PYTHON 
+"""
+
+# 1. What is a String in Python
+"""
+A string is a sequence of characters enclosed in:
+- Single quotes: 'hello'
+- Double quotes: "hello"
+- Triple quotes: '''multi-line'''
+
+Properties:
+- Ordered (indexed)
+- Immutable (cannot be changed in-place)
+"""
+
+s = "Python"
+
+
+# 2. String Indexing and Slicing
+s = "Python"
+
+# Indexing
+first = s[0]     # 'P'
+fourth = s[3]    # 'h'
+last = s[-1]     # 'n'
+
+# Slicing
+a = s[0:4]       # "Pyth"
+b = s[:3]        # "Pyt"
+c = s[2:]        # "thon"
+rev = s[::-1]    # "nohtyP"
+
+
+# 3. Immutability Concept
+s = "hello"
+
+# s[0] = "H"  ❌ Not allowed
+
+# Correct way
+s = "H" + s[1:]
+
+
+# 4. Concatenation and Repetition
+a = "Hello"
+b = "World"
+
+concat = a + " " + b   # "Hello World"
+repeat = "ha" * 3      # "hahaha"
+
+
+# 5. Common String Methods
+
+text = "  Python String  "
+
+# Case conversion
+text.lower()
+text.upper()
+text.title()
+text.capitalize()
+text.swapcase()
+
+# Whitespace removal
+text.strip()
+text.lstrip()
+text.rstrip()
+
+# Searching
+text.find("t")
+text.index("t")
+text.count("t")
+
+# Replace
+text.replace("Python", "Java")
+
+# Type checks
+text.isalpha()
+text.isdigit()
+text.isalnum()
+text.isspace()
+text.islower()
+text.isupper()
+
+
+# 6. Splitting and Joining
+s = "a,b,c"
+
+lst = s.split(",")        # ['a', 'b', 'c']
+joined = ",".join(lst)    # "a,b,c"
+
+
+# 7. String Formatting
+
+name = "Kirti"
+age = 21
+
+f_string = f"My name is {name} and age is {age}"
+format_string = "My name is {} and age is {}".format(name, age)
+old_style = "My name is %s" % name
+
+
+# 8. Escape Characters
+escape_example = "Hello\nWorld\tPython\\Strings"
+
+
+# 9. String Iteration
+for ch in "Python":
+    pass  # print(ch)
+
+
+# 10. Membership Operators
+check1 = "py" in "python"
+check2 = "java" not in "python"
+
+
+# 11. String Comparison
+result = "apple" < "banana"
+
+
+# 12. Important Algorithms
+
+# Reverse string
+rev = s[::-1]
+
+# Palindrome check
+is_palindrome = s == s[::-1]
+
+# Frequency count
+from collections import Counter
+freq = Counter("banana")
+
+# Remove duplicates (unordered)
+unique = "".join(set("banana"))
+
+
+# 13. Advanced Concepts
+
+ascii_A = ord('A')   # 65
+char_A = chr(65)     # 'A'
+
+sorted_chars = sorted("cab")   # ['a', 'b', 'c']
+list_chars = list("hello")
+
+
+# 14. Common Interview Patterns
+
+def is_anagram(s1, s2):
+    return sorted(s1) == sorted(s2)
+
+
+# 15. Performance Notes
+
+# Bad (inefficient)
+s = ""
+for i in ["a", "b", "c"]:
+    s += i
+
+# Good (efficient)
+s = "".join(["a", "b", "c"])
+
+
+# 16. Memory Trick Summary
+"""
+Think of strings in 4 blocks:
+1. Creation
+2. Access
+3. Transformation
+4. Combination
+"""
+
+
+# 17. Cheat Sheet (Quick Revision)
+
+"""
+Most important:
+- lower(), upper()
+- strip()
+- split(), join()
+- replace()
+- find()
+- slicing [::-1]
+- f-strings
+- 'in' keyword
+"""
