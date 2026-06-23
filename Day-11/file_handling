@@ -1,0 +1,815 @@
+# Python File Handling
+
+# 1. Introduction to File Handling
+
+File handling allows Python programs to:
+
+- Read data from files
+- Write data to files
+- Modify existing files
+- Store data permanently
+
+Without files, data is lost when the program ends.
+
+Common file types:
+
+- Text Files (.txt)
+- CSV Files (.csv)
+- JSON Files (.json)
+- Log Files (.log)
+- Binary Files (.bin, images, videos, PDFs)
+
+---
+
+# 2. Opening a File
+
+Syntax:
+
+```python
+file_object = open(filename, mode)
+```
+
+Example:
+
+```python
+file = open("data.txt", "r")
+```
+
+Parameters:
+
+- filename → file name/path
+- mode → operation to perform
+
+---
+
+# 3. File Modes
+
+## Read Mode (r)
+
+```python
+file = open("data.txt", "r")
+```
+
+- Default mode
+- File must exist
+- Cannot write
+
+Example:
+
+```python
+file = open("data.txt", "r")
+print(file.read())
+```
+
+---
+
+## Write Mode (w)
+
+```python
+file = open("data.txt", "w")
+```
+
+- Creates file if not present
+- Deletes existing contents
+
+Example:
+
+```python
+file = open("data.txt", "w")
+file.write("Hello")
+```
+
+---
+
+## Append Mode (a)
+
+```python
+file = open("data.txt", "a")
+```
+
+- Creates file if absent
+- Adds content at end
+- Does not erase existing content
+
+Example:
+
+```python
+file = open("data.txt", "a")
+file.write("\nNew Line")
+```
+
+---
+
+## Exclusive Create Mode (x)
+
+```python
+file = open("data.txt", "x")
+```
+
+- Creates file
+- Error if file already exists
+
+---
+
+## Read and Write (r+)
+
+```python
+file = open("data.txt", "r+")
+```
+
+- Read and write
+- File must exist
+
+---
+
+## Write and Read (w+)
+
+```python
+file = open("data.txt", "w+")
+```
+
+- Read and write
+- Existing content removed
+
+---
+
+## Append and Read (a+)
+
+```python
+file = open("data.txt", "a+")
+```
+
+- Read and append
+
+---
+
+## Binary Modes
+
+| Mode | Meaning |
+|--------|---------|
+| rb | Read Binary |
+| wb | Write Binary |
+| ab | Append Binary |
+| rb+ | Read & Write Binary |
+
+Example:
+
+```python
+file = open("image.jpg", "rb")
+```
+
+---
+
+# 4. Closing a File
+
+Syntax:
+
+```python
+file.close()
+```
+
+Example:
+
+```python
+file = open("data.txt", "r")
+print(file.read())
+file.close()
+```
+
+Why close?
+
+- Releases memory
+- Saves changes
+- Prevents resource leaks
+
+---
+
+# 5. Using with Statement (Recommended)
+
+Automatically closes file.
+
+Syntax:
+
+```python
+with open("data.txt", "r") as file:
+    print(file.read())
+```
+
+Equivalent to:
+
+```python
+file = open("data.txt", "r")
+try:
+    print(file.read())
+finally:
+    file.close()
+```
+
+Advantages:
+
+- Cleaner code
+- Auto close
+- Safer
+
+---
+
+# 6. Reading Files
+
+## read()
+
+Reads entire file.
+
+```python
+with open("data.txt", "r") as file:
+    data = file.read()
+    print(data)
+```
+
+Example File:
+
+```text
+Hello
+Python
+```
+
+Output:
+
+```text
+Hello
+Python
+```
+
+---
+
+## read(size)
+
+Reads specific number of characters.
+
+```python
+with open("data.txt", "r") as file:
+    print(file.read(5))
+```
+
+Output:
+
+```text
+Hello
+```
+
+---
+
+## readline()
+
+Reads one line.
+
+```python
+with open("data.txt", "r") as file:
+    print(file.readline())
+```
+
+Output:
+
+```text
+Hello
+```
+
+---
+
+## Multiple readline()
+
+```python
+with open("data.txt", "r") as file:
+    print(file.readline())
+    print(file.readline())
+```
+
+---
+
+## readlines()
+
+Returns list of lines.
+
+```python
+with open("data.txt", "r") as file:
+    lines = file.readlines()
+    print(lines)
+```
+
+Output:
+
+```python
+['Hello\n', 'Python\n']
+```
+
+---
+
+# 7. Iterating Through File
+
+Best for large files.
+
+```python
+with open("data.txt", "r") as file:
+    for line in file:
+        print(line)
+```
+
+Advantages:
+
+- Memory efficient
+- Faster for large files
+
+---
+
+# 8. Writing Files
+
+## write()
+
+Writes string.
+
+```python
+with open("data.txt", "w") as file:
+    file.write("Hello")
+```
+
+---
+
+## Writing Multiple Lines
+
+```python
+with open("data.txt", "w") as file:
+    file.write("Line1\n")
+    file.write("Line2\n")
+```
+
+---
+
+# 9. writelines()
+
+Writes iterable of strings.
+
+```python
+lines = ["A\n", "B\n", "C\n"]
+
+with open("data.txt", "w") as file:
+    file.writelines(lines)
+```
+
+Output File:
+
+```text
+A
+B
+C
+```
+
+Note:
+
+```python
+file.writelines(["A", "B"])
+```
+
+Output:
+
+```text
+AB
+```
+
+No automatic newline.
+
+---
+
+# 10. File Pointer
+
+Every file has a cursor position.
+
+Example:
+
+```python
+with open("data.txt", "r") as file:
+    print(file.read(5))
+```
+
+Cursor moves forward.
+
+---
+
+# 11. tell()
+
+Returns current cursor position.
+
+```python
+with open("data.txt", "r") as file:
+    print(file.tell())
+```
+
+Output:
+
+```text
+0
+```
+
+After reading:
+
+```python
+file.read(5)
+print(file.tell())
+```
+
+Output:
+
+```text
+5
+```
+
+---
+
+# 12. seek()
+
+Moves cursor.
+
+Syntax:
+
+```python
+file.seek(position)
+```
+
+Example:
+
+```python
+with open("data.txt", "r") as file:
+    file.seek(3)
+    print(file.read())
+```
+
+---
+
+# 13. File Exists Check
+
+Using os module.
+
+```python
+import os
+
+print(os.path.exists("data.txt"))
+```
+
+Output:
+
+```python
+True
+```
+
+or
+
+```python
+False
+```
+
+---
+
+# 14. Delete File
+
+```python
+import os
+
+os.remove("data.txt")
+```
+
+---
+
+# 15. Rename File
+
+```python
+import os
+
+os.rename("old.txt", "new.txt")
+```
+
+---
+
+# 16. Handling File Exceptions
+
+## FileNotFoundError
+
+```python
+try:
+    file = open("abc.txt", "r")
+except FileNotFoundError:
+    print("File not found")
+```
+
+---
+
+## General Exception
+
+```python
+try:
+    file = open("abc.txt")
+except Exception as e:
+    print(e)
+```
+
+---
+
+# 17. File Attributes
+
+```python
+file = open("data.txt")
+```
+
+## name
+
+```python
+print(file.name)
+```
+
+---
+
+## mode
+
+```python
+print(file.mode)
+```
+
+---
+
+## closed
+
+```python
+print(file.closed)
+```
+
+---
+
+# 18. Working with Paths
+
+## Relative Path
+
+```python
+open("data.txt")
+```
+
+Current folder.
+
+---
+
+## Absolute Path
+
+Windows:
+
+```python
+open("C:\\Users\\Admin\\data.txt")
+```
+
+Raw String:
+
+```python
+open(r"C:\Users\Admin\data.txt")
+```
+
+---
+
+# 19. Binary Files
+
+Reading image:
+
+```python
+with open("image.jpg", "rb") as file:
+    data = file.read()
+```
+
+Writing binary:
+
+```python
+with open("copy.jpg", "wb") as file:
+    file.write(data)
+```
+
+---
+
+# 20. Copying a File
+
+```python
+with open("source.txt", "r") as src:
+    content = src.read()
+
+with open("destination.txt", "w") as dest:
+    dest.write(content)
+```
+
+---
+
+# 21. Counting Lines in File
+
+```python
+with open("data.txt", "r") as file:
+    count = len(file.readlines())
+
+print(count)
+```
+
+---
+
+# 22. Counting Words
+
+```python
+with open("data.txt", "r") as file:
+    text = file.read()
+
+words = len(text.split())
+print(words)
+```
+
+---
+
+# 23. Counting Characters
+
+```python
+with open("data.txt", "r") as file:
+    text = file.read()
+
+print(len(text))
+```
+
+---
+
+# 24. Reading Large Files Efficiently
+
+Bad:
+
+```python
+file.read()
+```
+
+Loads entire file.
+
+Better:
+
+```python
+for line in file:
+    print(line)
+```
+
+Best for huge files.
+
+---
+
+# 25. Context Manager Internals
+
+```python
+with open("data.txt") as file:
+    pass
+```
+
+Internally:
+
+```python
+file = open("data.txt")
+
+try:
+    pass
+finally:
+    file.close()
+```
+
+---
+
+# 26. Common File Methods
+
+| Method | Purpose |
+|----------|----------|
+| open() | Open file |
+| close() | Close file |
+| read() | Read all |
+| read(size) | Read limited chars |
+| readline() | Read one line |
+| readlines() | Read all lines |
+| write() | Write string |
+| writelines() | Write iterable |
+| tell() | Current position |
+| seek() | Move cursor |
+| flush() | Force write buffer |
+
+---
+
+# 27. flush()
+
+Immediately writes buffer to disk.
+
+```python
+file = open("data.txt", "w")
+
+file.write("Hello")
+file.flush()
+```
+
+Useful in:
+
+- Logging
+- Real-time writing
+
+---
+
+# 28. File Handling Best Practices
+
+Always use:
+
+```python
+with open(...)
+```
+
+Handle exceptions:
+
+```python
+try:
+    with open(...)
+except:
+    pass
+```
+
+Use iteration for large files:
+
+```python
+for line in file:
+    pass
+```
+
+Check existence before deleting:
+
+```python
+if os.path.exists("data.txt"):
+    os.remove("data.txt")
+```
+
+Close files if not using with.
+
+---
+
+# Quick Interview Revision
+
+Open File:
+
+```python
+open("file.txt", "r")
+```
+
+Read Entire File:
+
+```python
+file.read()
+```
+
+Read One Line:
+
+```python
+file.readline()
+```
+
+Read All Lines:
+
+```python
+file.readlines()
+```
+
+Write:
+
+```python
+file.write("Hello")
+```
+
+Append:
+
+```python
+open("file.txt", "a")
+```
+
+Cursor Position:
+
+```python
+file.tell()
+```
+
+Move Cursor:
+
+```python
+file.seek(0)
+```
+
+Delete File:
+
+```python
+os.remove("file.txt")
+```
+
+Check Existence:
+
+```python
+os.path.exists("file.txt")
+```
+
+Safe Opening:
+
+```python
+with open("file.txt") as file:
+    pass
+```
