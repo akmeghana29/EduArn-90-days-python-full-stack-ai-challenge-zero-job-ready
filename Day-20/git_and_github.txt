@@ -1,0 +1,573 @@
+Git + GitHub
+
+1. What is Git?
+
+Git is a Distributed Version Control System (DVCS).
+
+It helps developers:
+- Track changes in code
+- Maintain version history
+- Collaborate with others
+- Restore previous versions
+- Manage different features using branches
+
+Git works locally on your computer.
+
+--------------------------------------------------
+
+2. What is GitHub?
+
+GitHub is a cloud-based platform that hosts Git repositories.
+
+GitHub allows you to:
+- Store projects online
+- Collaborate with teams
+- Share code
+- Create Pull Requests
+- Track Issues
+- Backup projects
+
+Difference:
+
+Git = Version Control Tool
+
+GitHub = Online Hosting Platform for Git Repositories
+
+--------------------------------------------------
+
+3. Version Control System (VCS)
+
+A Version Control System keeps track of every change made to files.
+
+Advantages:
+- Undo mistakes
+- Compare versions
+- Collaborate safely
+- Restore deleted code
+
+--------------------------------------------------
+
+4. Repository (Repo)
+
+A repository is a project folder tracked by Git.
+
+Types:
+- Local Repository
+- Remote Repository (GitHub)
+
+--------------------------------------------------
+
+5. Installing Git
+
+Download Git from:
+https://git-scm.com
+
+Verify Installation:
+
+git --version
+
+--------------------------------------------------
+
+6. Configure Git
+
+Configure Username:
+
+git config --global user.name "Your Name"
+
+Configure Email:
+
+git config --global user.email "you@example.com"
+
+View Configuration:
+
+git config --list
+
+--------------------------------------------------
+
+7. Initialize a Repository
+
+Create a Git repository inside a project folder.
+
+Command:
+
+git init
+
+This creates a hidden ".git" folder.
+
+--------------------------------------------------
+
+8. Git Workflow
+
+Working Directory
+        ↓
+Staging Area
+        ↓
+Local Repository
+        ↓
+Remote Repository (GitHub)
+
+--------------------------------------------------
+
+9. Check Repository Status
+
+git status
+
+Shows:
+- Modified files
+- Untracked files
+- Staged files
+- Branch information
+
+--------------------------------------------------
+
+10. Staging Area
+
+The staging area temporarily stores changes before committing.
+
+Add one file:
+
+git add filename
+
+Add all files:
+
+git add .
+
+--------------------------------------------------
+
+11. Commit
+
+A commit is a snapshot of your project.
+
+Command:
+
+git commit -m "Commit Message"
+
+Example:
+
+git commit -m "Added Login Page"
+
+--------------------------------------------------
+
+12. View Commit History
+
+View complete history:
+
+git log
+
+Short version:
+
+git log --oneline
+
+--------------------------------------------------
+
+13. Compare Changes
+
+Before staging:
+
+git diff
+
+After staging:
+
+git diff --staged
+
+--------------------------------------------------
+
+14. Connect Local Repository to GitHub
+
+git remote add origin repository_URL
+
+Example:
+
+git remote add origin https://github.com/username/project.git
+
+--------------------------------------------------
+
+15. Push Code to GitHub
+
+First Push:
+
+git branch -M main
+
+git push -u origin main
+
+Later Pushes:
+
+git push
+
+--------------------------------------------------
+
+16. Clone Repository
+
+Clone an existing repository.
+
+git clone repository_URL
+
+--------------------------------------------------
+
+17. Pull Changes
+
+Downloads and merges latest changes from GitHub.
+
+git pull
+
+--------------------------------------------------
+
+18. Fetch Changes
+
+Downloads changes without merging.
+
+git fetch
+
+--------------------------------------------------
+
+19. Branch
+
+A branch is an independent line of development.
+
+Default branch:
+
+main
+
+--------------------------------------------------
+
+20. Create Branch
+
+git branch feature-login
+
+--------------------------------------------------
+
+21. View Branches
+
+git branch
+
+--------------------------------------------------
+
+22. Switch Branch
+
+Old command:
+
+git checkout feature-login
+
+New command:
+
+git switch feature-login
+
+--------------------------------------------------
+
+23. Create and Switch Branch
+
+Old:
+
+git checkout -b feature-login
+
+New:
+
+git switch -c feature-login
+
+--------------------------------------------------
+
+24. Merge Branch
+
+Switch to main first:
+
+git switch main
+
+Merge:
+
+git merge feature-login
+
+--------------------------------------------------
+
+25. Delete Branch
+
+git branch -d feature-login
+
+--------------------------------------------------
+
+26. Undo File Changes
+
+Restore a file:
+
+git restore filename
+
+Older command:
+
+git checkout -- filename
+
+--------------------------------------------------
+
+27. Remove File from Staging Area
+
+git restore --staged filename
+
+--------------------------------------------------
+
+28. Reset Commits
+
+Soft Reset:
+
+git reset --soft HEAD~1
+
+Mixed Reset:
+
+git reset HEAD~1
+
+Hard Reset:
+
+git reset --hard HEAD~1
+
+Note:
+Hard reset permanently removes changes.
+
+--------------------------------------------------
+
+29. Git Stash
+
+Temporarily save unfinished work.
+
+Save:
+
+git stash
+
+Restore:
+
+git stash pop
+
+--------------------------------------------------
+
+30. .gitignore
+
+Used to ignore unnecessary files.
+
+Example:
+
+__pycache__/
+*.pyc
+.vscode/
+env/
+.env
+
+--------------------------------------------------
+
+31. Pull Request (PR)
+
+A Pull Request requests merging one branch into another.
+
+Workflow:
+
+Create Branch
+↓
+Commit Changes
+↓
+Push Branch
+↓
+Create Pull Request
+↓
+Code Review
+↓
+Merge
+
+--------------------------------------------------
+
+32. Fork
+
+A fork creates your own copy of another person's GitHub repository.
+
+--------------------------------------------------
+
+33. README.md
+
+A README file explains the project.
+
+Usually contains:
+- Project Name
+- Description
+- Installation
+- Features
+- Usage
+- Technologies Used
+
+--------------------------------------------------
+
+34. Most Common Git Commands
+
+git init
+
+git status
+
+git add .
+
+git commit -m "message"
+
+git log
+
+git clone URL
+
+git push
+
+git pull
+
+git fetch
+
+git branch
+
+git switch branch_name
+
+git checkout branch_name
+
+git merge branch_name
+
+git stash
+
+git restore filename
+
+--------------------------------------------------
+
+35. Complete Git Workflow
+
+Step 1:
+
+git init
+
+Step 2:
+
+git add .
+
+Step 3:
+
+git commit -m "Initial Commit"
+
+Step 4:
+
+git remote add origin URL
+
+Step 5:
+
+git branch -M main
+
+Step 6:
+
+git push -u origin main
+
+--------------------------------------------------
+
+36. Common Interview Questions
+
+Q1. Difference between Git and GitHub?
+
+Git:
+Local version control software.
+
+GitHub:
+Cloud platform that hosts Git repositories.
+
+--------------------------------
+
+Q2. What is a repository?
+
+A folder tracked by Git.
+
+--------------------------------
+
+Q3. Difference between git fetch and git pull?
+
+git fetch:
+Downloads changes only.
+
+git pull:
+Downloads and merges changes.
+
+--------------------------------
+
+Q4. Difference between clone and fork?
+
+Clone:
+Downloads repository to your computer.
+
+Fork:
+Creates your own copy on GitHub.
+
+--------------------------------
+
+Q5. What is the staging area?
+
+A temporary area where changes are prepared before committing.
+
+--------------------------------
+
+Q6. What is a commit?
+
+A saved snapshot of the project.
+
+--------------------------------
+
+Q7. What is branching?
+
+Creating an independent line of development.
+
+--------------------------------
+
+Q8. Why use .gitignore?
+
+To prevent unnecessary files from being tracked by Git.
+
+--------------------------------------------------
+
+37. Quick Revision
+
+Initialize Repository:
+git init
+
+Check Status:
+git status
+
+Stage Files:
+git add .
+
+Commit:
+git commit -m "message"
+
+View History:
+git log
+
+Push:
+git push
+
+Pull:
+git pull
+
+Clone:
+git clone URL
+
+Create Branch:
+git branch branch_name
+
+Switch Branch:
+git switch branch_name
+
+Merge Branch:
+git merge branch_name
+
+Stash Changes:
+git stash
+
+Restore File:
+git restore filename
+
+Ignore Files:
+.gitignore
+
+--------------------------------------------------
+
+Summary
+
+Git is a version control system used to track changes in source code.
+
+GitHub is a cloud-based platform that hosts Git repositories and enables collaboration.
+
+Git helps developers:
+- Track project history
+- Collaborate with teams
+- Create and merge branches
+- Restore previous versions
+- Manage software projects efficiently
