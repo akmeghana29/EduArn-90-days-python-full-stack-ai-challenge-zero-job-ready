@@ -1,0 +1,439 @@
+HTML Structure
+
+1. What is HTML?
+
+HTML (HyperText Markup Language) is the standard markup language used to create web pages.
+
+HTML is used to:
+- Structure web pages
+- Display text, images, videos, links, tables, forms, etc.
+- Define the content of a webpage
+
+HTML is not a programming language; it is a markup language.
+
+--------------------------------------------------
+
+2. Basic HTML Document Structure
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Web Page</title>
+</head>
+<body>
+
+    <h1>Hello World!</h1>
+    <p>Welcome to HTML.</p>
+
+</body>
+</html>
+
+--------------------------------------------------
+
+3. Parts of an HTML Document
+
+1. <!DOCTYPE html>
+2. <html>
+3. <head>
+4. <title>
+5. <body>
+
+--------------------------------------------------
+
+4. <!DOCTYPE html>
+
+The DOCTYPE declaration tells the browser that the document is written in HTML5.
+
+Syntax:
+
+<!DOCTYPE html>
+
+It should always be the first line of an HTML document.
+
+--------------------------------------------------
+
+5. <html> Tag
+
+The root element of every HTML page.
+
+Syntax:
+
+<html>
+    ...
+</html>
+
+Everything inside the webpage is placed within this tag.
+
+--------------------------------------------------
+
+6. <head> Tag
+
+Contains information (metadata) about the webpage.
+
+Examples of elements inside <head>:
+
+- <title>
+- <meta>
+- <link>
+- <style>
+- <script>
+
+The content inside <head> is generally not displayed on the webpage.
+
+--------------------------------------------------
+
+7. <title> Tag
+
+Defines the title shown on the browser tab.
+
+Example:
+
+<title>My Portfolio</title>
+
+--------------------------------------------------
+
+8. <body> Tag
+
+Contains all the visible content displayed on the webpage.
+
+Examples:
+
+- Headings
+- Paragraphs
+- Images
+- Buttons
+- Links
+- Lists
+- Tables
+- Forms
+
+Example:
+
+<body>
+    <h1>Hello</h1>
+    <p>This is my webpage.</p>
+</body>
+
+--------------------------------------------------
+
+9. HTML Elements
+
+An HTML element consists of:
+
+Opening Tag
+Content
+Closing Tag
+
+Example:
+
+<p>Hello World</p>
+
+Opening Tag:
+
+<p>
+
+Content:
+
+Hello World
+
+Closing Tag:
+
+</p>
+
+--------------------------------------------------
+
+10. HTML Tags
+
+Tags define different parts of a webpage.
+
+Examples:
+
+<h1>
+
+<p>
+
+<img>
+
+<a>
+
+<table>
+
+<form>
+
+--------------------------------------------------
+
+11. HTML Attributes
+
+Attributes provide extra information about an element.
+
+Syntax:
+
+<tag attribute="value">
+
+Example:
+
+<img src="image.jpg" alt="Nature">
+
+Common attributes:
+
+id
+
+class
+
+src
+
+href
+
+alt
+
+style
+
+title
+
+--------------------------------------------------
+
+12. Empty (Void) Elements
+
+Some HTML elements do not have closing tags.
+
+Examples:
+
+<br>
+
+<hr>
+
+<img>
+
+<input>
+
+<meta>
+
+<link>
+
+--------------------------------------------------
+
+13. HTML Comments
+
+Comments are ignored by the browser.
+
+Syntax:
+
+<!-- This is a comment -->
+
+Example:
+
+<!-- Main Heading -->
+
+<h1>Welcome</h1>
+
+--------------------------------------------------
+
+14. Indentation
+
+Indentation improves readability.
+
+Good Practice:
+
+<html>
+    <head>
+        <title>Website</title>
+    </head>
+
+    <body>
+        <h1>Hello</h1>
+    </body>
+</html>
+
+--------------------------------------------------
+
+15. Nested Elements
+
+HTML elements can be placed inside other elements.
+
+Example:
+
+<div>
+
+    <h1>Heading</h1>
+
+    <p>Paragraph</p>
+
+</div>
+
+--------------------------------------------------
+
+16. HTML File Extension
+
+HTML files are saved using:
+
+.html
+
+Example:
+
+index.html
+
+about.html
+
+contact.html
+
+--------------------------------------------------
+
+17. Browser Rendering
+
+Browser reads HTML from top to bottom.
+
+Steps:
+
+1. Read HTML file.
+2. Parse HTML.
+3. Build DOM (Document Object Model).
+4. Render webpage.
+
+--------------------------------------------------
+
+18. HTML Document Tree
+
+<html>
+│
+├── <head>
+│      ├── <title>
+│      ├── <meta>
+│      └── <link>
+│
+└── <body>
+       ├── <h1>
+       ├── <p>
+       ├── <img>
+       └── <div>
+
+--------------------------------------------------
+
+19. Difference Between Head and Body
+
+<head>
+
+- Contains metadata
+- Not visible on webpage
+- Contains title, CSS, scripts, etc.
+
+<body>
+
+- Contains visible webpage content
+- Displayed in browser
+
+--------------------------------------------------
+
+20. HTML Best Practices
+
+- Always include <!DOCTYPE html>.
+- Use proper indentation.
+- Use meaningful tag names.
+- Close all non-void tags.
+- Keep code organized and readable.
+- Use comments where necessary.
+
+--------------------------------------------------
+
+21. Common Interview Questions
+
+Q1. What is HTML?
+
+HTML is a markup language used to structure web pages.
+
+--------------------------------
+
+Q2. What is the purpose of <!DOCTYPE html>?
+
+It tells the browser that the document uses HTML5.
+
+--------------------------------
+
+Q3. What is the difference between <head> and <body>?
+
+<head> contains metadata.
+
+<body> contains visible webpage content.
+
+--------------------------------
+
+Q4. What are HTML elements?
+
+Elements consist of an opening tag, content, and a closing tag.
+
+--------------------------------
+
+Q5. What are HTML attributes?
+
+Attributes provide additional information about HTML elements.
+
+--------------------------------
+
+Q6. What are empty elements?
+
+Elements that do not require a closing tag.
+
+Examples:
+
+<br>
+
+<hr>
+
+<img>
+
+<input>
+
+--------------------------------------------------
+
+22. Quick Revision
+
+HTML = HyperText Markup Language
+
+Basic Structure:
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title></title>
+
+</head>
+
+<body>
+
+Visible Content
+
+</body>
+
+</html>
+
+Main Sections:
+
+- DOCTYPE
+- html
+- head
+- title
+- body
+
+Common Attributes:
+
+- id
+- class
+- href
+- src
+- alt
+- style
+
+Common Empty Tags:
+
+- <br>
+- <hr>
+- <img>
+- <input>
+
+--------------------------------------------------
+
+Summary
+
+HTML is the foundation of every web page. It defines the structure and content of a webpage using elements and tags. Every HTML document starts with <!DOCTYPE html>, contains the root <html> element, a <head> section for metadata, and a <body> section for all visible content.
