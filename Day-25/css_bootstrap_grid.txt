@@ -1,0 +1,695 @@
+CSS (Flexbox & Grid)
+
+1. What is CSS?
+
+CSS (Cascading Style Sheets) is used to style and design HTML webpages.
+
+CSS is used to:
+- Change colors
+- Set fonts
+- Adjust spacing
+- Create layouts
+- Add animations
+- Make webpages responsive
+
+HTML defines the structure.
+CSS defines the appearance.
+
+--------------------------------------------------
+
+2. What is Flexbox?
+
+Flexbox (Flexible Box Layout) is a one-dimensional layout system.
+
+It is mainly used to arrange items in:
+
+- Rows
+- Columns
+
+Best suited for:
+- Navigation bars
+- Cards
+- Buttons
+- Menus
+- Centering elements
+
+--------------------------------------------------
+
+3. Flexbox Terminology
+
+Parent Element:
+Flex Container
+
+Child Elements:
+Flex Items
+
+Example:
+
+<div class="container">
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+</div>
+
+CSS:
+
+.container{
+    display: flex;
+}
+
+--------------------------------------------------
+
+4. display: flex
+
+Makes the parent element a flex container.
+
+Example:
+
+.container{
+    display: flex;
+}
+
+All child elements become flex items.
+
+--------------------------------------------------
+
+5. flex-direction
+
+Defines the direction of flex items.
+
+Values:
+
+row (default)
+
+column
+
+row-reverse
+
+column-reverse
+
+Example:
+
+.container{
+    display:flex;
+    flex-direction:row;
+}
+
+--------------------------------------------------
+
+6. justify-content
+
+Aligns items along the Main Axis.
+
+Values:
+
+flex-start
+
+flex-end
+
+center
+
+space-between
+
+space-around
+
+space-evenly
+
+Example:
+
+.container{
+    display:flex;
+    justify-content:center;
+}
+
+--------------------------------------------------
+
+7. align-items
+
+Aligns items along the Cross Axis.
+
+Values:
+
+stretch (default)
+
+flex-start
+
+flex-end
+
+center
+
+baseline
+
+Example:
+
+.container{
+    display:flex;
+    align-items:center;
+}
+
+--------------------------------------------------
+
+8. flex-wrap
+
+Determines whether items wrap onto the next line.
+
+Values:
+
+nowrap (default)
+
+wrap
+
+wrap-reverse
+
+Example:
+
+.container{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+--------------------------------------------------
+
+9. gap
+
+Adds spacing between flex items.
+
+Example:
+
+.container{
+    display:flex;
+    gap:20px;
+}
+
+--------------------------------------------------
+
+10. flex-grow
+
+Specifies how much a flex item should grow.
+
+Example:
+
+.item{
+    flex-grow:1;
+}
+
+--------------------------------------------------
+
+11. flex-shrink
+
+Specifies how much a flex item shrinks.
+
+Example:
+
+.item{
+    flex-shrink:0;
+}
+
+--------------------------------------------------
+
+12. flex-basis
+
+Defines the initial size of a flex item.
+
+Example:
+
+.item{
+    flex-basis:200px;
+}
+
+--------------------------------------------------
+
+13. flex Property
+
+Shortcut for:
+
+flex-grow
+
+flex-shrink
+
+flex-basis
+
+Example:
+
+.item{
+    flex:1;
+}
+
+Equivalent to:
+
+flex:1 1 0%;
+
+--------------------------------------------------
+
+14. order
+
+Changes the display order of flex items.
+
+Example:
+
+.item{
+    order:2;
+}
+
+--------------------------------------------------
+
+15. align-self
+
+Aligns one individual flex item.
+
+Example:
+
+.item{
+    align-self:center;
+}
+
+--------------------------------------------------
+
+16. Common Flexbox Example
+
+.container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+}
+
+This centers content horizontally and vertically.
+
+--------------------------------------------------
+
+17. Advantages of Flexbox
+
+- Easy alignment
+- Responsive layouts
+- Less code
+- Perfect for one-dimensional layouts
+
+--------------------------------------------------
+
+18. What is CSS Grid?
+
+CSS Grid is a two-dimensional layout system.
+
+It controls:
+
+- Rows
+- Columns
+
+Best suited for:
+
+- Dashboards
+- Entire webpages
+- Galleries
+- Complex layouts
+
+--------------------------------------------------
+
+19. Grid Container
+
+Example:
+
+.container{
+    display:grid;
+}
+
+--------------------------------------------------
+
+20. grid-template-columns
+
+Defines the number and width of columns.
+
+Example:
+
+.container{
+
+    display:grid;
+
+    grid-template-columns:200px 200px 200px;
+
+}
+
+--------------------------------------------------
+
+21. grid-template-rows
+
+Defines row heights.
+
+Example:
+
+.container{
+
+    display:grid;
+
+    grid-template-rows:100px 100px;
+
+}
+
+--------------------------------------------------
+
+22. repeat()
+
+Avoids writing repeated values.
+
+Example:
+
+grid-template-columns:repeat(3,1fr);
+
+Equivalent to:
+
+1fr 1fr 1fr
+
+--------------------------------------------------
+
+23. fr Unit
+
+fr means Fraction of available space.
+
+Example:
+
+grid-template-columns:1fr 2fr 1fr;
+
+Middle column gets twice the width.
+
+--------------------------------------------------
+
+24. gap
+
+Adds spacing between rows and columns.
+
+Example:
+
+.container{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+--------------------------------------------------
+
+25. grid-column
+
+Makes an item span multiple columns.
+
+Example:
+
+.item{
+
+    grid-column:1 / 3;
+
+}
+
+--------------------------------------------------
+
+26. grid-row
+
+Makes an item span multiple rows.
+
+Example:
+
+.item{
+
+    grid-row:1 / 3;
+
+}
+
+--------------------------------------------------
+
+27. justify-items
+
+Aligns items horizontally inside grid cells.
+
+Values:
+
+start
+
+end
+
+center
+
+stretch
+
+--------------------------------------------------
+
+28. align-items
+
+Aligns items vertically inside grid cells.
+
+Values:
+
+start
+
+end
+
+center
+
+stretch
+
+--------------------------------------------------
+
+29. justify-content
+
+Aligns the entire grid horizontally.
+
+--------------------------------------------------
+
+30. align-content
+
+Aligns the entire grid vertically.
+
+--------------------------------------------------
+
+31. grid-area
+
+Assigns names to grid sections.
+
+Example:
+
+.header{
+
+    grid-area:header;
+
+}
+
+--------------------------------------------------
+
+32. Grid Template Areas
+
+Example:
+
+.container{
+
+grid-template-areas:
+
+"header header"
+
+"menu content"
+
+"footer footer";
+
+}
+
+--------------------------------------------------
+
+33. Auto Columns
+
+Example:
+
+grid-auto-columns:150px;
+
+--------------------------------------------------
+
+34. Auto Rows
+
+Example:
+
+grid-auto-rows:100px;
+
+--------------------------------------------------
+
+35. Common Grid Example
+
+.container{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:20px;
+
+}
+
+--------------------------------------------------
+
+36. Flexbox vs Grid
+
+Flexbox
+
+- One-dimensional
+- Rows OR Columns
+- Best for components
+- Easier alignment
+
+Grid
+
+- Two-dimensional
+- Rows AND Columns
+- Best for page layouts
+- More powerful for complex designs
+
+--------------------------------------------------
+
+37. When to Use Flexbox
+
+Use Flexbox for:
+
+- Navigation bar
+- Buttons
+- Forms
+- Card layouts
+- Toolbars
+- Centering content
+
+--------------------------------------------------
+
+38. When to Use Grid
+
+Use Grid for:
+
+- Website layout
+- Dashboard
+- Gallery
+- Admin panel
+- Complex responsive design
+
+--------------------------------------------------
+
+39. Common Interview Questions
+
+Q1. What is Flexbox?
+
+A one-dimensional CSS layout system used for arranging items in rows or columns.
+
+--------------------------------
+
+Q2. What is CSS Grid?
+
+A two-dimensional CSS layout system used for arranging items in rows and columns.
+
+--------------------------------
+
+Q3. Difference between Flexbox and Grid?
+
+Flexbox:
+
+One-dimensional layout.
+
+Grid:
+
+Two-dimensional layout.
+
+--------------------------------
+
+Q4. What does justify-content do?
+
+Aligns items along the main axis.
+
+--------------------------------
+
+Q5. What does align-items do?
+
+Aligns items along the cross axis.
+
+--------------------------------
+
+Q6. What does display:flex do?
+
+Converts the parent into a flex container.
+
+--------------------------------
+
+Q7. What does display:grid do?
+
+Converts the parent into a grid container.
+
+--------------------------------
+
+Q8. What is the fr unit?
+
+Represents a fraction of the available space.
+
+--------------------------------------------------
+
+40. Quick Revision
+
+Flexbox
+
+display:flex;
+
+flex-direction
+
+justify-content
+
+align-items
+
+flex-wrap
+
+gap
+
+flex-grow
+
+flex-shrink
+
+flex-basis
+
+align-self
+
+order
+
+--------------------------------------------------
+
+Grid
+
+display:grid;
+
+grid-template-columns
+
+grid-template-rows
+
+repeat()
+
+fr
+
+gap
+
+grid-column
+
+grid-row
+
+grid-area
+
+grid-template-areas
+
+justify-items
+
+align-items
+
+justify-content
+
+align-content
+
+--------------------------------------------------
+
+Summary
+
+Flexbox is a one-dimensional layout system used to arrange items in a row or column, making it ideal for components like navigation bars, forms, and cards.
+
+CSS Grid is a two-dimensional layout system that manages both rows and columns, making it ideal for designing complete webpage layouts, dashboards, and galleries.
