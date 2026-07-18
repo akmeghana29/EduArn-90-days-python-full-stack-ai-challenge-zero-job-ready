@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #357abd;
+        }
+        .note-card {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .note-card h3 {
+            margin: 0 0 8px 0;
+            color: #333;
+        }
+        .note-card p {
+            margin: 0 0 12px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+        .delete-btn {
+            background: #e25555;
+            padding: 6px 14px;
+            font-size: 13px;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        .no-notes {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Notes App</h1>
+
+    <div class="form-box">
+        <form action="/add" method="POST">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Note title" required>
+            <label>Content</label>
+            <textarea name="content" placeholder="Write your note here..." required></textarea>
+            <button type="submit">Add Note</button>
+        </form>
+    </div>
+
+    {% if notes %}
+        {% for note in notes|reverse %}
+        <div class="note-card">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <a href="/delete/{{ note.id }}">
+                <button class="delete-btn">Delete</button>
+            </button>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-notes">No notes yet. Add one above.</p>
+    {% endif %}
+
+</body>
+</html>
