@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back:hover {
+            text-decoration: underline;
+        }
+        .post {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .post h1 {
+            margin: 0 0 8px 0;
+            font-size: 28px;
+        }
+        .meta {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .post p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <a class="back" href="/">Back to Home</a>
+
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <div class="meta">{{ post.date }} by {{ post.author }}</div>
+        <p>{{ post.content }}</p>
+    </div>
+
+</body>
+</html>
