@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .message-card {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+        .message-card h3 {
+            margin: 0 0 4px 0;
+            color: #333;
+        }
+        .email {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .message-card p {
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .back:hover {
+            text-decoration: underline;
+        }
+        .no-messages {
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>All Messages</h1>
+
+    {% if messages %}
+        {% for m in messages|reverse %}
+        <div class="message-card">
+            <h3>{{ m.name }}</h3>
+            <div class="email">{{ m.email }}</div>
+            <p>{{ m.message }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-messages">No messages yet.</p>
+    {% endif %}
+
+    <a class="back" href="/">Back to Contact Form</a>
+
+</body>
+</html>

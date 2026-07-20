@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #357abd;
+        }
+        .success {
+            background: #e6f4ea;
+            border: 1px solid #a8d5b5;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: #2e7d32;
+        }
+        .success h2 {
+            margin: 0 0 8px 0;
+        }
+        .success a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .success a:hover {
+            text-decoration: underline;
+        }
+        .view-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        .view-link a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .view-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contact Us</h1>
+
+    {% if submitted %}
+    <div class="success">
+        <h2>Message Sent</h2>
+        <p>Thank you {{ name }}, we have received your message.</p>
+        <a href="/">Send another message</a>
+    </div>
+    {% else %}
+    <div class="form-box">
+        <form action="/submit" method="POST">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Your email" required>
+
+            <label>Message</label>
+            <textarea name="message" placeholder="Write your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+    <div class="view-link">
+        <a href="/messages">View all messages</a>
+    </div>
+    {% endif %}
+
+</body>
+</html>
