@@ -1,0 +1,433 @@
+# ==========================================================
+#               CRUD OPERATIONS IN FLASK NOTES
+# ==========================================================
+
+# ----------------------------------------------------------
+# 1. What is CRUD?
+#
+# CRUD stands for:
+#
+# C -> Create
+# R -> Read
+# U -> Update
+# D -> Delete
+#
+# CRUD represents the four basic operations performed on data
+# stored in a database.
+
+# ----------------------------------------------------------
+# 2. CRUD Operations and HTTP Methods
+#
+# Operation      HTTP Method
+# --------------------------
+# Create         POST
+# Read           GET
+# Update         PUT / PATCH
+# Delete         DELETE
+
+# ----------------------------------------------------------
+# 3. CRUD Workflow
+#
+# Client
+#    │
+#    ▼
+# HTTP Request
+#    │
+#    ▼
+# Flask Route
+#    │
+#    ▼
+# Database
+#    │
+#    ▼
+# HTTP Response (JSON)
+#
+# Every CRUD operation follows this request-response cycle.
+
+# ----------------------------------------------------------
+# 4. Example Resource
+#
+# Student
+#
+# {
+#     "id":1,
+#     "name":"Kirti",
+#     "course":"CSE"
+# }
+
+# ----------------------------------------------------------
+# 5. CREATE Operation
+#
+# Purpose:
+# Add a new record.
+#
+# HTTP Method:
+# POST
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+students = []
+
+@app.route("/students", methods=["POST"])
+def create_student():
+
+    data = request.get_json()
+
+    students.append(data)
+
+    return jsonify({
+        "message":"Student Added",
+        "student":data
+    }), 201
+
+# Example Request:
+#
+# POST /students
+#
+# {
+#     "id":1,
+#     "name":"Kirti",
+#     "course":"CSE"
+# }
+
+# ----------------------------------------------------------
+# 6. READ Operation
+#
+# Purpose:
+# Retrieve existing records.
+#
+# HTTP Method:
+# GET
+
+@app.route("/students", methods=["GET"])
+def get_students():
+
+    return jsonify(students)
+
+# Example Request:
+#
+# GET /students
+
+# ----------------------------------------------------------
+# 7. READ Single Record
+
+@app.route("/students/<int:id>", methods=["GET"])
+def get_student(id):
+
+    for student in students:
+
+        if student["id"] == id:
+
+            return jsonify(student)
+
+    return jsonify({
+        "message":"Student Not Found"
+    }), 404
+
+# Example:
+#
+# GET /students/1
+
+# ----------------------------------------------------------
+# 8. UPDATE Operation
+#
+# Purpose:
+# Modify an existing record.
+#
+# HTTP Method:
+# PUT
+
+@app.route("/students/<int:id>", methods=["PUT"])
+def update_student(id):
+
+    data = request.get_json()
+
+    for student in students:
+
+        if student["id"] == id:
+
+            student["name"] = data["name"]
+            student["course"] = data["course"]
+
+            return jsonify(student)
+
+    return jsonify({
+        "message":"Student Not Found"
+    }), 404
+
+# ----------------------------------------------------------
+# 9. PATCH Operation
+#
+# PATCH updates only selected fields.
+#
+# PUT updates the complete resource.
+
+@app.route("/students/<int:id>", methods=["PATCH"])
+def patch_student(id):
+
+    data = request.get_json()
+
+    for student in students:
+
+        if student["id"] == id:
+
+            student.update(data)
+
+            return jsonify(student)
+
+    return jsonify({
+        "message":"Student Not Found"
+    }), 404
+
+# ----------------------------------------------------------
+# 10. DELETE Operation
+#
+# Purpose:
+# Remove a record.
+#
+# HTTP Method:
+# DELETE
+
+@app.route("/students/<int:id>", methods=["DELETE"])
+def delete_student(id):
+
+    for student in students:
+
+        if student["id"] == id:
+
+            students.remove(student)
+
+            return jsonify({
+                "message":"Student Deleted"
+            })
+
+    return jsonify({
+        "message":"Student Not Found"
+    }), 404
+
+# ----------------------------------------------------------
+# 11. Complete CRUD Flow
+#
+# CREATE
+#
+# POST /students
+#
+# ↓
+#
+# READ
+#
+# GET /students
+#
+# ↓
+#
+# UPDATE
+#
+# PUT /students/1
+#
+# ↓
+#
+# DELETE
+#
+# DELETE /students/1
+
+# ----------------------------------------------------------
+# 12. Status Codes Used
+#
+# 200
+# OK
+#
+# 201
+# Created
+#
+# 204
+# No Content
+#
+# 400
+# Bad Request
+#
+# 404
+# Not Found
+#
+# 500
+# Internal Server Error
+
+# ----------------------------------------------------------
+# 13. Sample JSON Request
+
+# POST
+
+# {
+#     "id":1,
+#     "name":"Kirti",
+#     "course":"CSE"
+# }
+
+# ----------------------------------------------------------
+# 14. Sample JSON Response
+
+# {
+#     "id":1,
+#     "name":"Kirti",
+#     "course":"CSE"
+# }
+
+# ----------------------------------------------------------
+# 15. CRUD with Database
+#
+# In real applications:
+#
+# POST
+# → INSERT into database
+#
+# GET
+# → SELECT from database
+#
+# PUT/PATCH
+# → UPDATE database
+#
+# DELETE
+# → DELETE from database
+
+# ----------------------------------------------------------
+# 16. CRUD Summary Table
+#
+# Operation     Method     Purpose
+#
+# Create        POST       Add data
+#
+# Read          GET        Retrieve data
+#
+# Update        PUT        Replace complete record
+#
+# Update        PATCH      Modify selected fields
+#
+# Delete        DELETE     Remove record
+
+# ----------------------------------------------------------
+# 17. Difference Between PUT and PATCH
+#
+# PUT
+#
+# Updates the entire resource.
+#
+# Missing fields may be overwritten.
+#
+# -------------------------------
+#
+# PATCH
+#
+# Updates only specified fields.
+#
+# Other fields remain unchanged.
+
+# ----------------------------------------------------------
+# 18. CRUD Example URLs
+#
+# GET
+# /students
+#
+# GET
+# /students/1
+#
+# POST
+# /students
+#
+# PUT
+# /students/1
+#
+# PATCH
+# /students/1
+#
+# DELETE
+# /students/1
+
+# ----------------------------------------------------------
+# 19. Common Interview Questions
+#
+# Q1. What is CRUD?
+#
+# CRUD stands for Create, Read, Update and Delete.
+#
+# ------------------------------------------------
+#
+# Q2. Which HTTP methods correspond to CRUD?
+#
+# Create → POST
+# Read → GET
+# Update → PUT/PATCH
+# Delete → DELETE
+#
+# ------------------------------------------------
+#
+# Q3. Difference between PUT and PATCH?
+#
+# PUT updates the complete resource.
+#
+# PATCH updates only specified fields.
+#
+# ------------------------------------------------
+#
+# Q4. Which Flask function reads JSON data?
+#
+# request.get_json()
+#
+# ------------------------------------------------
+#
+# Q5. Which Flask function returns JSON?
+#
+# jsonify()
+#
+# ------------------------------------------------
+#
+# Q6. Which status code is returned after creating a resource?
+#
+# 201 Created
+#
+# ------------------------------------------------
+#
+# Q7. Which status code is returned when a resource is not found?
+#
+# 404 Not Found
+
+# ----------------------------------------------------------
+# 20. Quick Revision
+#
+# CRUD
+#
+# Create → POST
+#
+# Read → GET
+#
+# Update → PUT/PATCH
+#
+# Delete → DELETE
+#
+# Read JSON
+#
+# request.get_json()
+#
+# Return JSON
+#
+# jsonify()
+#
+# Success Status
+#
+# 200
+# 201
+#
+# Error Status
+#
+# 400
+# 404
+# 500
+
+# ----------------------------------------------------------
+# Summary
+#
+# CRUD operations are the foundation of most web applications.
+# They allow users to create, read, update, and delete data.
+# In Flask, CRUD operations are implemented using routes,
+# HTTP methods, the request object for receiving data, and
+# jsonify() for sending JSON responses.
