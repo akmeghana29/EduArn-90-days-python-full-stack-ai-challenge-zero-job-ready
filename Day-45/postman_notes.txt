@@ -1,0 +1,169 @@
+=======================================
+       Testing APIs using Postman
+=======================================
+
+WHAT IS POSTMAN?
+Postman is a tool that lets you send HTTP requests to your API
+and see the response. Instead of writing code to test, you just
+fill in the URL, pick a method, add data if needed, and hit Send.
+
+Download Postman from: https://www.postman.com/downloads/
+
+
+---------------------------------------
+STEP 1 - START YOUR FLASK APP
+---------------------------------------
+Before testing anything, make sure your Flask app is running.
+
+In VS Code terminal:
+    python app.py
+
+You should see:
+    Running on http://127.0.0.1:5000
+
+Keep this terminal open while testing.
+
+
+---------------------------------------
+STEP 2 - OPEN POSTMAN
+---------------------------------------
+1. Open Postman
+2. Click New > HTTP Request
+3. You will see a URL bar and a method dropdown (GET, POST, etc.)
+
+
+---------------------------------------
+STEP 3 - HOW TO TEST EACH METHOD
+---------------------------------------
+
+--- GET ALL ---
+Method  : GET
+URL     : http://127.0.0.1:5000/products
+Body    : None
+Click Send. You will see all products in the response below.
+
+
+--- GET ONE ---
+Method  : GET
+URL     : http://127.0.0.1:5000/products/1
+Body    : None
+Click Send. Returns the product with id 1.
+If id does not exist, you will get: {"error": "Product not found"}
+
+
+--- POST (Add new) ---
+Method  : POST
+URL     : http://127.0.0.1:5000/products
+Body    :
+    1. Click the Body tab
+    2. Select raw
+    3. Change the dropdown from Text to JSON
+    4. Type your data:
+
+    {
+        "name": "Laptop",
+        "price": 55000,
+        "category": "Electronics",
+        "stock": 10
+    }
+
+Click Send. You will get a 201 response with the new product.
+
+
+--- PUT (Update) ---
+Method  : PUT
+URL     : http://127.0.0.1:5000/products/1
+Body    : same as POST but only send fields you want to change
+
+    {
+        "price": 52000,
+        "stock": 8
+    }
+
+Click Send. Returns updated product with 200 status.
+
+
+--- DELETE ---
+Method  : DELETE
+URL     : http://127.0.0.1:5000/products/1
+Body    : None
+Click Send. Returns a message saying product was deleted.
+
+
+---------------------------------------
+STEP 4 - READING THE RESPONSE
+---------------------------------------
+After clicking Send, look at the bottom panel in Postman.
+
+Status codes to know:
+    200 - OK, request worked
+    201 - Created, new item was added
+    400 - Bad request, you sent wrong or missing data
+    404 - Not found, the id does not exist
+
+Body tab shows the JSON response from your API.
+Time shows how fast the API responded.
+
+
+---------------------------------------
+STEP 5 - COMMON MISTAKES
+---------------------------------------
+
+Mistake 1: Flask app is not running
+    Fix: Run python app.py first, keep the terminal open
+
+Mistake 2: Forgot to set Body to raw and JSON for POST/PUT
+    Fix: Body > raw > select JSON from the dropdown
+
+Mistake 3: Wrong URL (extra slash or typo)
+    Fix: Double check the URL matches exactly
+
+Mistake 4: Sending empty body for POST
+    Fix: Make sure all required fields are included
+
+Mistake 5: Testing wrong id
+    Fix: Use GET all first to see which ids exist
+
+
+---------------------------------------
+QUICK REFERENCE - PRODUCT API
+---------------------------------------
+
+GET all       GET     /products
+GET one       GET     /products/<id>
+Add new       POST    /products
+Update        PUT     /products/<id>
+Delete        DELETE  /products/<id>
+
+Required fields for POST:
+    name, price, category, stock
+
+---------------------------------------
+QUICK REFERENCE - STUDENT API
+---------------------------------------
+
+GET all       GET     /students
+GET one       GET     /students/<id>
+Add new       POST    /students
+Update        PUT     /students/<id>
+Delete        DELETE  /students/<id>
+
+Required fields for POST:
+    name, age, grade
+
+
+---------------------------------------
+THUNDER CLIENT (VS CODE ALTERNATIVE)
+---------------------------------------
+If you do not want to use Postman, Thunder Client is a VS Code
+extension that works the same way inside VS Code itself.
+
+Install it:
+    1. Open VS Code
+    2. Go to Extensions (Ctrl + Shift + X)
+    3. Search Thunder Client
+    4. Install it
+    5. Click the Thunder Client icon on the left sidebar
+    6. Click New Request and follow the same steps above
+
+=======================================
