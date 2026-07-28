@@ -1,0 +1,481 @@
+==========================================================
+                 MYSQL BASICS NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is MySQL?
+
+MySQL is an open-source Relational Database Management
+System (RDBMS) used to store, organize, and manage data.
+
+It stores data in the form of tables consisting of rows
+and columns.
+
+MySQL uses SQL (Structured Query Language) to interact
+with databases.
+
+----------------------------------------------------------
+2. Why Use MySQL?
+
+Advantages:
+
+• Open Source
+• Fast
+• Secure
+• Reliable
+• Supports Large Databases
+• Easy to Learn
+• Widely Used in Web Applications
+
+----------------------------------------------------------
+3. Real-World Examples
+
+• Banking Systems
+• Student Management
+• E-Commerce Websites
+• Hospital Management
+• Library Management
+• Inventory Systems
+
+----------------------------------------------------------
+4. Database
+
+A Database is an organized collection of related data.
+
+Example:
+
+College Database
+
+├── Students Table
+├── Teachers Table
+├── Courses Table
+└── Marks Table
+
+----------------------------------------------------------
+5. Table
+
+A Table stores data in rows and columns.
+
+Example:
+
+Students
+
++----+--------+-----+
+| ID | Name   | Age |
++----+--------+-----+
+| 1  | Kirti  | 21  |
+| 2  | Rahul  | 22  |
++----+--------+-----+
+
+----------------------------------------------------------
+6. Row (Record)
+
+A Row represents one complete record.
+
+Example:
+
+1 | Kirti | 21
+
+----------------------------------------------------------
+7. Column (Field)
+
+A Column represents one attribute.
+
+Example:
+
+ID
+Name
+Age
+
+----------------------------------------------------------
+8. Primary Key
+
+A Primary Key uniquely identifies every record.
+
+Properties:
+
+• Unique
+• Cannot be NULL
+• One Primary Key per table
+
+Example:
+
+Student_ID
+
+----------------------------------------------------------
+9. Foreign Key
+
+A Foreign Key creates a relationship between two tables.
+
+Example:
+
+Students
+---------
+Student_ID (PK)
+
+Marks
+------
+Student_ID (FK)
+
+----------------------------------------------------------
+10. SQL Categories
+
+DDL (Data Definition Language)
+
+• CREATE
+• ALTER
+• DROP
+• TRUNCATE
+• RENAME
+
+DML (Data Manipulation Language)
+
+• INSERT
+• UPDATE
+• DELETE
+
+DQL (Data Query Language)
+
+• SELECT
+
+DCL (Data Control Language)
+
+• GRANT
+• REVOKE
+
+TCL (Transaction Control Language)
+
+• COMMIT
+• ROLLBACK
+• SAVEPOINT
+
+----------------------------------------------------------
+11. Creating a Database
+
+CREATE DATABASE college;
+
+----------------------------------------------------------
+12. Viewing Databases
+
+SHOW DATABASES;
+
+----------------------------------------------------------
+13. Selecting a Database
+
+USE college;
+
+----------------------------------------------------------
+14. Creating a Table
+
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+
+----------------------------------------------------------
+15. Viewing Tables
+
+SHOW TABLES;
+
+----------------------------------------------------------
+16. Viewing Table Structure
+
+DESCRIBE students;
+
+OR
+
+DESC students;
+
+----------------------------------------------------------
+17. Common Data Types
+
+INT
+Stores integers.
+
+FLOAT
+Stores decimal numbers.
+
+DOUBLE
+Stores larger decimal values.
+
+CHAR
+Fixed-length string.
+
+VARCHAR
+Variable-length string.
+
+TEXT
+Large text.
+
+DATE
+Stores dates.
+
+TIME
+Stores time.
+
+DATETIME
+Stores both date and time.
+
+BOOLEAN
+Stores TRUE or FALSE values.
+
+----------------------------------------------------------
+18. Inserting Data
+
+INSERT INTO students
+VALUES
+(1, 'Kirti', 21);
+
+----------------------------------------------------------
+19. Inserting Multiple Records
+
+INSERT INTO students
+VALUES
+(2, 'Rahul', 22),
+(3, 'Anjali', 20),
+(4, 'Riya', 23);
+
+----------------------------------------------------------
+20. Viewing Data
+
+SELECT * FROM students;
+
+----------------------------------------------------------
+21. Viewing Specific Columns
+
+SELECT name, age
+FROM students;
+
+----------------------------------------------------------
+22. Updating Data
+
+UPDATE students
+SET age = 22
+WHERE id = 1;
+
+----------------------------------------------------------
+23. Deleting Data
+
+DELETE FROM students
+WHERE id = 2;
+
+----------------------------------------------------------
+24. Removing All Records
+
+TRUNCATE TABLE students;
+
+Removes all rows but keeps the table structure.
+
+----------------------------------------------------------
+25. Deleting a Table
+
+DROP TABLE students;
+
+Deletes both the table structure and its data permanently.
+
+----------------------------------------------------------
+26. Difference Between DELETE, TRUNCATE and DROP
+
+DELETE
+
+• Removes selected rows.
+• Table remains.
+• Can use WHERE clause.
+
+TRUNCATE
+
+• Removes all rows.
+• Table remains.
+• Cannot use WHERE clause.
+• Faster than DELETE.
+
+DROP
+
+• Deletes the entire table.
+• Both data and structure are removed.
+
+----------------------------------------------------------
+27. Constraints
+
+PRIMARY KEY
+Uniquely identifies each record.
+
+FOREIGN KEY
+Creates relationships between tables.
+
+UNIQUE
+Ensures all values are unique.
+
+NOT NULL
+Does not allow NULL values.
+
+DEFAULT
+Assigns a default value.
+
+CHECK
+Restricts values based on a condition.
+
+----------------------------------------------------------
+28. NOT NULL Example
+
+CREATE TABLE student (
+    id INT,
+    name VARCHAR(50) NOT NULL
+);
+
+----------------------------------------------------------
+29. UNIQUE Example
+
+CREATE TABLE employee (
+    email VARCHAR(100) UNIQUE
+);
+
+----------------------------------------------------------
+30. DEFAULT Example
+
+CREATE TABLE employee (
+    city VARCHAR(30)
+    DEFAULT 'Delhi'
+);
+
+----------------------------------------------------------
+31. AUTO_INCREMENT
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+Generated IDs:
+
+1
+2
+3
+...
+
+----------------------------------------------------------
+32. SQL Comments
+
+Single-line comment:
+
+-- This is a comment
+
+Multi-line comment:
+
+/*
+This is
+a multi-line
+comment
+*/
+
+----------------------------------------------------------
+33. Common Interview Questions
+
+Q1. What is MySQL?
+
+MySQL is an open-source Relational Database Management
+System (RDBMS).
+
+--------------------------------
+
+Q2. What is the difference between a Database and a Table?
+
+Database:
+Collection of related tables.
+
+Table:
+Collection of rows and columns.
+
+--------------------------------
+
+Q3. What is a Primary Key?
+
+A unique identifier for every record in a table.
+
+--------------------------------
+
+Q4. What is a Foreign Key?
+
+A column that creates a relationship between two tables.
+
+--------------------------------
+
+Q5. What is the difference between CHAR and VARCHAR?
+
+CHAR:
+Fixed-length string.
+
+VARCHAR:
+Variable-length string.
+
+--------------------------------
+
+Q6. What is the difference between DELETE, TRUNCATE and DROP?
+
+DELETE:
+Removes selected rows.
+
+TRUNCATE:
+Removes all rows but keeps the table.
+
+DROP:
+Deletes the entire table.
+
+--------------------------------
+
+Q7. What is AUTO_INCREMENT?
+
+Automatically generates sequential values for a column.
+
+----------------------------------------------------------
+34. Quick Revision
+
+Database
+→ Collection of tables
+
+Table
+→ Rows and columns
+
+Primary Key
+→ Unique identifier
+
+Foreign Key
+→ Relationship between tables
+
+CREATE DATABASE
+→ Creates a database
+
+USE
+→ Selects a database
+
+CREATE TABLE
+→ Creates a table
+
+INSERT
+→ Adds records
+
+SELECT
+→ Retrieves records
+
+UPDATE
+→ Modifies records
+
+DELETE
+→ Removes selected records
+
+TRUNCATE
+→ Removes all records
+
+DROP
+→ Deletes an entire table
+
+----------------------------------------------------------
+Summary
+
+MySQL is a Relational Database Management System (RDBMS)
+that stores data in tables. SQL is used to create databases,
+define tables, insert, retrieve, update, and delete data.
+Core concepts include primary keys, foreign keys,
+constraints, data types, and SQL commands such as CREATE,
+INSERT, SELECT, UPDATE, DELETE, TRUNCATE, and DROP.
