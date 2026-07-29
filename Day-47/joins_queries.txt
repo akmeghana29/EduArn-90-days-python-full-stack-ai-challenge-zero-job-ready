@@ -1,0 +1,639 @@
+==========================================================
+              MYSQL JOINS & QUERIES NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is a Query?
+
+A Query is an SQL statement used to interact with a database.
+
+Queries are used to:
+
+• Retrieve data
+• Insert data
+• Update data
+• Delete data
+
+Example:
+
+SELECT * FROM students;
+
+----------------------------------------------------------
+2. Types of SQL Queries
+
+DDL (Data Definition Language)
+
+• CREATE
+• ALTER
+• DROP
+• TRUNCATE
+
+DML (Data Manipulation Language)
+
+• INSERT
+• UPDATE
+• DELETE
+
+DQL (Data Query Language)
+
+• SELECT
+
+DCL (Data Control Language)
+
+• GRANT
+• REVOKE
+
+TCL (Transaction Control Language)
+
+• COMMIT
+• ROLLBACK
+• SAVEPOINT
+
+----------------------------------------------------------
+3. SELECT Query
+
+Retrieves data from a table.
+
+Syntax:
+
+SELECT column_name
+FROM table_name;
+
+Example:
+
+SELECT name
+FROM students;
+
+----------------------------------------------------------
+4. Selecting All Columns
+
+SELECT *
+FROM students;
+
+----------------------------------------------------------
+5. DISTINCT
+
+Returns only unique values.
+
+Example:
+
+SELECT DISTINCT course
+FROM students;
+
+----------------------------------------------------------
+6. WHERE Clause
+
+Filters records based on a condition.
+
+Example:
+
+SELECT *
+FROM students
+WHERE age > 20;
+
+----------------------------------------------------------
+7. Comparison Operators
+
+=
+Equal
+
+!= or <>
+Not Equal
+
+>
+Greater Than
+
+<
+Less Than
+
+>=
+Greater Than or Equal To
+
+<=
+Less Than or Equal To
+
+----------------------------------------------------------
+8. Logical Operators
+
+AND
+
+Both conditions must be true.
+
+Example:
+
+SELECT *
+FROM students
+WHERE age > 20
+AND course = 'CSE';
+
+--------------------------------
+
+OR
+
+At least one condition must be true.
+
+Example:
+
+SELECT *
+FROM students
+WHERE age > 20
+OR course = 'CSE';
+
+--------------------------------
+
+NOT
+
+Reverses the condition.
+
+Example:
+
+SELECT *
+FROM students
+WHERE NOT course = 'CSE';
+
+----------------------------------------------------------
+9. ORDER BY
+
+Sorts data.
+
+Ascending (Default)
+
+SELECT *
+FROM students
+ORDER BY age;
+
+Descending
+
+SELECT *
+FROM students
+ORDER BY age DESC;
+
+----------------------------------------------------------
+10. LIMIT
+
+Returns only a fixed number of records.
+
+Example:
+
+SELECT *
+FROM students
+LIMIT 5;
+
+----------------------------------------------------------
+11. BETWEEN
+
+Selects values within a range.
+
+Example:
+
+SELECT *
+FROM students
+WHERE age BETWEEN 18 AND 22;
+
+----------------------------------------------------------
+12. IN
+
+Matches multiple values.
+
+Example:
+
+SELECT *
+FROM students
+WHERE course IN ('CSE','IT');
+
+----------------------------------------------------------
+13. LIKE
+
+Searches using patterns.
+
+%
+
+Represents zero or more characters.
+
+Example:
+
+SELECT *
+FROM students
+WHERE name LIKE 'K%';
+
+Names starting with K.
+
+--------------------------------
+
+_
+
+Represents exactly one character.
+
+Example:
+
+SELECT *
+FROM students
+WHERE name LIKE '_i%';
+
+----------------------------------------------------------
+14. IS NULL
+
+Finds NULL values.
+
+SELECT *
+FROM students
+WHERE phone IS NULL;
+
+----------------------------------------------------------
+15. IS NOT NULL
+
+Finds non-NULL values.
+
+SELECT *
+FROM students
+WHERE phone IS NOT NULL;
+
+----------------------------------------------------------
+16. Aggregate Functions
+
+COUNT()
+
+Counts rows.
+
+SELECT COUNT(*)
+FROM students;
+
+--------------------------------
+
+SUM()
+
+Adds values.
+
+SELECT SUM(marks)
+FROM students;
+
+--------------------------------
+
+AVG()
+
+Calculates average.
+
+SELECT AVG(marks)
+FROM students;
+
+--------------------------------
+
+MIN()
+
+Returns smallest value.
+
+SELECT MIN(marks)
+FROM students;
+
+--------------------------------
+
+MAX()
+
+Returns largest value.
+
+SELECT MAX(marks)
+FROM students;
+
+----------------------------------------------------------
+17. GROUP BY
+
+Groups similar records.
+
+Example:
+
+SELECT course,
+COUNT(*)
+FROM students
+GROUP BY course;
+
+----------------------------------------------------------
+18. HAVING
+
+Filters grouped data.
+
+Example:
+
+SELECT course,
+COUNT(*)
+FROM students
+GROUP BY course
+HAVING COUNT(*) > 2;
+
+Difference:
+
+WHERE
+Filters rows before grouping.
+
+HAVING
+Filters groups after grouping.
+
+----------------------------------------------------------
+19. What is a JOIN?
+
+A JOIN combines data from two or more tables
+using a common column.
+
+Example:
+
+Students
+
++----+--------+-----------+
+| ID | Name   | Course_ID |
++----+--------+-----------+
+| 1  | Kirti  | 101       |
+| 2  | Rahul  | 102       |
++----+--------+-----------+
+
+Courses
+
++-----------+-----------+
+| Course_ID | Course    |
++-----------+-----------+
+| 101       | CSE       |
+| 102       | AI        |
++-----------+-----------+
+
+----------------------------------------------------------
+20. Types of Joins
+
+• INNER JOIN
+• LEFT JOIN
+• RIGHT JOIN
+• FULL OUTER JOIN
+• CROSS JOIN
+• SELF JOIN
+
+----------------------------------------------------------
+21. INNER JOIN
+
+Returns only matching records.
+
+Syntax:
+
+SELECT *
+FROM students
+INNER JOIN courses
+ON students.course_id = courses.course_id;
+
+Result:
+
+Kirti → CSE
+
+Rahul → AI
+
+----------------------------------------------------------
+22. LEFT JOIN
+
+Returns:
+
+• All rows from the left table.
+• Matching rows from the right table.
+• NULL if no match exists.
+
+Syntax:
+
+SELECT *
+FROM students
+LEFT JOIN courses
+ON students.course_id = courses.course_id;
+
+----------------------------------------------------------
+23. RIGHT JOIN
+
+Returns:
+
+• All rows from the right table.
+• Matching rows from the left table.
+• NULL if no match exists.
+
+Syntax:
+
+SELECT *
+FROM students
+RIGHT JOIN courses
+ON students.course_id = courses.course_id;
+
+----------------------------------------------------------
+24. FULL OUTER JOIN
+
+Returns:
+
+• All rows from both tables.
+• Matching records where possible.
+• NULL where no match exists.
+
+Note:
+
+MySQL does NOT directly support FULL OUTER JOIN.
+
+It is usually achieved using:
+
+LEFT JOIN
+UNION
+RIGHT JOIN
+
+----------------------------------------------------------
+25. CROSS JOIN
+
+Returns every possible combination of rows.
+
+Example:
+
+2 Students
+
+×
+
+3 Courses
+
+=
+
+6 Rows
+
+Syntax:
+
+SELECT *
+FROM students
+CROSS JOIN courses;
+
+----------------------------------------------------------
+26. SELF JOIN
+
+A table is joined with itself.
+
+Useful for:
+
+• Employee-Manager relationships
+• Parent-Child relationships
+
+Example:
+
+SELECT e.name,
+m.name AS manager
+
+FROM employees e
+
+JOIN employees m
+
+ON e.manager_id = m.id;
+
+----------------------------------------------------------
+27. Difference Between Joins
+
+INNER JOIN
+
+Only matching records.
+
+--------------------------------
+
+LEFT JOIN
+
+All left records + matching right records.
+
+--------------------------------
+
+RIGHT JOIN
+
+All right records + matching left records.
+
+--------------------------------
+
+FULL OUTER JOIN
+
+All records from both tables.
+
+--------------------------------
+
+CROSS JOIN
+
+Every possible combination.
+
+--------------------------------
+
+SELF JOIN
+
+Table joined with itself.
+
+----------------------------------------------------------
+28. Alias
+
+Temporary name for a table.
+
+Example:
+
+SELECT s.name,
+c.course
+
+FROM students AS s
+
+JOIN courses AS c
+
+ON s.course_id = c.course_id;
+
+----------------------------------------------------------
+29. Common Interview Questions
+
+Q1. What is a JOIN?
+
+A JOIN combines rows from two or more tables
+using a common column.
+
+--------------------------------
+
+Q2. What is the difference between INNER and LEFT JOIN?
+
+INNER JOIN:
+Returns only matching rows.
+
+LEFT JOIN:
+Returns all rows from the left table and
+matching rows from the right table.
+
+--------------------------------
+
+Q3. Does MySQL support FULL OUTER JOIN?
+
+No.
+
+It can be simulated using:
+
+LEFT JOIN
+UNION
+RIGHT JOIN
+
+--------------------------------
+
+Q4. What is GROUP BY?
+
+It groups rows having the same values.
+
+--------------------------------
+
+Q5. Difference between WHERE and HAVING?
+
+WHERE:
+Filters rows before grouping.
+
+HAVING:
+Filters groups after GROUP BY.
+
+--------------------------------
+
+Q6. What is the difference between COUNT(*) and COUNT(column)?
+
+COUNT(*)
+Counts all rows.
+
+COUNT(column)
+Counts only non-NULL values in that column.
+
+----------------------------------------------------------
+30. Quick Revision
+
+SELECT
+→ Retrieve data
+
+WHERE
+→ Filter rows
+
+ORDER BY
+→ Sort rows
+
+GROUP BY
+→ Group records
+
+HAVING
+→ Filter grouped records
+
+LIMIT
+→ Restrict number of rows
+
+INNER JOIN
+→ Matching records only
+
+LEFT JOIN
+→ All left + matching right
+
+RIGHT JOIN
+→ All right + matching left
+
+FULL OUTER JOIN
+→ All records from both tables
+(Not directly supported in MySQL)
+
+CROSS JOIN
+→ Every combination
+
+SELF JOIN
+→ Table joined with itself
+
+----------------------------------------------------------
+Summary
+
+SQL queries are used to retrieve, filter, sort, group,
+and manipulate data stored in a database. Joins combine
+data from multiple tables based on a related column,
+allowing efficient retrieval of connected information.
+The most important joins for interviews are INNER JOIN,
+LEFT JOIN, RIGHT JOIN, and SELF JOIN, while GROUP BY,
+HAVING, WHERE, and aggregate functions are frequently
+used for writing complex SQL queries.
