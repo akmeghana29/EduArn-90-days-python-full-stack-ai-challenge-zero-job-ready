@@ -1,0 +1,29 @@
+Today's Practical Tasks
+
+1. Flask + MySQL Integration
+   - Connected Flask application with MySQL database.
+   - Configured SQLAlchemy.
+   - Verified database connection.
+
+2. Database Setup
+   - Created a new MySQL database.
+   - Configured SQLALCHEMY_DATABASE_URI.
+
+3. SQLAlchemy Models
+   - Created tables using SQLAlchemy models.
+   - Used db.create_all().
+
+4. CRUD Operations
+   - Create records
+   - Read records
+   - Update records
+   - Delete records
+
+Practical Concepts Covered
+
+• Flask
+• MySQL
+• SQLAlchemy
+• ORM
+• Database Models
+• CRUD Operations
