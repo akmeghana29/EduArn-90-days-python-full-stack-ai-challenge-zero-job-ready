@@ -1,0 +1,573 @@
+==========================================================
+                DATABASE DESIGN NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is Database Design?
+
+Database Design is the process of planning how data will be
+stored, organized, and related inside a database.
+
+A good database design helps in:
+
+• Reducing data duplication
+• Improving performance
+• Maintaining data integrity
+• Making data easier to retrieve
+• Scaling applications efficiently
+
+----------------------------------------------------------
+2. Steps in Database Design
+
+Step 1
+Understand the requirements.
+
+↓
+
+Step 2
+Identify the entities.
+
+↓
+
+Step 3
+Identify attributes.
+
+↓
+
+Step 4
+Define relationships.
+
+↓
+
+Step 5
+Choose primary keys.
+
+↓
+
+Step 6
+Normalize the database.
+
+↓
+
+Step 7
+Implement the database.
+
+----------------------------------------------------------
+3. What is an Entity?
+
+An Entity is a real-world object about which data is stored.
+
+Examples:
+
+• Student
+• Employee
+• Product
+• Customer
+• Order
+• Course
+
+----------------------------------------------------------
+4. What are Attributes?
+
+Attributes describe an entity.
+
+Example:
+
+Entity:
+
+Student
+
+Attributes:
+
+• Student_ID
+• Name
+• Age
+• Email
+• Course
+
+----------------------------------------------------------
+5. Table Design Example
+
+Students Table
+
++------------+---------+-----+-------------------+
+| Student_ID | Name    | Age | Email             |
++------------+---------+-----+-------------------+
+| 1          | Kirti   | 21  | abc@email.com     |
+| 2          | Rahul   | 22  | xyz@email.com     |
++------------+---------+-----+-------------------+
+
+----------------------------------------------------------
+6. Primary Key
+
+A Primary Key uniquely identifies each record.
+
+Properties:
+
+• Unique
+• Cannot be NULL
+• One primary key per table
+
+Example:
+
+Student_ID
+
+----------------------------------------------------------
+7. Foreign Key
+
+A Foreign Key creates a relationship between tables.
+
+Example:
+
+Students Table
+
+Student_ID (PK)
+
+Marks Table
+
+Student_ID (FK)
+
+----------------------------------------------------------
+8. Relationships
+
+One-to-One (1:1)
+
+One student has one library card.
+
+--------------------------------
+
+One-to-Many (1:N)
+
+One teacher teaches many students.
+
+--------------------------------
+
+Many-to-Many (M:N)
+
+Many students enroll in many courses.
+
+----------------------------------------------------------
+9. One-to-One Relationship
+
+Student
+
++----+------+
+| ID | Name |
++----+------+
+
+↓
+
+Library Card
+
++---------+----------+
+| Card_ID | Student  |
++---------+----------+
+
+Each student has one card.
+
+----------------------------------------------------------
+10. One-to-Many Relationship
+
+Teacher
+
+↓
+
+Students
+
+One teacher teaches many students.
+
+Teacher_ID is stored as a Foreign Key
+inside the Students table.
+
+----------------------------------------------------------
+11. Many-to-Many Relationship
+
+Students
+
+↓
+
+Enrollment Table
+
+↓
+
+Courses
+
+A junction table is required.
+
+Enrollment Table
+
+Student_ID
+
+Course_ID
+
+----------------------------------------------------------
+12. Junction Table
+
+Student_Course
+
++------------+-----------+
+| Student_ID | Course_ID |
++------------+-----------+
+
+This table connects Students and Courses.
+
+----------------------------------------------------------
+13. Normalization
+
+Normalization is the process of organizing data
+to reduce redundancy and improve consistency.
+
+Goals:
+
+• Remove duplicate data
+• Improve data integrity
+• Reduce storage
+• Simplify updates
+
+----------------------------------------------------------
+14. First Normal Form (1NF)
+
+Rules:
+
+• Each column contains a single value.
+• No repeating groups.
+• Each row is unique.
+
+Incorrect:
+
+Student
+
+Kirti
+
+Subjects
+
+Math, Science
+
+Correct:
+
+Student
+
+Subject
+
+Kirti
+
+Math
+
+Kirti
+
+Science
+
+----------------------------------------------------------
+15. Second Normal Form (2NF)
+
+Rules:
+
+• Must satisfy 1NF.
+• Remove partial dependency.
+• Every non-key attribute should depend on
+the entire primary key.
+
+----------------------------------------------------------
+16. Third Normal Form (3NF)
+
+Rules:
+
+• Must satisfy 2NF.
+• Remove transitive dependency.
+• Non-key attributes should depend only
+on the primary key.
+
+----------------------------------------------------------
+17. Denormalization
+
+Denormalization intentionally adds redundant data
+to improve query performance.
+
+Advantages:
+
+• Faster reads
+• Fewer joins
+
+Disadvantages:
+
+• More storage
+• Possible data inconsistency
+
+----------------------------------------------------------
+18. Choosing Data Types
+
+INT
+
+Whole numbers.
+
+----------------------------
+
+VARCHAR
+
+Variable-length text.
+
+----------------------------
+
+CHAR
+
+Fixed-length text.
+
+----------------------------
+
+TEXT
+
+Large text.
+
+----------------------------
+
+BOOLEAN
+
+True or False.
+
+----------------------------
+
+DATE
+
+Date values.
+
+----------------------------
+
+DATETIME
+
+Date and time.
+
+----------------------------
+
+FLOAT
+
+Decimal numbers.
+
+----------------------------------------------------------
+19. Constraints
+
+PRIMARY KEY
+
+Unique identifier.
+
+----------------------------
+
+FOREIGN KEY
+
+Creates relationships.
+
+----------------------------
+
+NOT NULL
+
+Cannot store NULL.
+
+----------------------------
+
+UNIQUE
+
+No duplicate values.
+
+----------------------------
+
+DEFAULT
+
+Assigns a default value.
+
+----------------------------
+
+CHECK
+
+Restricts allowed values.
+
+----------------------------------------------------------
+20. Indexing
+
+An Index speeds up data retrieval.
+
+Advantages:
+
+• Faster SELECT queries
+• Faster searching
+
+Disadvantages:
+
+• Uses extra storage
+• Slightly slower INSERT, UPDATE, DELETE
+
+----------------------------------------------------------
+21. ER Diagram (Entity Relationship Diagram)
+
+An ER Diagram visually represents:
+
+• Entities
+• Attributes
+• Relationships
+
+Example:
+
+Students
+
+↓
+
+Enrollment
+
+↓
+
+Courses
+
+----------------------------------------------------------
+22. Example Database Design
+
+Library Management System
+
+Tables:
+
+Books
+
+Book_ID (PK)
+
+Title
+
+Author
+
+----------------------------
+
+Members
+
+Member_ID (PK)
+
+Name
+
+Phone
+
+----------------------------
+
+Borrow
+
+Borrow_ID (PK)
+
+Book_ID (FK)
+
+Member_ID (FK)
+
+Borrow_Date
+
+----------------------------------------------------------
+23. Best Practices
+
+• Use meaningful table names.
+• Use meaningful column names.
+• Choose appropriate data types.
+• Avoid duplicate data.
+• Use Primary Keys.
+• Use Foreign Keys.
+• Normalize when appropriate.
+• Create indexes for frequently searched columns.
+• Keep relationships simple.
+
+----------------------------------------------------------
+24. Common Interview Questions
+
+Q1. What is Database Design?
+
+It is the process of organizing data into tables,
+relationships, and constraints for efficient storage
+and retrieval.
+
+--------------------------------
+
+Q2. What is Normalization?
+
+The process of reducing redundancy and improving
+data consistency.
+
+--------------------------------
+
+Q3. What is Denormalization?
+
+Adding controlled redundancy to improve performance.
+
+--------------------------------
+
+Q4. Difference between Primary Key and Foreign Key?
+
+Primary Key
+
+Uniquely identifies each row.
+
+Foreign Key
+
+References the Primary Key of another table.
+
+--------------------------------
+
+Q5. What is a Junction Table?
+
+A table used to implement a Many-to-Many relationship.
+
+--------------------------------
+
+Q6. What is an ER Diagram?
+
+A diagram that represents entities, attributes,
+and relationships.
+
+--------------------------------
+
+Q7. Why are indexes used?
+
+To improve query performance.
+
+--------------------------------
+
+Q8. What are the three most common relationships?
+
+• One-to-One
+• One-to-Many
+• Many-to-Many
+
+----------------------------------------------------------
+25. Quick Revision
+
+Database Design
+→ Organizing data efficiently
+
+Entity
+→ Real-world object
+
+Attribute
+→ Property of an entity
+
+Primary Key
+→ Unique identifier
+
+Foreign Key
+→ Creates relationships
+
+1NF
+→ Atomic values
+
+2NF
+→ Remove partial dependency
+
+3NF
+→ Remove transitive dependency
+
+ER Diagram
+→ Visual representation of database
+
+Index
+→ Speeds up searches
+
+Junction Table
+→ Implements Many-to-Many relationships
+
+----------------------------------------------------------
+Summary
+
+Database Design is the foundation of every database-driven
+application. It involves identifying entities, attributes,
+relationships, keys, and constraints while applying
+normalization principles to minimize redundancy and improve
+data integrity. A well-designed database is easier to
+maintain, faster to query, and scalable for future growth.
