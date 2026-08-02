@@ -1,0 +1,24 @@
+Week 7 - Task 2
+
+Built User Registration System
+
+Features Implemented:
+• Add User
+• View Users
+• Update User
+• Delete User
+
+Database:
+• MySQL
+
+Backend:
+• Flask
+• SQLAlchemy ORM
+
+Concepts Applied:
+• Flask Routing
+• Templates (Jinja2)
+• Forms
+• SQLAlchemy Models
+• CRUD Operations
+• MySQL Integration
