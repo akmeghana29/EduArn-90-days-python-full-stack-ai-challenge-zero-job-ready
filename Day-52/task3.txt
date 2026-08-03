@@ -1,0 +1,19 @@
+Week 7 - Task 3
+
+WhatsApp API Integration (Individual Messaging)
+
+Features Implemented:
+• Connected WhatsApp Business API
+• Configured API credentials
+• Sent WhatsApp message to a single user
+• Triggered message after successful registration
+• Triggered message through an API endpoint
+
+Concepts Applied:
+• REST API
+• HTTP POST Requests
+• JSON Payload
+• Authentication Token
+• Flask Routes
+• External API Integration
+• Error Handling
