@@ -1,0 +1,498 @@
+==========================================================
+             TASK MANAGER / TO-DO APP NOTES
+==========================================================
+
+----------------------------------------------------------
+1. Project Overview
+
+A Task Manager (or To-Do App) is a web application that
+allows users to manage their daily tasks.
+
+The application follows CRUD (Create, Read, Update, Delete)
+operations and stores task information in a database.
+
+It integrates:
+
+• Frontend (HTML, CSS, JavaScript)
+• Backend (Flask)
+• Database (MySQL using SQLAlchemy ORM)
+
+----------------------------------------------------------
+2. Technologies Used
+
+Frontend
+
+• HTML
+• CSS
+• JavaScript
+
+Backend
+
+• Python
+• Flask
+
+Database
+
+• MySQL
+• SQLAlchemy ORM
+
+----------------------------------------------------------
+3. Project Workflow
+
+User
+   │
+   ▼
+Frontend (HTML Form)
+   │
+   ▼
+Flask Route
+   │
+   ▼
+SQLAlchemy ORM
+   │
+   ▼
+MySQL Database
+   │
+   ▼
+Updated Data
+   │
+   ▼
+Frontend Displays Result
+
+----------------------------------------------------------
+4. Database Design
+
+Table Name:
+
+tasks
+
+Columns:
+
+Task_ID
+Primary Key
+
+Title
+Stores task title
+
+Description
+Stores task details
+
+Status
+Pending / Completed
+
+Created_At
+Stores creation date and time
+
+----------------------------------------------------------
+5. SQLAlchemy Model
+
+The Task model represents the tasks table.
+
+Each object of the Task class corresponds to one row
+in the database.
+
+Example fields:
+
+• id
+• title
+• description
+• status
+• created_at
+
+----------------------------------------------------------
+6. Feature 1 - Add Task
+
+Purpose:
+
+Allows users to create a new task.
+
+Steps:
+
+1. User enters task details.
+2. Frontend sends a POST request.
+3. Flask receives the request.
+4. SQLAlchemy creates a new Task object.
+5. Object is stored in MySQL.
+6. Updated task list is displayed.
+
+Flow:
+
+User
+↓
+
+Enter Task
+
+↓
+
+POST Request
+
+↓
+
+Flask Route
+
+↓
+
+Database
+
+↓
+
+Task Saved
+
+----------------------------------------------------------
+7. Feature 2 - View Tasks
+
+Purpose:
+
+Displays all tasks stored in the database.
+
+Steps:
+
+1. Flask retrieves all task records.
+2. SQLAlchemy converts database rows into Python objects.
+3. Data is sent to a Jinja2 template.
+4. HTML page displays all tasks.
+
+Common ORM Method:
+
+query.all()
+
+----------------------------------------------------------
+8. Feature 3 - Update Task
+
+Purpose:
+
+Allows users to modify an existing task.
+
+Examples:
+
+• Change title
+• Change description
+• Mark as completed
+
+Steps:
+
+1. User selects Edit.
+2. Existing task is loaded.
+3. User updates information.
+4. Flask receives updated data.
+5. Database record is modified.
+6. Changes are committed.
+
+Common ORM Method:
+
+db.session.commit()
+
+----------------------------------------------------------
+9. Feature 4 - Delete Task
+
+Purpose:
+
+Removes a task permanently.
+
+Steps:
+
+1. User clicks Delete.
+2. Flask identifies the task by ID.
+3. SQLAlchemy removes the object.
+4. Changes are committed.
+5. Updated task list is displayed.
+
+Common ORM Method:
+
+db.session.delete()
+
+----------------------------------------------------------
+10. Frontend and Backend Integration
+
+Frontend Responsibilities
+
+• Display forms
+• Display task list
+• Collect user input
+• Send requests to Flask
+
+Backend Responsibilities
+
+• Receive requests
+• Validate data
+• Perform CRUD operations
+• Interact with database
+• Return updated pages or responses
+
+----------------------------------------------------------
+11. Request-Response Flow
+
+Browser
+
+↓
+
+HTTP Request
+
+↓
+
+Flask Route
+
+↓
+
+Business Logic
+
+↓
+
+SQLAlchemy ORM
+
+↓
+
+MySQL Database
+
+↓
+
+Response
+
+↓
+
+Browser Updates Page
+
+----------------------------------------------------------
+12. CRUD Mapping
+
+Create
+
+Add a new task.
+
+HTTP Method:
+
+POST
+
+--------------------------------
+
+Read
+
+View all tasks.
+
+HTTP Method:
+
+GET
+
+--------------------------------
+
+Update
+
+Modify a task.
+
+HTTP Method:
+
+PUT or POST (depending on implementation)
+
+--------------------------------
+
+Delete
+
+Remove a task.
+
+HTTP Method:
+
+DELETE or POST (depending on implementation)
+
+----------------------------------------------------------
+13. Database Operations
+
+Create
+
+Insert a new task.
+
+Read
+
+Retrieve all tasks.
+
+Update
+
+Modify existing task details.
+
+Delete
+
+Remove selected task.
+
+----------------------------------------------------------
+14. Jinja2 Templates
+
+Templates are used to dynamically display tasks.
+
+Examples:
+
+• index.html
+• add_task.html
+• edit_task.html
+
+Jinja2 displays data received from Flask.
+
+----------------------------------------------------------
+15. Form Handling
+
+HTML forms collect user input.
+
+Common fields:
+
+• Task Title
+• Description
+• Status
+
+The submitted form data is received by Flask using
+the request object.
+
+----------------------------------------------------------
+16. Benefits of SQLAlchemy
+
+• No need to write raw SQL for most operations.
+• Easier CRUD implementation.
+• Database-independent code.
+• Better readability.
+• More secure against SQL Injection.
+
+----------------------------------------------------------
+17. Common Interview Questions
+
+Q1. What is a Task Manager application?
+
+A CRUD-based web application used to manage tasks.
+
+--------------------------------
+
+Q2. Which technologies are used?
+
+Frontend:
+HTML, CSS, JavaScript
+
+Backend:
+Flask
+
+Database:
+MySQL
+
+ORM:
+SQLAlchemy
+
+--------------------------------
+
+Q3. Which CRUD operations are implemented?
+
+• Create
+• Read
+• Update
+• Delete
+
+--------------------------------
+
+Q4. Why is SQLAlchemy used?
+
+It simplifies database operations using Python
+objects instead of writing SQL queries.
+
+--------------------------------
+
+Q5. How does Flask communicate with MySQL?
+
+Using SQLAlchemy ORM.
+
+--------------------------------
+
+Q6. What is the role of Jinja2?
+
+It renders dynamic HTML pages using data received
+from Flask.
+
+----------------------------------------------------------
+18. Project Architecture
+
+Frontend
+
+↓
+
+Flask Routes
+
+↓
+
+Business Logic
+
+↓
+
+SQLAlchemy ORM
+
+↓
+
+MySQL Database
+
+----------------------------------------------------------
+19. Quick Revision
+
+Frontend
+→ HTML, CSS, JavaScript
+
+Backend
+→ Flask
+
+Database
+→ MySQL
+
+ORM
+→ SQLAlchemy
+
+Create
+→ Add Task
+
+Read
+→ View Tasks
+
+Update
+→ Edit Task
+
+Delete
+→ Remove Task
+
+Templates
+→ Jinja2
+
+Integration
+→ Frontend ↔ Flask ↔ Database
+
+----------------------------------------------------------
+20. What I Implemented
+
+During this project, I successfully implemented:
+
+Flask application setup
+
+MySQL database integration
+
+SQLAlchemy ORM configuration
+
+Task model creation
+
+Database table creation
+
+Add Task functionality
+
+Display all tasks
+
+Update existing tasks
+
+Delete tasks
+
+Frontend and Backend integration
+
+HTML forms for user input
+
+Jinja2 templates for dynamic content rendering
+
+CRUD operations using SQLAlchemy
+
+Request-Response cycle between browser, Flask, and MySQL
+
+----------------------------------------------------------
+Summary
+
+The Task Manager application demonstrates full-stack web
+development using Flask, MySQL, SQLAlchemy, HTML, CSS, and
+JavaScript. It performs complete CRUD operations, stores
+tasks in a database, dynamically displays data using Jinja2
+templates, and integrates the frontend with the backend
+through Flask routes and SQLAlchemy ORM.

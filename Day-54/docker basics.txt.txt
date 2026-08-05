@@ -1,0 +1,615 @@
+==========================================================
+                    DOCKER BASICS NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is Docker?
+
+Docker is an open-source platform used to develop,
+package, ship, and run applications inside lightweight,
+portable containers.
+
+A Docker container includes everything an application
+needs to run:
+
+• Application code
+• Runtime
+• Libraries
+• Dependencies
+• Configuration files
+
+This ensures the application behaves the same on every
+system.
+
+----------------------------------------------------------
+2. Why Use Docker?
+
+Advantages:
+
+• Eliminates "It works on my machine" problems.
+• Easy deployment across environments.
+• Lightweight compared to virtual machines.
+• Fast startup time.
+• Better resource utilization.
+• Easy scalability.
+• Simplifies application distribution.
+
+----------------------------------------------------------
+3. Real-World Uses
+
+• Deploying web applications
+• Running microservices
+• CI/CD pipelines
+• Cloud deployments
+• Testing applications
+• Containerized databases
+• Development environments
+
+----------------------------------------------------------
+4. Docker Architecture
+
+Developer
+     │
+     ▼
+Docker Client
+     │
+     ▼
+Docker Engine (Docker Daemon)
+     │
+     ▼
+Docker Images
+     │
+     ▼
+Docker Containers
+
+----------------------------------------------------------
+5. Docker Components
+
+Docker Client
+
+Used to execute Docker commands.
+
+Example:
+
+docker run nginx
+
+--------------------------------
+
+Docker Daemon
+
+Runs in the background.
+
+Responsible for:
+
+• Building images
+• Running containers
+• Managing networks
+• Managing volumes
+
+--------------------------------
+
+Docker Image
+
+A read-only blueprint used to create containers.
+
+Example:
+
+Python Image
+
+↓
+
+Create
+
+↓
+
+Python Container
+
+--------------------------------
+
+Docker Container
+
+A running instance of an image.
+
+Containers are:
+
+• Lightweight
+• Isolated
+• Portable
+
+----------------------------------------------------------
+6. Docker Image vs Container
+
+Docker Image
+
+• Blueprint
+• Read-only
+• Cannot execute by itself
+
+Example:
+
+python:3.12
+
+--------------------------------
+
+Docker Container
+
+• Running application
+• Created from an image
+• Can be started and stopped
+
+----------------------------------------------------------
+7. Virtual Machine vs Docker
+
+Virtual Machine
+
+• Includes full operating system
+• Larger in size
+• Slower startup
+• Uses more memory
+
+Docker Container
+
+• Shares host operating system
+• Lightweight
+• Starts in seconds
+• Uses fewer resources
+
+----------------------------------------------------------
+8. Installing Docker
+
+Download Docker Desktop from:
+
+https://www.docker.com/products/docker-desktop/
+
+After installation, verify:
+
+docker --version
+
+----------------------------------------------------------
+9. Checking Docker Version
+
+docker --version
+
+Example Output:
+
+Docker version 28.x.x
+
+----------------------------------------------------------
+10. Checking Docker Information
+
+docker info
+
+Displays:
+
+• Docker version
+• Images
+• Containers
+• Storage
+• CPU
+• Memory
+
+----------------------------------------------------------
+11. Pulling an Image
+
+Downloads an image from Docker Hub.
+
+Syntax:
+
+docker pull image_name
+
+Example:
+
+docker pull nginx
+
+----------------------------------------------------------
+12. Listing Images
+
+docker images
+
+Displays:
+
+• Repository
+• Tag
+• Image ID
+• Size
+
+----------------------------------------------------------
+13. Running a Container
+
+Syntax:
+
+docker run image_name
+
+Example:
+
+docker run nginx
+
+----------------------------------------------------------
+14. Running in Detached Mode
+
+Detached mode runs the container in the background.
+
+docker run -d nginx
+
+----------------------------------------------------------
+15. Listing Running Containers
+
+docker ps
+
+----------------------------------------------------------
+16. Listing All Containers
+
+docker ps -a
+
+----------------------------------------------------------
+17. Stopping a Container
+
+docker stop container_id
+
+Example:
+
+docker stop a12345
+
+----------------------------------------------------------
+18. Starting a Container
+
+docker start container_id
+
+----------------------------------------------------------
+19. Restarting a Container
+
+docker restart container_id
+
+----------------------------------------------------------
+20. Removing a Container
+
+docker rm container_id
+
+----------------------------------------------------------
+21. Removing an Image
+
+docker rmi image_name
+
+Example:
+
+docker rmi nginx
+
+----------------------------------------------------------
+22. Naming Containers
+
+docker run --name myapp nginx
+
+Container Name:
+
+myapp
+
+----------------------------------------------------------
+23. Port Mapping
+
+Maps container ports to the host machine.
+
+Syntax:
+
+docker run -p host_port:container_port image
+
+Example:
+
+docker run -p 5000:5000 flask-app
+
+Meaning:
+
+Host Port:
+
+5000
+
+↓
+
+Container Port:
+
+5000
+
+----------------------------------------------------------
+24. Docker Hub
+
+Docker Hub is the official online repository for Docker
+images.
+
+Popular Images:
+
+• Python
+• MySQL
+• MongoDB
+• Redis
+• Nginx
+• Ubuntu
+
+----------------------------------------------------------
+25. Dockerfile
+
+A Dockerfile is a text file containing instructions to
+build a Docker image.
+
+Example:
+
+FROM python:3.12
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "app.py"]
+
+----------------------------------------------------------
+26. Building an Image
+
+Syntax:
+
+docker build -t image_name .
+
+Example:
+
+docker build -t flask-app .
+
+----------------------------------------------------------
+27. Running Your Own Image
+
+docker run flask-app
+
+----------------------------------------------------------
+28. Docker Volumes
+
+Volumes are used for persistent storage.
+
+Advantages:
+
+• Data remains after container removal.
+• Used for databases.
+• Easy backup.
+
+----------------------------------------------------------
+29. Docker Networks
+
+Networks allow containers to communicate.
+
+Example:
+
+Flask Container
+
+↓
+
+MySQL Container
+
+Both communicate over a Docker network.
+
+----------------------------------------------------------
+30. Docker Compose
+
+Docker Compose is used to run multiple containers
+using one configuration file.
+
+Example:
+
+Flask
+
++
+
+MySQL
+
++
+
+Redis
+
+↓
+
+docker-compose.yml
+
+↓
+
+docker compose up
+
+----------------------------------------------------------
+31. Common Docker Commands
+
+docker --version
+
+Check Docker version.
+
+--------------------------------
+
+docker info
+
+Display Docker information.
+
+--------------------------------
+
+docker pull nginx
+
+Download image.
+
+--------------------------------
+
+docker images
+
+List images.
+
+--------------------------------
+
+docker run nginx
+
+Run container.
+
+--------------------------------
+
+docker run -d nginx
+
+Run in background.
+
+--------------------------------
+
+docker ps
+
+Show running containers.
+
+--------------------------------
+
+docker ps -a
+
+Show all containers.
+
+--------------------------------
+
+docker stop container_id
+
+Stop container.
+
+--------------------------------
+
+docker start container_id
+
+Start container.
+
+--------------------------------
+
+docker restart container_id
+
+Restart container.
+
+--------------------------------
+
+docker rm container_id
+
+Delete container.
+
+--------------------------------
+
+docker rmi image_name
+
+Delete image.
+
+--------------------------------
+
+docker build -t app .
+
+Build image.
+
+----------------------------------------------------------
+32. Common Interview Questions
+
+Q1. What is Docker?
+
+Docker is a platform used to package and run
+applications inside containers.
+
+--------------------------------
+
+Q2. What is a Docker Image?
+
+A read-only template used to create containers.
+
+--------------------------------
+
+Q3. What is a Docker Container?
+
+A running instance of a Docker image.
+
+--------------------------------
+
+Q4. Difference between Image and Container?
+
+Image:
+Blueprint.
+
+Container:
+Running application.
+
+--------------------------------
+
+Q5. Difference between Docker and Virtual Machine?
+
+Docker shares the host operating system and is
+lightweight, while a Virtual Machine includes a
+complete operating system and uses more resources.
+
+--------------------------------
+
+Q6. What is Docker Hub?
+
+An online repository used to store and download
+Docker images.
+
+--------------------------------
+
+Q7. What is a Dockerfile?
+
+A file containing instructions to build a Docker
+image.
+
+--------------------------------
+
+Q8. Why are Docker Volumes used?
+
+To persist data even after a container is removed.
+
+--------------------------------
+
+Q9. Why is Docker Compose used?
+
+To manage and run multiple containers together.
+
+----------------------------------------------------------
+33. Quick Revision
+
+Docker
+→ Containerization Platform
+
+Image
+→ Blueprint
+
+Container
+→ Running Instance
+
+Docker Hub
+→ Image Repository
+
+Dockerfile
+→ Instructions to Build Image
+
+Volume
+→ Persistent Storage
+
+Network
+→ Container Communication
+
+Compose
+→ Multi-container Management
+
+docker pull
+→ Download Image
+
+docker run
+→ Start Container
+
+docker ps
+→ View Running Containers
+
+docker stop
+→ Stop Container
+
+docker rm
+→ Delete Container
+
+docker build
+→ Build Image
+
+----------------------------------------------------------
+Summary
+
+Docker is a containerization platform that packages
+applications and their dependencies into lightweight,
+portable containers. It ensures consistent application
+behavior across different environments, simplifies
+deployment, improves scalability, and is widely used in
+modern software development, DevOps, cloud computing,
+and microservices architectures.
