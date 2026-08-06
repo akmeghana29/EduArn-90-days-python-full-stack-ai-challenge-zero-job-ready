@@ -1,0 +1,581 @@
+==========================================================
+             DOCKER CONTAINERS & IMAGES NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is a Docker Image?
+
+A Docker Image is a read-only blueprint or template
+used to create Docker containers.
+
+It contains everything required to run an application:
+
+• Application code
+• Runtime
+• Libraries
+• Dependencies
+• Environment variables
+• Configuration files
+
+An image itself does not run. It is only used to create
+containers.
+
+----------------------------------------------------------
+2. What is a Docker Container?
+
+A Docker Container is a running instance of a Docker
+Image.
+
+When an image is executed, Docker creates a container.
+
+A container is isolated from the host system and other
+containers while sharing the host operating system kernel.
+
+----------------------------------------------------------
+3. Image vs Container
+
+Docker Image
+
+• Blueprint or template
+• Read-only
+• Cannot execute by itself
+• Used to create containers
+
+Example:
+
+python:3.12
+
+--------------------------------
+
+Docker Container
+
+• Running application
+• Created from an image
+• Can be started, stopped, restarted, and deleted
+
+Example:
+
+A running Flask application inside a container.
+
+----------------------------------------------------------
+4. Real-World Analogy
+
+Image
+
+Think of an image as a cake recipe.
+
+↓
+
+Container
+
+The cake baked using that recipe.
+
+One recipe can be used to bake many cakes.
+
+Similarly,
+
+One Docker image can create multiple containers.
+
+----------------------------------------------------------
+5. Docker Workflow
+
+Dockerfile
+
+↓
+
+Docker Image
+
+↓
+
+Docker Container
+
+↓
+
+Running Application
+
+----------------------------------------------------------
+6. Image Lifecycle
+
+Write Dockerfile
+
+↓
+
+Build Image
+
+↓
+
+Store Image
+
+↓
+
+Run Image
+
+↓
+
+Container Created
+
+----------------------------------------------------------
+7. Container Lifecycle
+
+Create
+
+↓
+
+Start
+
+↓
+
+Run
+
+↓
+
+Stop
+
+↓
+
+Restart
+
+↓
+
+Remove
+
+----------------------------------------------------------
+8. Building a Docker Image
+
+Command:
+
+docker build -t flask-app .
+
+Explanation:
+
+build
+
+Creates a Docker image.
+
+-t
+
+Assigns a name (tag) to the image.
+
+.
+
+Current project directory.
+
+----------------------------------------------------------
+9. Listing Images
+
+Command:
+
+docker images
+
+Displays:
+
+• Repository
+• Tag
+• Image ID
+• Created Date
+• Size
+
+----------------------------------------------------------
+10. Downloading an Image
+
+Command:
+
+docker pull python
+
+Downloads the latest Python image from Docker Hub.
+
+----------------------------------------------------------
+11. Running a Container
+
+Command:
+
+docker run python
+
+Creates and starts a container from the Python image.
+
+----------------------------------------------------------
+12. Running a Named Container
+
+Command:
+
+docker run --name my_container python
+
+Container Name:
+
+my_container
+
+----------------------------------------------------------
+13. Running in Detached Mode
+
+Command:
+
+docker run -d nginx
+
+The container runs in the background.
+
+----------------------------------------------------------
+14. Listing Running Containers
+
+Command:
+
+docker ps
+
+Displays only currently running containers.
+
+----------------------------------------------------------
+15. Listing All Containers
+
+Command:
+
+docker ps -a
+
+Displays both running and stopped containers.
+
+----------------------------------------------------------
+16. Stopping a Container
+
+Command:
+
+docker stop container_id
+
+Example:
+
+docker stop a1b2c3
+
+----------------------------------------------------------
+17. Starting a Stopped Container
+
+Command:
+
+docker start container_id
+
+----------------------------------------------------------
+18. Restarting a Container
+
+Command:
+
+docker restart container_id
+
+----------------------------------------------------------
+19. Removing a Container
+
+Command:
+
+docker rm container_id
+
+The container must be stopped before removal.
+
+----------------------------------------------------------
+20. Removing an Image
+
+Command:
+
+docker rmi image_name
+
+Example:
+
+docker rmi python
+
+----------------------------------------------------------
+21. Multiple Containers from One Image
+
+One image can create multiple containers.
+
+Example:
+
+Python Image
+
+↓
+
+Container 1
+
+↓
+
+Container 2
+
+↓
+
+Container 3
+
+Each container runs independently.
+
+----------------------------------------------------------
+22. Container Isolation
+
+Each container has its own:
+
+• File system
+• Processes
+• Environment
+• Installed packages
+
+Containers do not interfere with one another.
+
+----------------------------------------------------------
+23. Image Layers
+
+A Docker image is made up of multiple layers.
+
+Example:
+
+Operating System Layer
+
+↓
+
+Python Layer
+
+↓
+
+Libraries Layer
+
+↓
+
+Application Code Layer
+
+Docker reuses unchanged layers to make builds faster.
+
+----------------------------------------------------------
+24. Image Tags
+
+Tags identify different versions of an image.
+
+Example:
+
+python:3.12
+
+python:3.11
+
+python:latest
+
+Syntax:
+
+image_name:tag
+
+----------------------------------------------------------
+25. Container Ports
+
+Applications inside containers run on container ports.
+
+Port mapping makes them accessible from the host machine.
+
+Example:
+
+docker run -p 5000:5000 flask-app
+
+Host Port
+
+↓
+
+5000
+
+Container Port
+
+↓
+
+5000
+
+----------------------------------------------------------
+26. Docker Hub
+
+Docker Hub is the official online repository for Docker
+images.
+
+Popular Images:
+
+• Python
+• Ubuntu
+• MySQL
+• MongoDB
+• Redis
+• Nginx
+• Node.js
+
+----------------------------------------------------------
+27. Common Commands
+
+docker images
+
+List images.
+
+--------------------------------
+
+docker pull image_name
+
+Download image.
+
+--------------------------------
+
+docker build -t image_name .
+
+Build image.
+
+--------------------------------
+
+docker run image_name
+
+Create and start a container.
+
+--------------------------------
+
+docker run -d image_name
+
+Run container in background.
+
+--------------------------------
+
+docker ps
+
+Show running containers.
+
+--------------------------------
+
+docker ps -a
+
+Show all containers.
+
+--------------------------------
+
+docker stop container_id
+
+Stop container.
+
+--------------------------------
+
+docker start container_id
+
+Start container.
+
+--------------------------------
+
+docker restart container_id
+
+Restart container.
+
+--------------------------------
+
+docker rm container_id
+
+Remove container.
+
+--------------------------------
+
+docker rmi image_name
+
+Remove image.
+
+----------------------------------------------------------
+28. Common Interview Questions
+
+Q1. What is a Docker Image?
+
+A Docker Image is a read-only template used to create
+containers.
+
+--------------------------------
+
+Q2. What is a Docker Container?
+
+A Docker Container is a running instance of a Docker
+Image.
+
+--------------------------------
+
+Q3. Can one image create multiple containers?
+
+Yes.
+
+A single Docker image can be used to create multiple
+independent containers.
+
+--------------------------------
+
+Q4. Can a container exist without an image?
+
+No.
+
+Every container is created from an image.
+
+--------------------------------
+
+Q5. Can an image exist without a container?
+
+Yes.
+
+Images can be stored without creating any containers.
+
+--------------------------------
+
+Q6. What command lists Docker images?
+
+docker images
+
+--------------------------------
+
+Q7. What command lists running containers?
+
+docker ps
+
+--------------------------------
+
+Q8. What command downloads an image?
+
+docker pull image_name
+
+--------------------------------
+
+Q9. What command removes an image?
+
+docker rmi image_name
+
+--------------------------------
+
+Q10. What command removes a container?
+
+docker rm container_id
+
+----------------------------------------------------------
+29. Quick Revision
+
+Docker Image
+→ Blueprint
+
+Docker Container
+→ Running Instance
+
+Dockerfile
+→ Creates Image
+
+docker build
+→ Build Image
+
+docker pull
+→ Download Image
+
+docker run
+→ Create & Run Container
+
+docker ps
+→ Running Containers
+
+docker images
+→ Available Images
+
+docker stop
+→ Stop Container
+
+docker rm
+→ Delete Container
+
+docker rmi
+→ Delete Image
+
+----------------------------------------------------------
+Summary
+
+A Docker Image is a reusable, read-only template that
+contains everything needed to run an application. A
+Docker Container is the running instance of that image.
+Multiple containers can be created from a single image,
+making Docker an efficient solution for application
+deployment, testing, and scaling across different
+environments.
