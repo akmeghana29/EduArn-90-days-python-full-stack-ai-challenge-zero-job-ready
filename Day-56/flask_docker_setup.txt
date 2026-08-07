@@ -1,0 +1,500 @@
+==========================================================
+              FLASK DOCKER SETUP NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is Flask Docker Setup?
+
+Flask Docker Setup is the process of packaging a Flask
+application inside a Docker container so that it can run
+consistently on any machine without worrying about
+installed dependencies or operating system differences.
+
+Instead of installing Python and libraries manually,
+Docker provides everything required inside the container.
+
+----------------------------------------------------------
+2. Why Dockerize a Flask Application?
+
+Advantages:
+
+• Same environment on every machine
+• No dependency conflicts
+• Easy deployment
+• Faster project setup
+• Easy scalability
+• Works well with cloud platforms
+• Simplifies sharing applications
+
+----------------------------------------------------------
+3. Prerequisites
+
+Before dockerizing a Flask application, ensure that:
+
+• Python is installed
+• Flask application is working
+• Docker Desktop is installed
+• Docker service is running
+
+----------------------------------------------------------
+4. Basic Flask Project Structure
+
+Flask_Project/
+
+│── app.py
+│── requirements.txt
+│── Dockerfile
+│── .dockerignore
+│── templates/
+│── static/
+
+----------------------------------------------------------
+5. requirements.txt
+
+This file stores all Python dependencies required by
+the project.
+
+Generate it using:
+
+pip freeze > requirements.txt
+
+Example:
+
+Flask==3.1.0
+Werkzeug==3.1.0
+
+----------------------------------------------------------
+6. What is a Dockerfile?
+
+A Dockerfile is a text file containing instructions
+used to build a Docker image.
+
+Docker reads this file step by step to create the image.
+
+----------------------------------------------------------
+7. Sample Dockerfile
+
+FROM python:3.12
+
+WORKDIR /app
+
+COPY . .
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+----------------------------------------------------------
+8. Understanding Dockerfile Instructions
+
+FROM
+
+Specifies the base image.
+
+Example:
+
+FROM python:3.12
+
+--------------------------------
+
+WORKDIR
+
+Sets the working directory inside the container.
+
+Example:
+
+WORKDIR /app
+
+--------------------------------
+
+COPY
+
+Copies project files into the container.
+
+Example:
+
+COPY . .
+
+--------------------------------
+
+RUN
+
+Executes commands while building the image.
+
+Example:
+
+RUN pip install -r requirements.txt
+
+--------------------------------
+
+EXPOSE
+
+Documents the port used by the application.
+
+Example:
+
+EXPOSE 5000
+
+--------------------------------
+
+CMD
+
+Defines the command that starts the application.
+
+Example:
+
+CMD ["python", "app.py"]
+
+----------------------------------------------------------
+9. What is .dockerignore?
+
+Similar to .gitignore.
+
+It prevents unnecessary files from being copied into
+the Docker image.
+
+Example:
+
+__pycache__/
+.git
+venv/
+.env
+
+----------------------------------------------------------
+10. Building the Docker Image
+
+Command:
+
+docker build -t flask-app .
+
+Explanation:
+
+build
+
+Creates a Docker image.
+
+-t
+
+Assigns a name to the image.
+
+flask-app
+
+Image name.
+
+.
+
+Current directory.
+
+----------------------------------------------------------
+11. Listing Images
+
+Command:
+
+docker images
+
+Displays all available Docker images.
+
+----------------------------------------------------------
+12. Running the Flask Container
+
+Command:
+
+docker run -p 5000:5000 flask-app
+
+Explanation:
+
+-p
+
+Maps ports.
+
+Host Port:
+
+5000
+
+↓
+
+Container Port:
+
+5000
+
+----------------------------------------------------------
+13. Accessing the Application
+
+Open a browser and visit:
+
+http://localhost:5000
+
+Your Flask application should now be running inside
+the Docker container.
+
+----------------------------------------------------------
+14. Running in Detached Mode
+
+Command:
+
+docker run -d -p 5000:5000 flask-app
+
+The application runs in the background.
+
+----------------------------------------------------------
+15. Viewing Running Containers
+
+Command:
+
+docker ps
+
+Displays all running containers.
+
+----------------------------------------------------------
+16. Viewing All Containers
+
+Command:
+
+docker ps -a
+
+Displays both running and stopped containers.
+
+----------------------------------------------------------
+17. Stopping the Container
+
+Command:
+
+docker stop container_id
+
+----------------------------------------------------------
+18. Restarting the Container
+
+Command:
+
+docker restart container_id
+
+----------------------------------------------------------
+19. Removing the Container
+
+Command:
+
+docker rm container_id
+
+----------------------------------------------------------
+20. Updating the Application
+
+Whenever application code changes:
+
+Step 1
+
+Modify project files.
+
+↓
+
+Step 2
+
+Rebuild the image.
+
+docker build -t flask-app .
+
+↓
+
+Step 3
+
+Run a new container.
+
+docker run -p 5000:5000 flask-app
+
+----------------------------------------------------------
+21. Flask Docker Workflow
+
+Write Flask Application
+
+↓
+
+Create requirements.txt
+
+↓
+
+Create Dockerfile
+
+↓
+
+Build Docker Image
+
+↓
+
+Run Docker Container
+
+↓
+
+Open Browser
+
+↓
+
+Application Running
+
+----------------------------------------------------------
+22. Benefits of Dockerizing Flask
+
+• Easy deployment
+• Consistent environment
+• Platform independent
+• Better collaboration
+• Simplified dependency management
+• Faster setup for new developers
+
+----------------------------------------------------------
+23. Common Commands
+
+Generate requirements file
+
+pip freeze > requirements.txt
+
+--------------------------------
+
+Build image
+
+docker build -t flask-app .
+
+--------------------------------
+
+List images
+
+docker images
+
+--------------------------------
+
+Run container
+
+docker run -p 5000:5000 flask-app
+
+--------------------------------
+
+Run in background
+
+docker run -d -p 5000:5000 flask-app
+
+--------------------------------
+
+View running containers
+
+docker ps
+
+--------------------------------
+
+View all containers
+
+docker ps -a
+
+--------------------------------
+
+Stop container
+
+docker stop container_id
+
+--------------------------------
+
+Restart container
+
+docker restart container_id
+
+--------------------------------
+
+Remove container
+
+docker rm container_id
+
+----------------------------------------------------------
+24. Common Interview Questions
+
+Q1. Why Dockerize a Flask application?
+
+To package the application with all its dependencies,
+ensuring it runs consistently across different
+environments.
+
+--------------------------------
+
+Q2. What is a Dockerfile?
+
+A file containing instructions to build a Docker image.
+
+--------------------------------
+
+Q3. Why is requirements.txt needed?
+
+It lists all Python dependencies so Docker can install
+them during image creation.
+
+--------------------------------
+
+Q4. What does COPY . . do?
+
+Copies all project files from the current directory
+into the container.
+
+--------------------------------
+
+Q5. What is the purpose of WORKDIR?
+
+It sets the default working directory inside the
+container.
+
+--------------------------------
+
+Q6. Why is EXPOSE used?
+
+It specifies the network port the application listens
+on inside the container.
+
+--------------------------------
+
+Q7. What does docker build do?
+
+It creates a Docker image from the Dockerfile.
+
+--------------------------------
+
+Q8. What does docker run do?
+
+It creates and starts a container from a Docker image.
+
+----------------------------------------------------------
+25. Quick Revision
+
+Flask App
+→ Python Web Application
+
+requirements.txt
+→ Python Dependencies
+
+Dockerfile
+→ Instructions to Build Image
+
+.dockerignore
+→ Ignore Unnecessary Files
+
+docker build
+→ Build Image
+
+docker run
+→ Start Container
+
+docker ps
+→ Running Containers
+
+docker images
+→ Available Images
+
+Port Mapping
+→ Host Port : Container Port
+
+----------------------------------------------------------
+Summary
+
+Flask Docker Setup packages a Flask application along
+with its dependencies into a Docker container. The
+process involves creating a requirements.txt file,
+writing a Dockerfile, building a Docker image, and
+running it as a container. Docker ensures that the
+application behaves consistently across different
+development, testing, and production environments,
+making deployment simpler and more reliable.
