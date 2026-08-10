@@ -1,0 +1,696 @@
+==========================================================
+                    AWS S3 STORAGE NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is Amazon S3?
+
+S3 stands for Simple Storage Service.
+
+Amazon S3 is an AWS cloud storage service used to store
+and retrieve files and objects over the internet.
+
+It is commonly used for:
+
+• Images
+• Videos
+• Documents
+• PDFs
+• Backups
+• Application files
+• Logs
+• Static website files
+
+----------------------------------------------------------
+2. Why Use S3?
+
+Advantages:
+
+• Highly scalable
+• Durable
+• Secure
+• Easy to access
+• Pay-as-you-use
+• Suitable for large amounts of data
+• Integrates with many AWS services
+
+----------------------------------------------------------
+3. S3 Storage Structure
+
+S3 uses the following structure:
+
+AWS Account
+     ↓
+Bucket
+     ↓
+Objects
+     ↓
+Files
+
+Example:
+
+my-bucket
+│
+├── images/
+│   ├── profile.jpg
+│   └── logo.png
+│
+├── documents/
+│   └── resume.pdf
+│
+└── videos/
+    └── demo.mp4
+
+----------------------------------------------------------
+4. What is an S3 Bucket?
+
+A Bucket is a container used to store objects in S3.
+
+Before uploading files to S3, we generally create a bucket.
+
+Example:
+
+my-flask-app-storage
+
+A bucket name must be globally unique within Amazon S3.
+
+----------------------------------------------------------
+5. What is an Object?
+
+An Object is a file stored inside an S3 bucket.
+
+An object consists of:
+
+• File data
+• Object key
+• Metadata
+
+Example:
+
+profile.jpg
+
+is an object stored in a bucket.
+
+----------------------------------------------------------
+6. What is an Object Key?
+
+The Object Key is the name used to identify an object
+inside a bucket.
+
+Example:
+
+users/kirti/profile.jpg
+
+The complete key identifies the location of the object
+within the bucket.
+
+----------------------------------------------------------
+7. S3 Folders
+
+S3 does not use traditional folders in the same way as
+a local file system.
+
+Instead, folder-like structures are created using
+object key prefixes.
+
+Example:
+
+images/profile.jpg
+
+Here:
+
+images/
+
+is the prefix.
+
+----------------------------------------------------------
+8. Creating an S3 Bucket
+
+Basic process:
+
+1. Open AWS Console.
+2. Go to S3.
+3. Choose Create Bucket.
+4. Enter a unique bucket name.
+5. Select the AWS Region.
+6. Configure access settings.
+7. Create the bucket.
+
+----------------------------------------------------------
+9. Uploading a File
+
+Basic process:
+
+1. Open the S3 bucket.
+2. Select Upload.
+3. Choose a file.
+4. Upload the file.
+
+The uploaded file becomes an S3 object.
+
+----------------------------------------------------------
+10. Downloading a File
+
+An S3 object can be downloaded through:
+
+• AWS Console
+• AWS CLI
+• AWS SDK
+• Application code
+
+----------------------------------------------------------
+11. Deleting an Object
+
+Objects can be deleted using:
+
+• AWS Console
+• AWS CLI
+• AWS SDK
+• Application code
+
+----------------------------------------------------------
+12. S3 Storage Classes
+
+S3 provides different storage classes for different
+access patterns.
+
+Common examples:
+
+S3 Standard
+→ Frequently accessed data.
+
+S3 Intelligent-Tiering
+→ Automatically optimizes storage costs based on
+access patterns.
+
+S3 Standard-IA
+→ Infrequently accessed data.
+
+S3 One Zone-IA
+→ Infrequently accessed data stored in one
+Availability Zone.
+
+S3 Glacier Instant Retrieval
+→ Archive data that still needs fast retrieval.
+
+S3 Glacier Flexible Retrieval
+→ Long-term archive data.
+
+S3 Glacier Deep Archive
+→ Very rarely accessed long-term archive data.
+
+----------------------------------------------------------
+13. S3 Security
+
+S3 provides multiple security mechanisms.
+
+Important concepts:
+
+• IAM permissions
+• Bucket policies
+• Access Control
+• Encryption
+• Block Public Access
+
+By default, S3 resources should be kept private unless
+there is a specific reason to make them publicly accessible.
+
+----------------------------------------------------------
+14. IAM and S3
+
+IAM stands for Identity and Access Management.
+
+IAM controls who can access S3 resources and what
+operations they can perform.
+
+Examples:
+
+• Read objects
+• Upload objects
+• Delete objects
+• List bucket contents
+
+----------------------------------------------------------
+15. Bucket Policy
+
+A Bucket Policy is a resource-based policy attached
+to an S3 bucket.
+
+It can define who can access the bucket and what
+actions are allowed.
+
+Example actions:
+
+s3:GetObject
+
+s3:PutObject
+
+s3:DeleteObject
+
+----------------------------------------------------------
+16. S3 Encryption
+
+S3 supports encryption to protect stored data.
+
+Two common approaches:
+
+Server-Side Encryption
+→ AWS encrypts objects when they are stored.
+
+Client-Side Encryption
+→ Application encrypts the data before sending it
+to S3.
+
+----------------------------------------------------------
+17. S3 Versioning
+
+Versioning keeps multiple versions of an object.
+
+Example:
+
+profile.jpg
+     ↓
+Version 1
+     ↓
+Version 2
+     ↓
+Version 3
+
+If a file is accidentally overwritten or deleted,
+previous versions may be recoverable.
+
+----------------------------------------------------------
+18. S3 Lifecycle Rules
+
+Lifecycle rules automatically manage objects over time.
+
+Example:
+
+Frequently accessed
+        ↓
+S3 Standard
+        ↓
+Infrequent access
+        ↓
+S3 Standard-IA
+        ↓
+Archive
+        ↓
+Glacier
+
+This can help reduce storage costs.
+
+----------------------------------------------------------
+19. S3 Static Website Hosting
+
+S3 can host static websites containing:
+
+• HTML
+• CSS
+• JavaScript
+• Images
+
+Example:
+
+index.html
+style.css
+script.js
+
+S3 is suitable for static content, but it does not
+run backend code such as Flask directly.
+
+----------------------------------------------------------
+20. Using S3 with Flask
+
+A Flask application can use S3 to store uploaded files.
+
+Example:
+
+User
+  ↓
+Flask Application
+  ↓
+Upload File
+  ↓
+S3 Bucket
+  ↓
+Object Stored
+
+Instead of storing uploaded images directly on the
+EC2 server, the application can store them in S3.
+
+----------------------------------------------------------
+21. Example Flask Use Case
+
+Suppose a user uploads a profile picture.
+
+Flow:
+
+User uploads image
+
+↓
+
+Flask receives image
+
+↓
+
+Flask validates file
+
+↓
+
+Flask uploads file to S3
+
+↓
+
+S3 stores image
+
+↓
+
+Application stores object information
+
+↓
+
+User can access the image when authorized
+
+----------------------------------------------------------
+22. Boto3
+
+Boto3 is the AWS SDK for Python.
+
+It allows Python applications to communicate with
+AWS services.
+
+Install:
+
+pip install boto3
+
+It can be used with services such as:
+
+• S3
+• EC2
+• DynamoDB
+• SQS
+• SNS
+
+----------------------------------------------------------
+23. Connecting Python to S3
+
+Basic import:
+
+import boto3
+
+Create an S3 client:
+
+s3 = boto3.client("s3")
+
+The application can then perform S3 operations
+through the client.
+
+----------------------------------------------------------
+24. Uploading a File Using Boto3
+
+Example:
+
+import boto3
+
+s3 = boto3.client("s3")
+
+s3.upload_file(
+    "profile.jpg",
+    "my-bucket",
+    "images/profile.jpg"
+)
+
+Meaning:
+
+Local File
+→ profile.jpg
+
+Bucket
+→ my-bucket
+
+Object Key
+→ images/profile.jpg
+
+----------------------------------------------------------
+25. Downloading a File Using Boto3
+
+Example:
+
+s3.download_file(
+    "my-bucket",
+    "images/profile.jpg",
+    "downloaded.jpg"
+)
+
+----------------------------------------------------------
+26. Deleting an Object Using Boto3
+
+Example:
+
+s3.delete_object(
+    Bucket="my-bucket",
+    Key="images/profile.jpg"
+)
+
+----------------------------------------------------------
+27. Listing Objects
+
+Example:
+
+response = s3.list_objects_v2(
+    Bucket="my-bucket"
+)
+
+This returns information about objects in the bucket.
+
+----------------------------------------------------------
+28. Pre-Signed URLs
+
+A Pre-Signed URL provides temporary access to a
+private S3 object.
+
+Useful when:
+
+• Files should remain private.
+• Users need temporary access.
+• We don't want to make the entire bucket public.
+
+Example:
+
+Application
+   ↓
+Generate Pre-Signed URL
+   ↓
+User
+   ↓
+Temporary Access
+   ↓
+Private S3 Object
+
+----------------------------------------------------------
+29. S3 vs Local Storage
+
+Local Storage
+
+• Stored on server disk
+• Limited by server capacity
+• Can be lost when infrastructure changes
+• Difficult to scale
+
+S3
+
+• Cloud-based
+• Highly scalable
+• Designed for high durability
+• Accessible from multiple systems
+• Suitable for large file storage
+
+----------------------------------------------------------
+30. S3 vs Database
+
+S3
+
+Best for:
+
+• Images
+• Videos
+• PDFs
+• Documents
+• Large files
+
+Database
+
+Best for:
+
+• User information
+• Product information
+• Orders
+• Relationships
+• Structured application data
+
+A common architecture is:
+
+Database
+→ Stores file metadata
+
+S3
+→ Stores actual file
+
+----------------------------------------------------------
+31. Example Architecture
+
+Flask Application
+       │
+       ├───────────────┐
+       ↓               ↓
+   MySQL Database     S3
+       │               │
+   User Data       Images/Files
+   File Metadata
+
+----------------------------------------------------------
+32. Common S3 Commands / Operations
+
+Create Bucket
+→ Create storage container
+
+Upload
+→ Put object into bucket
+
+Download
+→ Retrieve object
+
+Delete
+→ Remove object
+
+List
+→ View objects
+
+Versioning
+→ Keep multiple versions
+
+Lifecycle
+→ Automatically transition/delete objects
+
+Encryption
+→ Protect stored data
+
+----------------------------------------------------------
+33. Common Interview Questions
+
+Q1. What is Amazon S3?
+
+S3 is an AWS object storage service used to store
+and retrieve files and other objects.
+
+--------------------------------
+
+Q2. What is an S3 Bucket?
+
+A bucket is a container used to store S3 objects.
+
+--------------------------------
+
+Q3. What is an S3 Object?
+
+An object is a file and its associated metadata
+stored in an S3 bucket.
+
+--------------------------------
+
+Q4. What is an Object Key?
+
+The key uniquely identifies an object within a bucket.
+
+--------------------------------
+
+Q5. Is S3 a database?
+
+No.
+
+S3 is an object storage service, not a relational
+database.
+
+--------------------------------
+
+Q6. Why use S3 instead of storing files on EC2?
+
+S3 provides scalable and durable object storage and
+separates file storage from the application server.
+
+--------------------------------
+
+Q7. What is Versioning?
+
+Versioning keeps multiple versions of an object so
+previous versions can potentially be recovered.
+
+--------------------------------
+
+Q8. What is a Pre-Signed URL?
+
+A temporary URL that provides access to a private
+S3 object for a limited period.
+
+--------------------------------
+
+Q9. What is Boto3?
+
+Boto3 is the AWS SDK for Python used to interact
+with AWS services.
+
+--------------------------------
+
+Q10. Can S3 run a Flask application?
+
+No.
+
+S3 can host static files, but Flask requires a
+backend runtime such as Python on a server/container.
+
+----------------------------------------------------------
+34. Quick Revision
+
+S3
+→ AWS Object Storage
+
+Bucket
+→ Container for objects
+
+Object
+→ Stored file
+
+Object Key
+→ Object identifier
+
+Boto3
+→ AWS SDK for Python
+
+Versioning
+→ Stores object versions
+
+Lifecycle
+→ Automates storage transitions
+
+IAM
+→ Access control
+
+Bucket Policy
+→ Bucket-level permissions
+
+Encryption
+→ Protects stored data
+
+Pre-Signed URL
+→ Temporary private access
+
+----------------------------------------------------------
+Summary
+
+Amazon S3 is AWS's highly scalable object storage service.
+It is commonly used to store images, videos, documents,
+backups, and other files. In a Flask application, S3 can
+handle file storage while MySQL stores application data
+and file metadata. Boto3 allows Python applications to
+upload, download, delete, and manage S3 objects programmatically.
