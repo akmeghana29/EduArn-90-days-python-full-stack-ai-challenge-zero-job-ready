@@ -1,0 +1,965 @@
+==========================================================
+                    LINUX BASICS NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is Linux?
+
+Linux is an open-source operating system widely used for:
+
+• Servers
+• Cloud computing
+• DevOps
+• Software development
+• Docker
+• AWS EC2
+• Networking
+• Cybersecurity
+
+Linux is especially common for backend and cloud
+applications because it is lightweight, stable, and
+highly customizable.
+
+----------------------------------------------------------
+2. Linux vs Windows
+
+Linux
+
+• Open source
+• Commonly used on servers
+• Command-line focused
+• Highly customizable
+• Widely used with Docker and AWS
+
+Windows
+
+• Proprietary
+• User-friendly graphical interface
+• Commonly used on personal computers
+• Supports GUI-based administration
+
+----------------------------------------------------------
+3. Linux File System
+
+Linux uses a hierarchical file system.
+
+The root directory is:
+
+/
+
+Important directories:
+
+/home
+→ User files
+
+/etc
+→ Configuration files
+
+/var
+→ Logs and changing application data
+
+/tmp
+→ Temporary files
+
+/usr
+→ User programs and libraries
+
+/bin
+→ Essential commands
+
+/root
+→ Home directory of the root user
+
+----------------------------------------------------------
+4. Opening the Terminal
+
+The Terminal provides a command-line interface (CLI)
+for interacting with Linux.
+
+Commands are entered into the terminal and executed
+by the shell.
+
+----------------------------------------------------------
+5. pwd
+
+Displays the current working directory.
+
+Command:
+
+pwd
+
+Example output:
+
+/home/kirti/projects
+
+----------------------------------------------------------
+6. ls
+
+Lists files and directories.
+
+Command:
+
+ls
+
+Useful options:
+
+ls -l
+→ Detailed information
+
+ls -a
+→ Show hidden files
+
+ls -la
+→ Detailed list including hidden files
+
+----------------------------------------------------------
+7. cd
+
+Changes the current directory.
+
+Example:
+
+cd projects
+
+Go to the parent directory:
+
+cd ..
+
+Go to home directory:
+
+cd ~
+
+Go to root directory:
+
+cd /
+
+----------------------------------------------------------
+8. mkdir
+
+Creates a directory.
+
+Example:
+
+mkdir projects
+
+Create nested directories:
+
+mkdir -p project/src
+
+----------------------------------------------------------
+9. touch
+
+Creates an empty file.
+
+Example:
+
+touch app.py
+
+Multiple files:
+
+touch app.py requirements.txt
+
+----------------------------------------------------------
+10. cat
+
+Displays the contents of a file.
+
+Example:
+
+cat app.py
+
+----------------------------------------------------------
+11. less
+
+Displays a file one screen at a time.
+
+Example:
+
+less app.py
+
+Useful for reading large files.
+
+----------------------------------------------------------
+12. cp
+
+Copies files or directories.
+
+Copy a file:
+
+cp app.py backup.py
+
+Copy a directory:
+
+cp -r project backup_project
+
+----------------------------------------------------------
+13. mv
+
+Moves or renames files.
+
+Rename:
+
+mv old.py new.py
+
+Move:
+
+mv app.py project/
+
+----------------------------------------------------------
+14. rm
+
+Deletes files.
+
+Example:
+
+rm app.py
+
+Delete a directory and its contents:
+
+rm -r project/
+
+Use rm carefully because deleted files may not be
+recoverable through a normal recycle bin.
+
+----------------------------------------------------------
+15. clear
+
+Clears the terminal screen.
+
+Command:
+
+clear
+
+----------------------------------------------------------
+16. history
+
+Displays previously executed commands.
+
+Command:
+
+history
+
+----------------------------------------------------------
+17. man
+
+Displays the manual for a command.
+
+Example:
+
+man ls
+
+It provides information about the command and its
+available options.
+
+----------------------------------------------------------
+18. echo
+
+Prints text to the terminal.
+
+Example:
+
+echo "Hello Linux"
+
+It can also be used with variables.
+
+Example:
+
+echo $HOME
+
+----------------------------------------------------------
+19. File Permissions
+
+Linux controls access to files using permissions.
+
+Three basic permissions:
+
+r
+→ Read
+
+w
+→ Write
+
+x
+→ Execute
+
+Permissions apply to:
+
+u
+→ User/Owner
+
+g
+→ Group
+
+o
+→ Others
+
+----------------------------------------------------------
+20. Checking File Permissions
+
+Command:
+
+ls -l
+
+Example:
+
+-rwxr-xr--
+
+The permissions can be interpreted as:
+
+Owner
+→ rwx
+
+Group
+→ r-x
+
+Others
+→ r--
+
+----------------------------------------------------------
+21. chmod
+
+Changes file permissions.
+
+Example:
+
+chmod +x script.sh
+
+This gives execute permission to the file.
+
+Another example:
+
+chmod 755 script.sh
+
+Meaning:
+
+Owner
+→ Read + Write + Execute
+
+Group
+→ Read + Execute
+
+Others
+→ Read + Execute
+
+----------------------------------------------------------
+22. chown
+
+Changes file ownership.
+
+Example:
+
+sudo chown user:user app.py
+
+Used to change the owner and group of a file.
+
+----------------------------------------------------------
+23. sudo
+
+Runs a command with elevated privileges.
+
+Example:
+
+sudo apt update
+
+sudo is commonly required for system-level operations.
+
+----------------------------------------------------------
+24. Users
+
+Linux supports multiple users.
+
+Current user:
+
+whoami
+
+Example output:
+
+kirti
+
+List logged-in users:
+
+who
+
+----------------------------------------------------------
+25. Processes
+
+A process is a running program.
+
+View running processes:
+
+ps
+
+More detailed view:
+
+ps aux
+
+----------------------------------------------------------
+26. top
+
+Displays running processes and system resource usage.
+
+Command:
+
+top
+
+It can show:
+
+• CPU usage
+• Memory usage
+• Processes
+• Process IDs
+
+----------------------------------------------------------
+27. kill
+
+Terminates a process.
+
+Example:
+
+kill 1234
+
+Here:
+
+1234
+
+is the Process ID (PID).
+
+For a stronger termination signal:
+
+kill -9 1234
+
+Use stronger termination only when necessary.
+
+----------------------------------------------------------
+28. df
+
+Displays available disk space.
+
+Command:
+
+df -h
+
+-h means human-readable format.
+
+----------------------------------------------------------
+29. du
+
+Shows how much disk space files and directories use.
+
+Example:
+
+du -sh project/
+
+----------------------------------------------------------
+30. free
+
+Displays memory usage.
+
+Command:
+
+free -h
+
+Shows:
+
+• Total memory
+• Used memory
+• Available memory
+• Swap memory
+
+----------------------------------------------------------
+31. Networking Commands
+
+Check IP information:
+
+ip addr
+
+Check connectivity:
+
+ping google.com
+
+View network connections:
+
+ss
+
+----------------------------------------------------------
+32. curl
+
+curl is used to make HTTP requests and interact with
+URLs from the command line.
+
+Example:
+
+curl https://example.com
+
+It is commonly used for testing APIs.
+
+Example:
+
+curl http://localhost:5000
+
+----------------------------------------------------------
+33. wget
+
+wget is used to download files from the internet.
+
+Example:
+
+wget https://example.com/file.zip
+
+----------------------------------------------------------
+34. Package Management
+
+Linux distributions use package managers to install
+and manage software.
+
+Ubuntu/Debian commonly use:
+
+apt
+
+Example:
+
+sudo apt update
+
+Update package information.
+
+Install a package:
+
+sudo apt install nginx
+
+Remove a package:
+
+sudo apt remove nginx
+
+----------------------------------------------------------
+35. Environment Variables
+
+Environment variables store configuration values.
+
+View a variable:
+
+echo $PATH
+
+View all environment variables:
+
+env
+
+Set a temporary variable:
+
+export APP_ENV=development
+
+----------------------------------------------------------
+36. PATH
+
+PATH is an environment variable containing directories
+where the shell searches for executable commands.
+
+Example:
+
+echo $PATH
+
+----------------------------------------------------------
+37. SSH
+
+SSH stands for Secure Shell.
+
+It is used to securely connect to remote Linux servers.
+
+Example:
+
+ssh username@server-ip
+
+Commonly used with:
+
+• AWS EC2
+• Cloud servers
+• Remote development
+• Server administration
+
+----------------------------------------------------------
+38. File Transfer with SCP
+
+SCP stands for Secure Copy.
+
+It can transfer files between computers using SSH.
+
+Example:
+
+scp app.py user@server-ip:/home/user/
+
+----------------------------------------------------------
+39. Shell
+
+A shell is a program that interprets commands.
+
+Common shells include:
+
+• Bash
+• Zsh
+• Fish
+
+Bash is one of the most commonly used shells on Linux
+servers.
+
+----------------------------------------------------------
+40. Shell Scripts
+
+A shell script is a file containing multiple commands
+that can be executed together.
+
+Example:
+
+#!/bin/bash
+
+echo "Starting application"
+
+python app.py
+
+Save as:
+
+start.sh
+
+Then give execute permission:
+
+chmod +x start.sh
+
+Run:
+
+./start.sh
+
+----------------------------------------------------------
+41. Pipes
+
+A pipe "|" sends the output of one command as input
+to another command.
+
+Example:
+
+ls | grep ".py"
+
+This lists files and filters the output to show
+Python files.
+
+----------------------------------------------------------
+42. grep
+
+Searches for text inside files or command output.
+
+Example:
+
+grep "Flask" requirements.txt
+
+Search recursively:
+
+grep -r "Flask" project/
+
+----------------------------------------------------------
+43. Redirection
+
+">" writes output to a file.
+
+Example:
+
+echo "Hello" > file.txt
+
+">>" appends output to a file.
+
+Example:
+
+echo "World" >> file.txt
+
+----------------------------------------------------------
+44. Common Linux Commands
+
+pwd
+→ Show current directory
+
+ls
+→ List files
+
+cd
+→ Change directory
+
+mkdir
+→ Create directory
+
+touch
+→ Create file
+
+cat
+→ Display file
+
+cp
+→ Copy
+
+mv
+→ Move/Rename
+
+rm
+→ Delete
+
+chmod
+→ Change permissions
+
+chown
+→ Change ownership
+
+sudo
+→ Run with elevated privileges
+
+ps
+→ View processes
+
+top
+→ Monitor processes
+
+kill
+→ Terminate process
+
+df
+→ Check disk space
+
+du
+→ Check directory size
+
+free
+→ Check memory
+
+curl
+→ Make HTTP requests
+
+ssh
+→ Connect to remote server
+
+scp
+→ Transfer files
+
+grep
+→ Search text
+
+----------------------------------------------------------
+45. Linux in AWS EC2
+
+Linux knowledge is especially useful when deploying
+applications to EC2.
+
+Typical workflow:
+
+Local Computer
+
+↓
+
+GitHub
+
+↓
+
+EC2 Linux Server
+
+↓
+
+SSH
+
+↓
+
+Install Dependencies
+
+↓
+
+Clone Project
+
+↓
+
+Run Application / Docker
+
+↓
+
+Application Running on Server
+
+----------------------------------------------------------
+46. Linux + Docker
+
+Docker commands are commonly executed from the Linux
+terminal.
+
+Example:
+
+docker ps
+
+docker images
+
+docker build -t flask-app .
+
+docker run -d -p 5000:5000 flask-app
+
+Linux provides the environment in which Docker and
+other server-side tools can run.
+
+----------------------------------------------------------
+47. Linux + Flask
+
+A Flask application can be managed from a Linux server.
+
+Example workflow:
+
+cd my-flask-app
+
+↓
+
+source venv/bin/activate
+
+↓
+
+pip install -r requirements.txt
+
+↓
+
+python app.py
+
+----------------------------------------------------------
+48. Common Interview Questions
+
+Q1. What is Linux?
+
+Linux is an open-source operating system widely used
+for servers, cloud computing, development, and DevOps.
+
+--------------------------------
+
+Q2. What is the root directory?
+
+The root directory is represented by "/".
+It is the top-level directory of the Linux file system.
+
+--------------------------------
+
+Q3. What is sudo?
+
+sudo allows a permitted user to execute commands with
+elevated privileges.
+
+--------------------------------
+
+Q4. What is SSH?
+
+SSH is a secure protocol used to remotely access
+another computer or server.
+
+--------------------------------
+
+Q5. What is chmod?
+
+chmod changes file or directory permissions.
+
+--------------------------------
+
+Q6. What is a process?
+
+A process is a running instance of a program.
+
+--------------------------------
+
+Q7. What is grep?
+
+grep searches for matching text in files or command
+output.
+
+--------------------------------
+
+Q8. What is the difference between cp and mv?
+
+cp
+→ Copies files.
+
+mv
+→ Moves or renames files.
+
+--------------------------------
+
+Q9. What is the difference between > and >>?
+
+>
+→ Overwrites the file.
+
+>>
+→ Appends to the existing file.
+
+--------------------------------
+
+Q10. What is an environment variable?
+
+A variable stored by the operating system or shell
+that provides configuration information to programs.
+
+----------------------------------------------------------
+49. Quick Revision
+
+Linux
+→ Operating System
+
+Terminal
+→ Command-line interface
+
+pwd
+→ Current directory
+
+ls
+→ List files
+
+cd
+→ Change directory
+
+mkdir
+→ Create directory
+
+touch
+→ Create file
+
+cp
+→ Copy
+
+mv
+→ Move/Rename
+
+rm
+→ Delete
+
+chmod
+→ Permissions
+
+sudo
+→ Elevated privileges
+
+ps
+→ Processes
+
+top
+→ System monitoring
+
+df
+→ Disk space
+
+free
+→ Memory
+
+ssh
+→ Remote connection
+
+scp
+→ File transfer
+
+curl
+→ HTTP requests
+
+grep
+→ Search text
+
+----------------------------------------------------------
+Summary
+
+Linux is an essential skill for backend development,
+cloud computing, Docker, DevOps, and AWS. Basic Linux
+knowledge includes navigating the file system, managing
+files, controlling permissions, working with processes,
+using networking commands, managing packages, and
+connecting to remote servers through SSH. These skills
+are particularly useful when deploying Flask applications
+and Docker containers on AWS EC2.
