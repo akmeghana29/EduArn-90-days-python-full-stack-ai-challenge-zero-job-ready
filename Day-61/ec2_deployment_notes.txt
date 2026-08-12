@@ -1,0 +1,98 @@
+=======================================
+   Deploying Flask App on AWS EC2
+=======================================
+
+WHAT I DID
+Deployed a Flask REST API (Task Manager) on an AWS EC2
+Ubuntu instance and accessed it using Postman.
+
+
+---------------------------------------
+STEP 1 - LAUNCHED EC2 INSTANCE
+---------------------------------------
+- Went to AWS Console > EC2 > Launch Instance
+- Name        : flask-task-manager
+- AMI         : Ubuntu 22.04 LTS (free tier)
+- Type        : t2.micro (free tier)
+- Key pair    : Created a new .pem file and downloaded it
+- Security Group rules added:
+    SSH         port 22    - My IP
+    Custom TCP  port 5000  - Anywhere
+
+
+---------------------------------------
+STEP 2 - CONNECTED TO EC2 VIA SSH
+---------------------------------------
+Opened CMD on Windows and ran:
+
+    ssh -i "your-key.pem" ubuntu@<ec2-public-ip>
+
+If permission error on Windows, fixed it with:
+
+    icacls "your-key.pem" /inheritance:r /grant:r "%username%:R"
+
+
+---------------------------------------
+STEP 3 - INSTALLED PYTHON ON EC2
+---------------------------------------
+Once inside EC2, ran:
+
+    sudo apt update
+    sudo apt install python3 python3-pip -y
+
+
+---------------------------------------
+STEP 4 - COPIED FILES FROM LOCAL TO EC2
+---------------------------------------
+Opened a new terminal on Windows (not the SSH one) and ran:
+
+    scp -i "your-key.pem" -r "D:\...\Day-57\*" ubuntu@<ec2-public-ip>:/home/ubuntu/
+
+This copied all project files (app.py, requirements.txt etc.)
+from local machine to the EC2 home folder.
+
+
+---------------------------------------
+STEP 5 - INSTALLED FLASK ON EC2
+---------------------------------------
+Back in SSH terminal:
+
+    cd /home/ubuntu
+    pip3 install flask
+
+
+---------------------------------------
+STEP 6 - RAN THE FLASK APP
+---------------------------------------
+    python3 app.py
+
+Saw this in terminal:
+    Running on http://0.0.0.0:5000
+
+Tested in Postman using:
+    http://<ec2-public-ip>:5000/tasks
+
+
+---------------------------------------
+STEP 7 - KEPT APP RUNNING IN BACKGROUND
+---------------------------------------
+To keep app running even after closing the terminal:
+
+    nohup python3 app.py &
+
+To stop it:
+
+    pkill -f app.py
+
+
+---------------------------------------
+KEY POINTS TO REMEMBER
+---------------------------------------
+- Port 5000 must be open in EC2 Security Group
+- app.py must have host="0.0.0.0" so EC2 accepts outside requests
+- .pem file is the key to connect to EC2, keep it safe
+- scp is used to copy files from Windows to EC2
+- nohup keeps the app alive after closing the terminal
+- EC2 public IP changes every time you stop and start the instance
+
+=======================================
