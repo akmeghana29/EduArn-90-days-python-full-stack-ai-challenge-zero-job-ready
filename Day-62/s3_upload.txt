@@ -1,0 +1,135 @@
+=======================================
+      Uploading Files to AWS S3
+=======================================
+
+WHAT IS S3
+S3 (Simple Storage Service) is AWS's cloud storage.
+You can store any file -- images, PDFs, JSONs, backups etc.
+Files in S3 are called objects, folders are called buckets.
+
+
+---------------------------------------
+STEP 1 - CREATE AN S3 BUCKET
+---------------------------------------
+- Go to AWS Console > S3 > Create Bucket
+- Bucket name   : my-flask-app-bucket (must be globally unique)
+- Region        : choose the closest one (eg. ap-south-1 for India)
+- Uncheck "Block all public access" if you want files publicly accessible
+- Click Create Bucket
+
+
+---------------------------------------
+STEP 2 - CREATE IAM USER WITH S3 ACCESS
+---------------------------------------
+- Go to AWS Console > IAM > Users > Add User
+- Username      : s3-user
+- Access type   : Programmatic access
+- Permissions   : Attach policy > AmazonS3FullAccess
+- Click Create User
+- Download the CSV file with Access Key ID and Secret Access Key
+  (you only see this once, save it)
+
+
+---------------------------------------
+STEP 3 - INSTALL BOTO3 ON YOUR MACHINE
+---------------------------------------
+boto3 is the official AWS SDK for Python.
+
+    pip install boto3
+
+
+---------------------------------------
+STEP 4 - CONFIGURE AWS CREDENTIALS
+---------------------------------------
+Run this in your terminal:
+
+    aws configure
+
+It will ask:
+    AWS Access Key ID     : (from the CSV file)
+    AWS Secret Access Key : (from the CSV file)
+    Default region        : ap-south-1
+    Default output format : json
+
+If aws CLI is not installed:
+    https://aws.amazon.com/cli/
+
+
+---------------------------------------
+STEP 5 - UPLOAD FILE USING PYTHON
+---------------------------------------
+Create a file called upload.py and run it:
+
+    import boto3
+
+    s3 = boto3.client("s3")
+
+    bucket_name = "my-flask-app-bucket"
+    file_path   = "tasks.json"
+    s3_key      = "uploads/tasks.json"
+
+    s3.upload_file(file_path, bucket_name, s3_key)
+    print("File uploaded successfully")
+
+Run it:
+    python upload.py
+
+Check your S3 bucket in AWS Console to see the uploaded file.
+
+
+---------------------------------------
+STEP 6 - ADD FILE UPLOAD TO FLASK APP
+---------------------------------------
+To let users upload files through your Flask API:
+
+    from flask import Flask, request, jsonify
+    import boto3
+
+    app = Flask(__name__)
+    s3 = boto3.client("s3")
+    BUCKET = "my-flask-app-bucket"
+
+    @app.route("/upload", methods=["POST"])
+    def upload():
+        file = request.files.get("file")
+        if not file:
+            return jsonify({"error": "No file provided"}), 400
+        s3.upload_fileobj(file, BUCKET, file.filename)
+        return jsonify({"message": f"{file.filename} uploaded to S3"}), 200
+
+Test in Postman:
+    Method  : POST
+    URL     : http://127.0.0.1:5000/upload
+    Body    : form-data > key: file > value: select a file
+
+
+---------------------------------------
+STEP 7 - GET A PUBLIC URL FOR THE FILE
+---------------------------------------
+After uploading, get the file URL like this:
+
+    url = f"https://{BUCKET}.s3.amazonaws.com/{file.filename}"
+
+Or generate a temporary signed URL (expires after some time):
+
+    url = s3.generate_presigned_url(
+        "get_object",
+        Params={"Bucket": BUCKET, "Key": file.filename},
+        ExpiresIn=3600
+    )
+    print(url)
+
+
+---------------------------------------
+KEY POINTS TO REMEMBER
+---------------------------------------
+- Bucket name must be unique across all of AWS
+- Never hardcode Access Key and Secret Key in your code
+  use aws configure or environment variables instead
+- s3.upload_file()     -- uploads from local file path
+- s3.upload_fileobj()  -- uploads from a file object (Flask request)
+- Files are private by default, make them public via bucket policy
+  or use presigned URLs for temporary access
+- S3 region must match what you configured in aws configure
+
+=======================================
