@@ -1,0 +1,988 @@
+==========================================================
+              OPENAI / GEMINI API NOTES
+==========================================================
+
+----------------------------------------------------------
+1. What is an API?
+
+API stands for Application Programming Interface.
+
+An API allows one application to communicate with another
+application or service.
+
+Example:
+
+Python Application
+        ↓
+      API
+        ↓
+AI Model
+        ↓
+    Response
+        ↓
+Python Application
+
+----------------------------------------------------------
+2. What is an AI API?
+
+An AI API allows our application to use an AI model
+without building and training the model ourselves.
+
+For example, our Python application can send:
+
+"Explain recursion in simple words"
+
+to an AI model and receive the generated response.
+
+----------------------------------------------------------
+3. OpenAI API and Gemini API
+
+OpenAI API
+→ Allows applications to interact with OpenAI models.
+
+Gemini API
+→ Allows applications to interact with Google's Gemini
+  models.
+
+Both can be used to build:
+
+• Chatbots
+• AI assistants
+• Text generators
+• Summarization tools
+• Question-answering systems
+• Code assistants
+• Document analysis systems
+• AI features inside web applications
+
+----------------------------------------------------------
+4. Basic API Workflow
+
+Our Application
+
+        ↓
+
+Create Prompt
+
+        ↓
+
+Send API Request
+
+        ↓
+
+AI Model
+
+        ↓
+
+Generate Response
+
+        ↓
+
+API Response
+
+        ↓
+
+Extract Text
+
+        ↓
+
+Display to User
+
+----------------------------------------------------------
+5. API Key
+
+An API key is a credential used to authenticate an
+application when calling an AI API.
+
+Example:
+
+OPENAI_API_KEY
+
+GEMINI_API_KEY
+
+The key should NOT be written directly inside source code.
+
+Bad:
+
+api_key = "my-secret-key"
+
+Better:
+
+api_key = environment_variable
+
+----------------------------------------------------------
+6. Environment Variables
+
+API keys should be stored in environment variables.
+
+Example .env file:
+
+OPENAI_API_KEY=your_key_here
+
+GEMINI_API_KEY=your_key_here
+
+The .env file should not be uploaded to GitHub.
+
+Add it to:
+
+.gitignore
+
+----------------------------------------------------------
+7. OpenAI Python SDK
+
+Install the OpenAI Python SDK:
+
+pip install openai
+
+Import:
+
+from openai import OpenAI
+
+Create a client:
+
+client = OpenAI()
+
+The SDK reads the API key from the appropriate
+environment configuration.
+
+----------------------------------------------------------
+8. OpenAI API Basic Concept
+
+The basic process is:
+
+1. Create OpenAI client.
+2. Select a model.
+3. Send input.
+4. Receive response.
+5. Extract the generated output.
+
+Conceptually:
+
+client
+   ↓
+model
+   ↓
+input
+   ↓
+response
+
+----------------------------------------------------------
+9. Gemini Python SDK
+
+Google's current official Python SDK is:
+
+google-genai
+
+Install:
+
+pip install google-genai
+
+Import:
+
+from google import genai
+
+Create a client:
+
+client = genai.Client()
+
+Google currently recommends the Google GenAI SDK for
+new Gemini API applications. 
+----------------------------------------------------------
+10. Gemini API Basic Concept
+
+The current Gemini API supports the Interactions API.
+
+Basic flow:
+
+client
+   ↓
+interactions.create()
+   ↓
+model
+   ↓
+input
+   ↓
+response
+   ↓
+output_text
+
+Example concept:
+
+interaction = client.interactions.create(
+    model="gemini-model",
+    input="Explain machine learning"
+)
+
+print(interaction.output_text)
+
+----------------------------------------------------------
+11. Prompt
+
+A prompt is the input/instruction given to the AI model.
+
+Example:
+
+"Explain Python decorators in simple words."
+
+The model processes the prompt and generates a response.
+
+----------------------------------------------------------
+12. System Instructions
+
+System instructions define how the AI should behave.
+
+Example:
+
+"You are a helpful Python tutor.
+Explain concepts using simple examples."
+
+Then the user can ask:
+
+"What is a dictionary?"
+
+The model follows the instructions while answering.
+
+----------------------------------------------------------
+13. User Input
+
+User input is the actual request made by the user.
+
+Example:
+
+"Write a Python program to reverse a string."
+
+The application sends this input to the AI model.
+
+----------------------------------------------------------
+14. Model
+
+A model is the AI system that processes the input
+and generates the response.
+
+Different models can have different:
+
+• Speed
+• Intelligence
+• Context limits
+• Cost
+• Multimodal capabilities
+• Tool capabilities
+
+The exact available models change over time, so model
+names should always be checked in the provider's current
+documentation.
+
+----------------------------------------------------------
+15. Response
+
+The API returns a response object.
+
+The response can contain:
+
+• Generated text
+• Metadata
+• Usage information
+• Tool calls
+• Other model output
+
+Our application extracts the required information from
+the response.
+
+----------------------------------------------------------
+16. Tokens
+
+AI models process text using tokens.
+
+A token can represent:
+
+• A complete word
+• Part of a word
+• Punctuation
+• Other pieces of text
+
+Example:
+
+"Hello, how are you?"
+
+is broken into tokens before being processed.
+
+Tokens are important because they affect:
+
+• Context limits
+• API usage
+• Cost
+• Response length
+
+----------------------------------------------------------
+17. Context Window
+
+The context window is the amount of information a model
+can consider during a request.
+
+It can include:
+
+• System instructions
+• Previous conversation
+• User input
+• Other supplied information
+
+Larger context windows allow applications to work with
+larger amounts of information.
+
+----------------------------------------------------------
+18. Temperature
+
+Temperature controls the randomness of generated output
+in APIs that expose this parameter.
+
+Lower temperature:
+
+→ More predictable output
+
+Higher temperature:
+
+→ More varied output
+
+For example:
+
+Low temperature
+→ Useful for structured or predictable answers.
+
+Higher temperature
+→ Useful for creative generation.
+
+The exact supported settings depend on the model/API.
+
+----------------------------------------------------------
+19. API Request
+
+An API request usually contains information such as:
+
+• Authentication
+• Model
+• Input
+• Configuration
+• Optional tools
+
+Conceptually:
+
+REQUEST
+
+{
+    authentication,
+    model,
+    input,
+    configuration
+}
+
+----------------------------------------------------------
+20. API Response
+
+The API sends a response back to the application.
+
+Conceptually:
+
+REQUEST
+
+        ↓
+
+AI MODEL
+
+        ↓
+
+RESPONSE
+
+The application then extracts the generated output.
+
+----------------------------------------------------------
+21. REST API Concept
+
+An AI API can also be accessed using HTTP requests.
+
+Common HTTP methods:
+
+GET
+→ Retrieve information
+
+POST
+→ Send information / create a request
+
+AI generation APIs commonly use POST requests because
+the application sends input data to the model.
+
+----------------------------------------------------------
+22. JSON
+
+Many APIs use JSON to exchange data.
+
+Example:
+
+{
+    "model": "model-name",
+    "input": "Explain Python"
+}
+
+The API processes the JSON request and returns a response.
+
+----------------------------------------------------------
+23. SDK vs REST API
+
+SDK
+
+A software library provided to make API integration
+easier.
+
+Example:
+
+OpenAI Python SDK
+
+Gemini Python SDK
+
+--------------------------------
+
+REST API
+
+The application communicates directly with the API
+using HTTP requests.
+
+Example:
+
+Python requests library
+
+The SDK is generally easier for application development.
+
+----------------------------------------------------------
+24. Error Handling
+
+API calls can fail.
+
+Possible reasons:
+
+• Invalid API key
+• Rate limit exceeded
+• Network failure
+• Invalid request
+• Model unavailable
+• Insufficient quota
+• Server error
+
+Therefore API calls should be handled using exceptions.
+
+Concept:
+
+try:
+
+    send API request
+
+except Exception:
+
+    handle error
+
+----------------------------------------------------------
+25. Rate Limits
+
+An API provider may limit how many requests an application
+can make within a particular period.
+
+Example:
+
+Application
+    ↓
+Too many requests
+    ↓
+Rate Limit Error
+
+Applications should handle rate limits properly.
+
+----------------------------------------------------------
+26. API Costs
+
+AI APIs may charge based on usage.
+
+Depending on the provider/model, pricing can depend on
+factors such as:
+
+• Input tokens
+• Output tokens
+• Model used
+• Tool usage
+• Other API features
+
+Always check the current provider pricing before deploying
+an application commercially.
+
+----------------------------------------------------------
+27. Streaming
+
+Normally:
+
+Application
+   ↓
+Request
+   ↓
+Wait
+   ↓
+Complete Response
+
+With streaming:
+
+Application
+   ↓
+Request
+   ↓
+Partial Response
+   ↓
+More Response
+   ↓
+More Response
+   ↓
+Complete Response
+
+Streaming is useful for chat applications because users
+can see the response while it is being generated.
+
+----------------------------------------------------------
+28. Multimodal AI
+
+Modern AI APIs can work with more than text.
+
+Depending on the model/API, inputs can include:
+
+• Text
+• Images
+• Audio
+• Video
+• Files
+
+Example:
+
+User uploads an image
+
+        ↓
+
+AI API
+
+        ↓
+
+"Describe what is present in this image."
+
+----------------------------------------------------------
+29. Function Calling / Tool Calling
+
+Function calling allows an AI model to request that
+our application execute a function.
+
+Example:
+
+User:
+
+"What is the weather in Delhi?"
+
+        ↓
+
+AI Model
+
+        ↓
+
+Requests weather function
+
+        ↓
+
+Our Python Application
+
+        ↓
+
+Weather API
+
+        ↓
+
+Weather Data
+
+        ↓
+
+AI Model
+
+        ↓
+
+Final Answer
+
+The AI does not directly execute our Python function.
+Our application performs the function and sends the
+result back to the model.
+
+Gemini's current documentation supports both built-in
+tools and custom function calling. 
+----------------------------------------------------------
+30. Structured Output
+
+Sometimes we don't want normal paragraphs.
+
+We want predictable data.
+
+Example:
+
+{
+    "name": "Kirti",
+    "age": 21,
+    "skills": [
+        "Python",
+        "Flask",
+        "SQL"
+    ]
+}
+
+Structured outputs are useful when AI-generated data
+needs to be consumed by another part of an application.
+
+----------------------------------------------------------
+31. AI API + Flask
+
+AI APIs can easily be integrated into Flask applications.
+
+Example:
+
+User
+ ↓
+HTML Form
+ ↓
+Flask Route
+ ↓
+AI API
+ ↓
+AI Response
+ ↓
+Flask
+ ↓
+HTML Page
+
+----------------------------------------------------------
+32. Example Application
+
+AI Question Answering App
+
+Frontend:
+
+User enters:
+
+"What is inheritance in Python?"
+
+↓
+
+Flask Backend
+
+↓
+
+Calls OpenAI or Gemini API
+
+↓
+
+Receives response
+
+↓
+
+Displays answer
+
+to user.
+
+----------------------------------------------------------
+33. AI API + Database
+
+An application can combine:
+
+Flask
++
+MySQL
++
+AI API
+
+Example:
+
+User
+
+↓
+
+Flask
+
+↓
+
+MySQL
+Stores conversation
+
+↓
+
+AI API
+Generates response
+
+↓
+
+Flask
+
+↓
+
+User
+
+This is the basic architecture of many AI-powered
+web applications.
+
+----------------------------------------------------------
+34. OpenAI vs Gemini
+
+OpenAI API
+
+• OpenAI models
+• Python/JavaScript SDKs
+• Text and multimodal capabilities
+• Tool/function calling
+• Suitable for AI application development
+
+Gemini API
+
+• Google Gemini models
+• Python/JavaScript SDKs
+• Multimodal capabilities
+• Tool/function calling
+• Google AI ecosystem integration
+
+Both can be integrated into Python and Flask applications.
+
+----------------------------------------------------------
+35. Important Security Practices
+
+Never:
+
+• Hardcode API keys in source code.
+• Upload API keys to GitHub.
+• Share API keys publicly.
+• Put secret keys in frontend JavaScript.
+
+Instead:
+
+• Use environment variables.
+• Use .env during local development.
+• Add .env to .gitignore.
+• Use secure secret management in production.
+
+----------------------------------------------------------
+36. Typical Project Structure
+
+AI_App/
+
+│
+├── app.py
+├── ai_service.py
+├── requirements.txt
+├── .env
+├── .gitignore
+│
+├── templates/
+│   └── index.html
+│
+└── static/
+
+ai_service.py
+
+→ Contains AI API integration logic.
+
+app.py
+
+→ Contains Flask routes.
+
+.env
+
+→ Stores API keys locally.
+
+----------------------------------------------------------
+37. Common Packages
+
+OpenAI:
+
+pip install openai
+
+Gemini:
+
+pip install google-genai
+
+Environment variables:
+
+pip install python-dotenv
+
+HTTP requests:
+
+pip install requests
+
+----------------------------------------------------------
+38. Common Use Cases
+
+AI APIs can be used for:
+
+• Chatbots
+• Text generation
+• Summarization
+• Translation
+• Question answering
+• Sentiment analysis
+• Document analysis
+• Code generation
+• Image understanding
+• Voice applications
+• AI assistants
+• RAG applications
+• Automated content generation
+
+----------------------------------------------------------
+39. OpenAI/Gemini API vs ChatGPT/Gemini App
+
+ChatGPT/Gemini App
+
+→ Ready-made application used by humans.
+
+API
+
+→ Programming interface used by developers to integrate
+  AI capabilities into their own applications.
+
+Example:
+
+ChatGPT
+→ I directly chat with the AI.
+
+OpenAI API
+→ My Flask application communicates with an AI model.
+
+----------------------------------------------------------
+40. Common Interview Questions
+
+Q1. What is an AI API?
+
+An interface that allows an application to communicate
+with an AI model and use its capabilities.
+
+--------------------------------
+
+Q2. What is an API key?
+
+A credential used to authenticate API requests.
+
+--------------------------------
+
+Q3. Why should API keys not be hardcoded?
+
+Because exposing them can allow unauthorized users to
+use the API and potentially generate charges or access
+resources.
+
+--------------------------------
+
+Q4. What is an SDK?
+
+A software development kit that provides convenient
+libraries and tools for interacting with an API.
+
+--------------------------------
+
+Q5. What is a token?
+
+A unit of text processed by an AI model.
+
+--------------------------------
+
+Q6. What is a context window?
+
+The amount of information a model can process as
+context for a request.
+
+--------------------------------
+
+Q7. What is streaming?
+
+Receiving generated output incrementally instead of
+waiting for the entire response.
+
+--------------------------------
+
+Q8. What is function calling?
+
+A mechanism where the model requests that the
+application execute a defined function or tool.
+
+--------------------------------
+
+Q9. What is structured output?
+
+AI output constrained to a predictable structure such
+as JSON.
+
+--------------------------------
+
+Q10. Can OpenAI/Gemini APIs be used with Flask?
+
+Yes.
+
+Flask can receive user requests, call the AI API,
+process the response, and return it to the frontend.
+
+----------------------------------------------------------
+41. Quick Revision
+
+API
+→ Communication interface
+
+API Key
+→ Authentication credential
+
+SDK
+→ Library for using an API
+
+Prompt
+→ Input/instruction
+
+Model
+→ AI system processing the input
+
+Response
+→ Generated result
+
+Token
+→ Unit of processed text
+
+Context Window
+→ Amount of information model can consider
+
+Streaming
+→ Receive output incrementally
+
+Function Calling
+→ AI requests application tools/functions
+
+Structured Output
+→ Predictable formatted response
+
+Environment Variable
+→ Secure configuration storage
+
+----------------------------------------------------------
+42. What I Learned
+
+During this topic, I learned:
+
+• What APIs are
+• What AI APIs are
+• How OpenAI APIs work
+• How Gemini APIs work
+• How to create and use API keys
+• How to store API keys using environment variables
+• How to install AI SDKs
+• How to send prompts to AI models
+• How to receive and process responses
+• Basic REST API concepts
+• JSON request/response structure
+• Tokens and context windows
+• Streaming
+• Function/tool calling
+• Structured outputs
+• Multimodal AI
+• API error handling
+• Rate limits
+• API security
+• Integrating AI APIs with Flask
+• Combining AI APIs with databases
