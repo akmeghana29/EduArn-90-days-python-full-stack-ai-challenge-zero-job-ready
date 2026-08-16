@@ -1,0 +1,988 @@
+==========================================================
+                 FLASK AI INTEGRATION
+==========================================================
+
+----------------------------------------------------------
+1. What is Flask AI Integration?
+
+Flask AI Integration means connecting a Flask web
+application with an AI model through an AI API.
+
+For example:
+
+User
+  ↓
+Flask Frontend
+  ↓
+Flask Backend
+  ↓
+OpenAI / Gemini API
+  ↓
+AI Response
+  ↓
+Flask Backend
+  ↓
+User
+
+This allows us to add AI features to normal web
+applications.
+
+----------------------------------------------------------
+2. Why Integrate AI with Flask?
+
+Flask can act as the backend between the user and
+the AI API.
+
+We can build:
+
+• AI Chatbots
+• AI assistants
+• Text summarizers
+• Question-answering systems
+• Resume analyzers
+• AI content generators
+• Code assistants
+• Document analysis applications
+• AI-powered customer support
+
+----------------------------------------------------------
+3. Basic Architecture
+
+Frontend
+   ↓
+HTTP Request
+   ↓
+Flask Route
+   ↓
+Create Prompt
+   ↓
+AI API
+   ↓
+AI Response
+   ↓
+Flask
+   ↓
+JSON / HTML Response
+   ↓
+Frontend
+
+----------------------------------------------------------
+4. Requirements
+
+A basic Flask AI application needs:
+
+• Python
+• Flask
+• OpenAI or Gemini API
+• API key
+• AI SDK
+• Environment variables
+
+Example packages:
+
+Flask
+openai
+google-genai
+python-dotenv
+
+----------------------------------------------------------
+5. Project Structure
+
+flask_ai_app/
+
+│
+├── app.py
+├── ai_service.py
+├── requirements.txt
+├── .env
+├── .gitignore
+│
+├── templates/
+│   └── index.html
+│
+└── static/
+
+----------------------------------------------------------
+6. Installing Flask
+
+Install Flask:
+
+pip install flask
+
+----------------------------------------------------------
+7. Installing AI SDK
+
+For OpenAI:
+
+pip install openai
+
+For Gemini:
+
+pip install google-genai
+
+Environment variables:
+
+pip install python-dotenv
+
+----------------------------------------------------------
+8. API Key
+
+The AI API requires authentication.
+
+Example .env:
+
+OPENAI_API_KEY=your_api_key
+
+or:
+
+GEMINI_API_KEY=your_api_key
+
+Never hardcode API keys in the Flask source code.
+
+----------------------------------------------------------
+9. .gitignore
+
+The .env file should not be uploaded to GitHub.
+
+Example .gitignore:
+
+.env
+venv/
+__pycache__/
+
+----------------------------------------------------------
+10. Loading Environment Variables
+
+Example:
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+This loads values from the .env file into the
+environment.
+
+----------------------------------------------------------
+11. Flask Route
+
+The Flask route receives a request from the frontend.
+
+Example:
+
+@app.route("/ask", methods=["POST"])
+def ask():
+
+    question = request.json["question"]
+
+    # Call AI API here
+
+    return {"answer": "AI response"}
+
+----------------------------------------------------------
+12. User Request
+
+Suppose the frontend sends:
+
+{
+    "question": "Explain Flask"
+}
+
+Flask receives the JSON data.
+
+The backend extracts:
+
+question = request.json["question"]
+
+----------------------------------------------------------
+13. Creating the Prompt
+
+The backend can create a prompt using the user's input.
+
+Example:
+
+prompt = f"""
+You are a helpful Python tutor.
+
+Answer this question in simple language:
+
+{question}
+"""
+
+The prompt is then sent to the AI API.
+
+----------------------------------------------------------
+14. OpenAI Integration Concept
+
+Basic flow:
+
+Flask
+
+↓
+
+OpenAI Client
+
+↓
+
+Model
+
+↓
+
+Prompt
+
+↓
+
+Response
+
+Example concept:
+
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="MODEL_NAME",
+    input="Explain Flask"
+)
+
+answer = response.output_text
+
+The exact model name should be selected from the
+currently available OpenAI models.
+
+----------------------------------------------------------
+15. Gemini Integration Concept
+
+Basic flow:
+
+Flask
+
+↓
+
+Gemini Client
+
+↓
+
+Model
+
+↓
+
+Prompt
+
+↓
+
+Response
+
+Example concept:
+
+from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="MODEL_NAME",
+    input="Explain Flask"
+)
+
+answer = response.output_text
+
+The exact model name should be selected from the
+currently available Gemini models.
+
+----------------------------------------------------------
+16. Flask + AI Complete Flow
+
+User enters:
+
+"What is inheritance?"
+
+        ↓
+
+Frontend sends POST request
+
+        ↓
+
+Flask /ask route
+
+        ↓
+
+Extract question
+
+        ↓
+
+Create prompt
+
+        ↓
+
+Call OpenAI / Gemini
+
+        ↓
+
+Receive AI response
+
+        ↓
+
+Return JSON response
+
+        ↓
+
+Frontend displays answer
+
+----------------------------------------------------------
+17. Returning JSON
+
+Flask can return the AI response as JSON.
+
+Example:
+
+return {
+    "answer": answer
+}
+
+The frontend can then read:
+
+response.answer
+
+----------------------------------------------------------
+18. Handling Errors
+
+AI API requests can fail.
+
+Possible reasons:
+
+• Invalid API key
+• API quota exceeded
+• Rate limit
+• Network error
+• Invalid request
+• Model unavailable
+• Server error
+
+Use exception handling.
+
+Example:
+
+try:
+
+    # AI API call
+
+except Exception as e:
+
+    return {
+        "error": "Something went wrong"
+    }, 500
+
+----------------------------------------------------------
+19. Input Validation
+
+Never blindly accept user input.
+
+Example:
+
+if not question:
+    return {
+        "error": "Question is required"
+    }, 400
+
+This prevents empty requests from being sent to
+the AI API.
+
+----------------------------------------------------------
+20. API Request Method
+
+For an AI question-answering endpoint, POST is commonly
+used.
+
+Example:
+
+@app.route("/ask", methods=["POST"])
+
+POST is suitable because the client sends data to
+the server.
+
+----------------------------------------------------------
+21. Frontend Example
+
+A simple frontend can contain:
+
+<input id="question">
+
+<button onclick="askAI()">
+    Ask AI
+</button>
+
+The JavaScript sends the question to Flask.
+
+Conceptually:
+
+JavaScript
+
+↓
+
+fetch("/ask")
+
+↓
+
+Flask
+
+↓
+
+AI API
+
+↓
+
+Response
+
+----------------------------------------------------------
+22. JavaScript Request
+
+Example:
+
+fetch("/ask", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        question: question
+    })
+})
+
+This sends the user's question to Flask.
+
+----------------------------------------------------------
+23. AI Response
+
+Flask receives the AI response.
+
+Example:
+
+{
+    "answer": "Inheritance allows one class to
+    acquire properties and methods from another class."
+}
+
+The frontend displays this answer.
+
+----------------------------------------------------------
+24. Separating AI Logic
+
+It is better to keep AI API code separate from Flask
+routes in larger applications.
+
+Example:
+
+app.py
+
+→ Flask routes
+
+ai_service.py
+
+→ OpenAI/Gemini API logic
+
+This keeps the application organized.
+
+----------------------------------------------------------
+25. Example Architecture
+
+app.py
+
+    ↓
+
+/ask route
+
+    ↓
+
+ai_service.py
+
+    ↓
+
+OpenAI / Gemini
+
+    ↓
+
+AI Response
+
+    ↓
+
+app.py
+
+    ↓
+
+Frontend
+
+----------------------------------------------------------
+26. Why Separate AI Logic?
+
+Advantages:
+
+• Cleaner code
+• Easier testing
+• Easier debugging
+• Easier to change AI providers
+• Better project organization
+• Routes remain simple
+
+----------------------------------------------------------
+27. AI Service Function
+
+Example concept:
+
+def generate_answer(question):
+
+    prompt = f"""
+    Answer this question clearly:
+
+    {question}
+    """
+
+    # Call AI API
+
+    return answer
+
+Then Flask can simply call:
+
+answer = generate_answer(question)
+
+----------------------------------------------------------
+28. OpenAI vs Gemini in Flask
+
+Both can follow the same architecture:
+
+Frontend
+
+↓
+
+Flask
+
+↓
+
+AI Service
+
+↓
+
+AI Provider
+
+↓
+
+Response
+
+The main difference is the SDK and API-specific code.
+
+----------------------------------------------------------
+29. Environment Variables in Production
+
+During development:
+
+.env
+
+In production:
+
+Use secure environment variable or secret-management
+facilities provided by the hosting environment.
+
+Do not expose API keys to the frontend.
+
+----------------------------------------------------------
+30. Important Security Rule
+
+The API key should stay on the backend.
+
+Correct:
+
+Frontend
+   ↓
+Flask
+   ↓
+AI API
+
+Incorrect:
+
+Frontend
+   ↓
+AI API using exposed API key
+
+The frontend should never contain your private
+AI API key.
+
+----------------------------------------------------------
+31. Chatbot Integration
+
+A chatbot can maintain conversation history.
+
+Basic flow:
+
+User Message
+
+↓
+
+Flask
+
+↓
+
+Conversation History
+
+↓
+
+AI API
+
+↓
+
+AI Response
+
+↓
+
+Store Updated History
+
+↓
+
+Return Response
+
+----------------------------------------------------------
+32. Conversation History
+
+Example:
+
+User:
+"Explain Python."
+
+AI:
+"Python is a programming language..."
+
+User:
+"What are its advantages?"
+
+The application may send relevant previous messages
+along with the new question so the model understands
+the context.
+
+----------------------------------------------------------
+33. Database + Flask + AI
+
+A more complete application can use:
+
+Frontend
+   ↓
+Flask
+   ↓
+MySQL
+   ↓
+AI API
+
+Example:
+
+MySQL stores:
+
+• Users
+• Conversations
+• Messages
+• AI responses
+• Timestamps
+
+AI API generates the responses.
+
+----------------------------------------------------------
+34. RAG + Flask + AI
+
+Flask can also be used to build RAG applications.
+
+Flow:
+
+User Question
+
+↓
+
+Flask
+
+↓
+
+Search Database / Vector Database
+
+↓
+
+Retrieve Relevant Documents
+
+↓
+
+Create Prompt
+
+↓
+
+AI Model
+
+↓
+
+Answer
+
+This is useful for:
+
+• Document chatbots
+• Company knowledge assistants
+• PDF question answering
+• Customer support systems
+
+----------------------------------------------------------
+35. Streaming Responses
+
+Instead of waiting for the complete AI response,
+Flask can support streaming so the frontend receives
+the response progressively.
+
+Flow:
+
+User
+ ↓
+Flask
+ ↓
+AI API
+ ↓
+Partial Response
+ ↓
+Frontend
+ ↓
+More Response
+ ↓
+Complete Response
+
+This creates a more natural chatbot experience.
+
+----------------------------------------------------------
+36. Common Problems
+
+Problem:
+
+401 / Authentication Error
+
+Cause:
+
+Invalid or missing API key.
+
+--------------------------------
+
+Problem:
+
+429 / Rate Limit Error
+
+Cause:
+
+Too many requests or insufficient quota.
+
+--------------------------------
+
+Problem:
+
+500 / Server Error
+
+Cause:
+
+Server-side problem.
+
+--------------------------------
+
+Problem:
+
+No response from Flask
+
+Possible causes:
+
+• Incorrect route
+• Flask server stopped
+• Incorrect URL
+• Incorrect request format
+• AI API error
+
+----------------------------------------------------------
+37. Testing the API
+
+The Flask endpoint can be tested using:
+
+• Browser for GET routes
+• Postman
+• curl
+• Frontend JavaScript
+
+Example request:
+
+POST /ask
+
+Body:
+
+{
+    "question": "What is Flask?"
+}
+
+----------------------------------------------------------
+38. Docker + Flask + AI
+
+The Flask AI application can also be Dockerized.
+
+Architecture:
+
+Docker Container
+
+│
+├── Flask
+├── Python
+└── AI Integration
+
+        ↓
+
+OpenAI / Gemini API
+
+The API key should be provided securely as an
+environment variable.
+
+----------------------------------------------------------
+39. EC2 + Flask + AI
+
+The application can be deployed on AWS EC2.
+
+Architecture:
+
+User
+
+↓
+
+Internet
+
+↓
+
+EC2
+
+↓
+
+Docker
+
+↓
+
+Flask
+
+↓
+
+OpenAI / Gemini API
+
+↓
+
+AI Response
+
+----------------------------------------------------------
+40. Common Interview Questions
+
+Q1. How do you integrate AI with Flask?
+
+Create a Flask route that receives user input,
+construct a prompt, call the AI API using an SDK,
+process the response, and return the result to
+the frontend.
+
+--------------------------------
+
+Q2. Where should the AI API key be stored?
+
+In an environment variable or secure secret manager,
+not directly in the source code or frontend.
+
+--------------------------------
+
+Q3. Why use POST for an AI endpoint?
+
+Because the client needs to send data such as the
+user's question to the backend.
+
+--------------------------------
+
+Q4. Why separate AI logic from Flask routes?
+
+To keep the application modular, maintainable,
+testable, and easier to modify.
+
+--------------------------------
+
+Q5. Can Flask directly call OpenAI or Gemini?
+
+Yes.
+
+Flask can use the provider's Python SDK or make
+HTTP API requests from the backend.
+
+--------------------------------
+
+Q6. Can the frontend directly call the AI API?
+
+Technically some APIs can be called from client-side
+applications, but private API keys should not be
+exposed there. For server-side secrets, the safer
+architecture is:
+
+Frontend → Flask Backend → AI API
+
+--------------------------------
+
+Q7. How can conversation history be maintained?
+
+Store previous messages in application memory,
+a database, or another appropriate storage system,
+then provide the relevant conversation context to
+the model.
+
+----------------------------------------------------------
+41. Quick Revision
+
+Flask
+→ Backend Framework
+
+AI API
+→ Provides access to AI models
+
+Prompt
+→ Input sent to AI
+
+Route
+→ Receives user request
+
+AI Service
+→ Handles AI API communication
+
+JSON
+→ Common request/response format
+
+API Key
+→ Authentication credential
+
+.env
+→ Local environment configuration
+
+MySQL
+→ Can store users/conversations
+
+RAG
+→ Retrieves information before generation
+
+Docker
+→ Packages the Flask AI application
+
+EC2
+→ Can host the application
+
+----------------------------------------------------------
+42. What I Learned
+
+During this topic, I learned:
+
+• How Flask communicates with AI APIs
+• How to create an AI endpoint
+• How to receive user input
+• How to create prompts dynamically
+• How to call OpenAI APIs from Flask
+• How to call Gemini APIs from Flask
+• How to process AI responses
+• How to return JSON responses
+• How to handle API errors
+• How to validate user input
+• How to protect API keys
+• How to separate AI logic from Flask routes
+• How to integrate AI with a frontend
+• How to integrate AI with MySQL
+• How Flask can be used to build AI chatbots
+• Basic Flask + RAG architecture
+• Basic Flask + Docker + AI architecture
+• Basic Flask + EC2 + AI deployment architecture
