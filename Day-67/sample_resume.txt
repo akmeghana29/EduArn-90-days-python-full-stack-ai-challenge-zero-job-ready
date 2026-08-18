@@ -1,0 +1,24 @@
+Name: Meghana
+Email: meghana@email.com
+Phone: 9999999999
+
+EDUCATION
+B.Tech Electronics and Communication - NIT Patna
+B.Tech Computer Science - Sharda University
+
+EXPERIENCE
+Software Engineer Intern - CloudNixia Software Solutions
+- Worked on EduArn LMS platform
+- Built features using MERN stack
+- Deployed services on AWS using Terraform
+- Set up CI/CD pipelines
+
+SKILLS
+Python, Django, Flask, JavaScript, React, Node.js,
+MongoDB, AWS, Docker, Terraform, Git, Linux
+
+PROJECTS
+- Student API using Flask
+- Task Manager with Docker
+- AI Chatbot using OpenAI API
+- Deployed Flask app on EC2
