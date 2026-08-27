@@ -1,0 +1,12 @@
+Date: August 27, 2026
+Attendees: Meghana, Ravi, Priya, John
+
+Discussed the progress of the EduArn LMS platform.
+Meghana completed the REST API for student management.
+Ravi is still working on the frontend dashboard, expects to finish by Friday.
+Priya raised a concern about the database performance on large datasets.
+John suggested adding indexing to the students table to improve query speed.
+Team agreed to add caching using Redis in the next sprint.
+Deployment to AWS EC2 is scheduled for next Monday.
+Meghana will write the deployment documentation by Thursday.
+Next meeting scheduled for September 3, 2026.
