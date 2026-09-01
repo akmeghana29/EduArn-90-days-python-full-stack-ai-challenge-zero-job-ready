@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>My Applications</h2>
+    <a href="{{ url_for('jobs.add_job') }}" class="btn">Add New Job</a>
+</div>
+
+<div class="stats-row">
+    <a href="{{ url_for('jobs.dashboard', status='All') }}" class="stat-card {% if status_filter == 'All' %}active{% endif %}">
+        <span class="stat-number">{{ counts.All }}</span>
+        <span class="stat-label">Total</span>
+    </a>
+    <a href="{{ url_for('jobs.dashboard', status='Applied') }}" class="stat-card {% if status_filter == 'Applied' %}active{% endif %}">
+        <span class="stat-number">{{ counts.Applied }}</span>
+        <span class="stat-label">Applied</span>
+    </a>
+    <a href="{{ url_for('jobs.dashboard', status='Interview') }}" class="stat-card {% if status_filter == 'Interview' %}active{% endif %}">
+        <span class="stat-number">{{ counts.Interview }}</span>
+        <span class="stat-label">Interview</span>
+    </a>
+    <a href="{{ url_for('jobs.dashboard', status='Offer') }}" class="stat-card {% if status_filter == 'Offer' %}active{% endif %}">
+        <span class="stat-number">{{ counts.Offer }}</span>
+        <span class="stat-label">Offer</span>
+    </a>
+    <a href="{{ url_for('jobs.dashboard', status='Rejected') }}" class="stat-card {% if status_filter == 'Rejected' %}active{% endif %}">
+        <span class="stat-number">{{ counts.Rejected }}</span>
+        <span class="stat-label">Rejected</span>
+    </a>
+</div>
+
+{% if jobs %}
+<div class="job-list">
+    {% for job in jobs %}
+    <div class="job-card">
+        <div class="job-info">
+            <h3>{{ job.role }}</h3>
+            <p class="company">{{ job.company }}</p>
+            {% if job.location %}
+                <p class="location">{{ job.location }}</p>
+            {% endif %}
+            <p class="date">Applied: {{ job.applied_date.strftime('%d %b %Y') }}</p>
+        </div>
+        <div class="job-right">
+            <span class="badge badge-{{ job.status.lower() }}">{{ job.status }}</span>
+            <a href="{{ url_for('jobs.job_detail', job_id=job.id) }}" class="btn-small">View</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No applications found. Start by adding a job.</p>
+    <a href="{{ url_for('jobs.add_job') }}" class="btn">Add Job</a>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add Job Application</h2>
+    <form method="POST">
+        <label>Company Name</label>
+        <input type="text" name="company" placeholder="e.g. Google" required>
+
+        <label>Job Role</label>
+        <input type="text" name="role" placeholder="e.g. Software Engineer Intern" required>
+
+        <label>Location</label>
+        <input type="text" name="location" placeholder="e.g. Bangalore (optional)">
+
+        <label>Status</label>
+        <select name="status">
+            {% for status in statuses %}
+                <option value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Notes</label>
+        <textarea name="notes" rows="4" placeholder="Any notes about this application..."></textarea>
+
+        <button type="submit">Save Application</button>
+        <a href="{{ url_for('jobs.dashboard') }}" class="btn-cancel">Cancel</a>
+    </form>
+</div>
+{% endblock %}

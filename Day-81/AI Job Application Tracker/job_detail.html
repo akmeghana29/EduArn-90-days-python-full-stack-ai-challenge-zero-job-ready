@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>{{ job.role }} at {{ job.company }}</h2>
+    <a href="{{ url_for('jobs.dashboard') }}" class="btn-small">Back</a>
+</div>
+
+<div class="detail-grid">
+
+    <div class="detail-card">
+        <h3>Application Details</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="update">
+
+            <label>Company</label>
+            <input type="text" name="company" value="{{ job.company }}" required>
+
+            <label>Role</label>
+            <input type="text" name="role" value="{{ job.role }}" required>
+
+            <label>Location</label>
+            <input type="text" name="location" value="{{ job.location or '' }}">
+
+            <label>Status</label>
+            <select name="status">
+                {% for status in statuses %}
+                    <option value="{{ status }}" {% if job.status == status %}selected{% endif %}>{{ status }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Notes</label>
+            <textarea name="notes" rows="4">{{ job.notes or '' }}</textarea>
+
+            <button type="submit">Update</button>
+        </form>
+
+        <form method="POST" style="margin-top: 10px;">
+            <input type="hidden" name="action" value="delete">
+            <button type="submit" class="btn-danger" onclick="return confirm('Delete this application?')">Delete</button>
+        </form>
+    </div>
+
+    <div class="detail-card">
+        <h3>AI Cover Letter</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="generate_cover_letter">
+
+            <label>Your Skills</label>
+            <input type="text" name="skills" placeholder="e.g. Python, Flask, React, AWS">
+
+            <label>Your Experience</label>
+            <textarea name="experience" rows="3" placeholder="e.g. Intern at CloudNixia, worked on LMS platform using MERN stack"></textarea>
+
+            <button type="submit">Generate Cover Letter</button>
+        </form>
+
+        {% if job.cover_letter %}
+        <div class="cover-letter-box">
+            <h4>Generated Cover Letter</h4>
+            <pre>{{ job.cover_letter }}</pre>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
