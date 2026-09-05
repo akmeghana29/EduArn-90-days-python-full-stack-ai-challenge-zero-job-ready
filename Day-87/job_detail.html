@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h2>{{ job.title }}</h2>
+        <p class="company">{{ job.company }}</p>
+    </div>
+    <div class="header-actions">
+        <a href="{{ url_for('resumes.upload_resume', job_id=job.id) }}" class="btn">Upload Resume</a>
+        <a href="{{ url_for('jobs.dashboard') }}" class="btn-small">Back</a>
+    </div>
+</div>
+
+<div class="job-meta-box">
+    <p><strong>Required Skills:</strong> {{ job.required_skills }}</p>
+    <p><strong>Description:</strong> {{ job.description }}</p>
+</div>
+
+{% if resumes %}
+<h3 class="section-title">Applicants — ranked by AI score</h3>
+<div class="applicant-list">
+    {% for resume in resumes %}
+    <div class="applicant-card">
+        <div class="applicant-info">
+            <h4>{{ resume.applicant_name }}</h4>
+            <p class="email">{{ resume.applicant_email }}</p>
+            <p class="uploaded">Uploaded: {{ resume.uploaded_at.strftime('%d %b %Y') }}</p>
+        </div>
+        <div class="applicant-right">
+            <div class="score-circle {% if resume.ai_score >= 70 %}high{% elif resume.ai_score >= 40 %}mid{% else %}low{% endif %}">
+                {{ resume.ai_score | int }}%
+            </div>
+            <span class="badge badge-{{ resume.status.lower() }}">{{ resume.status }}</span>
+            <a href="{{ url_for('resumes.resume_detail', resume_id=resume.id) }}" class="btn-small">View</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No resumes uploaded yet for this job.</p>
+    <a href="{{ url_for('resumes.upload_resume', job_id=job.id) }}" class="btn">Upload Resume</a>
+</div>
+{% endif %}
+
+{% endblock %}

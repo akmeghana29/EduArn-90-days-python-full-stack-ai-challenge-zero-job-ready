@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Dashboard</h2>
+    <a href="{{ url_for('jobs.post_job') }}" class="btn">Post New Job</a>
+</div>
+
+{% if job_data %}
+<div class="job-list">
+    {% for item in job_data %}
+    <div class="job-card">
+        <div class="job-info">
+            <h3>{{ item.job.title }}</h3>
+            <p class="company">{{ item.job.company }}</p>
+            <p class="date">Posted: {{ item.job.created_at.strftime('%d %b %Y') }}</p>
+            <div class="mini-stats">
+                <span class="mini-badge total">{{ item.total }} Total</span>
+                <span class="mini-badge pending">{{ item.pending }} Pending</span>
+                <span class="mini-badge shortlisted">{{ item.shortlisted }} Shortlisted</span>
+                <span class="mini-badge rejected">{{ item.rejected }} Rejected</span>
+            </div>
+        </div>
+        <div class="job-actions">
+            <a href="{{ url_for('jobs.job_detail', job_id=item.job.id) }}" class="btn-small">View Applicants</a>
+            <a href="{{ url_for('resumes.upload_resume', job_id=item.job.id) }}" class="btn-small">Upload Resume</a>
+            <form method="POST" action="{{ url_for('jobs.delete_job', job_id=item.job.id) }}">
+                <button type="submit" class="btn-danger-small" onclick="return confirm('Delete this job and all its resumes?')">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No jobs posted yet. Start by posting a job.</p>
+    <a href="{{ url_for('jobs.post_job') }}" class="btn">Post a Job</a>
+</div>
+{% endif %}
+
+{% endblock %}

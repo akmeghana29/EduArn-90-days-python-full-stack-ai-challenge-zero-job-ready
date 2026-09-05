@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Post a Job</h2>
+    <form method="POST">
+        <label>Job Title</label>
+        <input type="text" name="title" placeholder="e.g. Software Engineer Intern" required>
+
+        <label>Company Name</label>
+        <input type="text" name="company" placeholder="e.g. Google" required>
+
+        <label>Job Description</label>
+        <textarea name="description" rows="5" placeholder="Describe the role, responsibilities and requirements..." required></textarea>
+
+        <label>Required Skills</label>
+        <input type="text" name="required_skills" placeholder="e.g. Python, Flask, MySQL, REST APIs" required>
+
+        <button type="submit">Post Job</button>
+        <a href="{{ url_for('jobs.dashboard') }}" class="btn-cancel">Cancel</a>
+    </form>
+</div>
+{% endblock %}
